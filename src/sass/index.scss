@@ -1,16 +1,4 @@
-@import './base/common';
-@import './base/container';
-@import './base/body';
-
-@import './components/buttons';
-@import './components/modal';
-
-@import './loyout/header';
-@import './loyout/main-first-page';
-@import './loyout/main-second-page';
-@import './loyout/pagination';
-@import './loyout/footer';
-@import './loyout/modal';
-
-@import './utils/mixins';
-@import './utils/veriables';
+@import './base/module';
+@import './components/module';
+@import './loyout/module';
+@import './utils/module';

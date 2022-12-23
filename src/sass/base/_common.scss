@@ -1,43 +1,10 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
-html {
-  box-sizing: border-box;
-}
 
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-}
-
-/* Стили для обнуления верхних отступов у элементов */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
-}
-
-/* Свойства для корректного отображения картинок */
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-address {
+body {
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
 }
 
-.list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.link {
-  text-decoration: none;
-  color: inherit;
+body.modal-open {
+  overflow: hidden;
 }
