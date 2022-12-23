@@ -1,0 +1,9 @@
+@mixin font($fw: 500, $fs: 12px, $lh: 20px) {
+  font-weight: $fw;
+  font-size: $fs;
+  line-height: calc($lh / $fs);
+}
+
+@mixin filter() {
+  filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+} ;
