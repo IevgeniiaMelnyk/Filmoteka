@@ -1,19 +1,76 @@
-.buutton {
-  width: 148px;
-  height: 42px;
+.button {
+  display: inline-block;
+  width: 152px;
+  height: 44px;
+  padding-top: 14px;
+  padding-bottom: 12px;
+  padding-left: 0;
+  padding-right: 0;
   border: 1px solid var(--primary-white-color);
   border-radius: 5px;
+  background-color: transparent;
   color: var(--primary-white-color);
   text-transform: uppercase;
   @include font($lh: 16px);
+
+  &:hover,
+  &:focus {
+    background-color: var(--button-activ-color);
+    border: 1px solid var(--button-activ-color);
+    filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+  }
 }
 
-.buutton {
-  width: 152px;
-  height: 44px;
+.button.active {
+  background-color: var(--button-activ-color);
+  border: 1px solid var(--button-activ-color);
+  filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
 }
 
-.buutton {
-  width: 130px;
+.button.modal {
+  width: 110px;
   height: 44px;
+  padding-top: 14px;
+  padding-bottom: 12px;
+  border: 1px solid var(--primary-text-color);
+  color: var(--primary-text-color);
+}
+
+.button.modal-activ {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 27px;
+  padding-right: 27px;
+  filter: none;
+  background-color: var(--button-activ-color);
+  border: 1px solid var(--button-activ-color);
+  color: var(--primary-white-color);
+}
+
+@media screen and (min-width: $tablet) {
+  .button {
+    width: 130px;
+  }
+
+  .button.modal {
+    width: 124px;
+  }
+
+  .button.modal-activ {
+    display: inline-block;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .button {
+    width: 148px;
+    height: 42px;
+  }
+
+  .button.modal {
+    width: 136px;
+  }
 }
