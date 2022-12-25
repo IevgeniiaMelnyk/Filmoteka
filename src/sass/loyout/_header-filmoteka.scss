@@ -1,3 +1,6 @@
+// --transition-cubic: cubic-bezier(0.4, 0, 0.2, 1);
+// --transition-time: 500ms;
+
 .header {
   margin-left: auto;
   margin-right: auto;
@@ -35,6 +38,44 @@
   align-items: center;
 
   color: var(--primary-white-color);
+
+  transition: color, transform;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    color: var(--primary-white-color);
+    transform: scale(1.1);
+    animation: transition 0.2s ease-out;
+
+    &:active {
+      box-shadow: 0 0 0 0 transparent;
+      transition: box-shadow 0.2s ease-in;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 7%;
+      left: 0%;
+
+      display: block;
+      width: 0px;
+      height: 86%;
+
+      opacity: 0;
+      background: white;
+      box-shadow: 0 0 15px 3px white;
+      transform: skewX(-20deg);
+
+      animation: shine 0.5s 0s linear;
+    }
+
+    .header__logo-svg:hover {
+      box-shadow: 0 0 30px 0 transparentize(#ff6b08, 0.5);
+    }
+  }
 }
 
 .header__logo-text {
