@@ -1,5 +1,6 @@
 .filmoteka {
   padding-top: 20px;
+  width: 100%;
 
   @media screen and (min-width: $tablet) {
     padding-top: 60px;
@@ -13,18 +14,16 @@
 }
 
 .gallery-poster {
-  width: 280px;
-  height: 402px;
+  @include columns-media($mobile, 1);
 
   @media screen and (min-width: $tablet) {
-    width: 336px;
-    height: 455px;
+    @include columns-media($tablet, 2);
   }
   @media screen and (min-width: $desktop) {
-    width: 394px;
-    height: 574px;
+    @include columns-media($tablet, 3);
   }
 }
+
 .gallery-poster-img {
   display: block;
   width: 100%;
@@ -75,4 +74,10 @@
     margin-right: 6px;
     margin-left: 6px;
   }
+}
+
+.gallery-poster-box {
+  @include columns-media($mobile, 1);
+  @include columns-media($tablet, 2);
+  @include columns-media($desktop, 3);
 }
