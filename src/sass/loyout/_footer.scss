@@ -1,0 +1,35 @@
+.footer {
+    background-color: var(--footer-background);
+}
+
+
+.footer__desc {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    color: var(--footer-text-color);
+    
+}
+
+.footer__link {
+    color: var(--footer-text-color);
+}
+
+.dev-team {
+    display: flex;
+    align-items: center;
+    color: var(--footer-text-color);
+}
+
+@media screen and (min-width: $tablet) {
+    .footer__desc {
+        flex-wrap: nowrap;
+        padding-top: 30px;
+        padding-bottom: 30px;
+       
+    }
+}
