@@ -1,0 +1,78 @@
+.filmoteka {
+  padding-top: 20px;
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 60px;
+  }
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--card-gap);
+}
+
+.gallery-poster {
+  width: 280px;
+  height: 402px;
+
+  @media screen and (min-width: $tablet) {
+    width: 336px;
+    height: 455px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 394px;
+    height: 574px;
+  }
+}
+.gallery-poster-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.gallery-poster-title {
+  display: block;
+  margin-top: 12px;
+  text-transform: uppercase;
+  color: var(--primary-text-color);
+  @include font($fs: 12px, $lh: 14px);
+  @media screen and (min-width: $tablet) {
+    @include font($fs: 12px, $lh: 16px);
+  }
+  @media screen and (min-width: $desktop) {
+    @include font($fs: 20px, $lh: 24px);
+  }
+}
+
+.gallery-poster-text {
+  margin-bottom: 4px;
+  color: var(--button-activ-color);
+  @include font($fs: 12px, $lh: 14px);
+  @media screen and (min-width: $tablet) {
+    @include font($fs: 12px, $lh: 16px);
+    margin-bottom: 16px;
+  }
+  @media screen and (min-width: $desktop) {
+    @include font($fs: 20px, $lh: 24px);
+  }
+}
+
+.date-befor::before {
+  content: '';
+  display: inline-block;
+  background-color: var(--button-activ-color);
+  height: 8px;
+  width: 1px;
+  margin-right: 4px;
+  margin-left: 4px;
+
+  @media screen and (min-width: $desktop) {
+    height: 15px;
+    width: 2px;
+    margin-right: 6px;
+    margin-left: 6px;
+  }
+}
