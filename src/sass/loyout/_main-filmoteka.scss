@@ -23,13 +23,16 @@
 .gallery-poster {
   //   @include columns-media($mobile, 1);
   width: 280px;
+  height: 402px;
   @media screen and (min-width: $tablet) {
     //     @include columns-media($tablet, 2);
     width: 336px;
+    height: 455px;
   }
   @media screen and (min-width: $desktop) {
     //     @include columns-media($tablet, 3);
     width: 394px;
+    height: 574px;
   }
 }
 
@@ -43,15 +46,18 @@
 
 .gallery-poster-title {
   display: block;
+  width: 402px;
   margin-top: 12px;
   text-transform: uppercase;
   color: var(--primary-text-color);
   @include font($fs: 12px, $lh: 14px);
   @media screen and (min-width: $tablet) {
     @include font($fs: 12px, $lh: 16px);
+    width: 336px;
   }
   @media screen and (min-width: $desktop) {
     @include font($fs: 20px, $lh: 24px);
+    width: 394px;
   }
 }
 

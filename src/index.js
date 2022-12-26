@@ -1,3 +1,7 @@
 import testFilms from './js/moviesAPI/test';
 
-testFilms();
+// testFilms();
+
+// import { renderMarkup } from './js/renderMarkup/renderMarkup';
+
+// renderMarkup();
