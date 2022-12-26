@@ -21,7 +21,7 @@
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url('../images/background/rectangle-1x-mobile.jpg');
+      url('/src/images/background/Rectangle-1x-mobile.jpg');
 
     @media screen and (min-device-pixel-ratio: 2) and (max-width: #{$tablet - 1}),
       screen and (min-resolution: 192dpi) and (max-width: #{$tablet - 1}),
@@ -31,7 +31,7 @@
           rgba(0, 0, 0, 0.56),
           rgba(0, 0, 0, 0.56)
         ),
-        url('../images/background/rectangle-2x-mobile.jpg');
+        url('/src/images/background/Rectangle-2x-mobile.jpg');
     }
   }
 
@@ -41,7 +41,7 @@
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url('../images/background/rectangle-1x-tablet.jpg');
+      url('/src/images/background/Rectangle-1x-tablet.jpg');
 
     @media screen and (min-device-pixel-ratio: 2) and (min-width: $tablet),
       screen and (min-resolution: 192dpi) and (min-width: $tablet),
@@ -51,7 +51,7 @@
           rgba(0, 0, 0, 0.56),
           rgba(0, 0, 0, 0.56)
         ),
-        url('../images/background/rectangle-2x-tablet.jpg');
+        url('/src/images/background/Rectangle-2x-tablet.jpg');
     }
   }
   @media screen and (min-width: $desktop) {
@@ -60,7 +60,7 @@
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url('../images/background/rectangle-1x-desktop.jpg');
+      url('/src/images/background/Rectangle-1x-Desktop.jpg');
 
     @media screen and (min-device-pixel-ratio: 2) and (min-width: $desktop),
       screen and (min-resolution: 192dpi) and (min-width: $desktop),
@@ -70,7 +70,7 @@
           rgba(0, 0, 0, 0.56),
           rgba(0, 0, 0, 0.56)
         ),
-        url('../images/background/rectangle-2x-desktop.jpg');
+        url('/src/images/background/Rectangle-2x-Desktop.jpg');
     }
   }
 }
