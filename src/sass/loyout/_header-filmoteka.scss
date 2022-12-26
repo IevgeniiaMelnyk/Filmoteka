@@ -1,6 +1,57 @@
-// --transition-cubic: cubic-bezier(0.4, 0, 0.2, 1);
-// --transition-time: 500ms;
+@keyframes shine {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
 
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: rotate(3deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotate(-3deg) translate3d(0, 0, 0);
+  }
+  75% {
+    transform: rotate(1deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes jelly {
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+}
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 0 0 var(--button-activ-color);
+  }
+}
+
+// ==================================
 .header {
   margin-left: auto;
   margin-right: auto;
@@ -15,37 +66,91 @@
 
   background-color: #303030;
   opacity: 0.9;
+  box-shadow: -5px 10px 15px -6px var(--button-activ-color);
 
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.56),
-      rgba(0, 0, 0, 0.56)
-    ),
-    url('../images/background/abstract-2x-Desktop.jpg');
+  @media screen and (max-width: #{$tablet - 1}) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/background/abstract-1x-mobile.jpg');
+
+    @media screen and (min-device-pixel-ratio: 2) and (max-width: #{$tablet - 1}),
+      screen and (min-resolution: 192dpi) and (max-width: #{$tablet - 1}),
+      screen and (min-resolution: 2dppx) and (max-width: #{$tablet - 1}) {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url('../images/background/abstract-2x-mobile.jpg');
+    }
+  }
+  @media screen and (min-width: $tablet) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/background/abstract-1x-tablet.jpg');
+
+    @media screen and (min-device-pixel-ratio: 2) and (min-width: $tablet),
+      screen and (min-resolution: 192dpi) and (min-width: $tablet),
+      screen and (min-resolution: 2dppx) and (min-width: $tablet) {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url('../images/background/abstract-2x-tablet.jpg');
+    }
+  }
+  @media screen and (min-width: $desktop) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/background/abstract-1x-Desktop.jpg');
+
+    @media screen and (min-device-pixel-ratio: 2) and (min-width: $desktop),
+      screen and (min-resolution: 192dpi) and (min-width: $desktop),
+      screen and (min-resolution: 2dppx) and (min-width: $desktop) {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url('../images/background/abstract-2x-Desktop.jpg');
+    }
+  }
 }
 
 .header__nav {
   margin-top: 40px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 280px;
+
+  @media screen and (min-width: $tablet) {
+    width: 100%;
+  }
 }
 
 .header__logo {
   display: inline-flex;
   justify-content: flex-start;
   align-items: center;
-
   color: var(--primary-white-color);
-
   transition: color, transform;
   transition-duration: 500ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: var(--time-function);
 
   &:hover,
   &:focus {
-    color: var(--primary-white-color);
+    color: var(--button-activ-color);
     transform: scale(1.1);
     animation: transition 0.2s ease-out;
 
@@ -79,22 +184,23 @@
 }
 
 .header__logo-text {
+  display: none;
   margin-left: 12px;
-
   font-size: 30px;
   line-height: 35.16px;
+  @media screen and (min-width: $tablet) {
+    display: inline;
+  }
 }
 
 .header__nav-list {
   display: flex;
-
   color: var(--primary-white-color);
 }
 
 .header__nav-link {
   padding-top: 15px;
   padding-bottom: 15px;
-  color: var(--primary-white-color);
 }
 
 .header__nav-item:first-child {
@@ -103,17 +209,17 @@
 
 .header__nav-item {
   position: relative;
-
   display: flex;
-
   font-size: 12px;
   line-height: 14px;
-
   text-transform: uppercase;
+  transition: transform, color;
+  transition-duration: 500ms;
+  transition-timing-function: var(--time-function);
 
   &:hover,
   &:focus {
-    color: #ff6b08;
+    color: var(--button-activ-color);
     transform: scale(1.1);
   }
 }
@@ -131,64 +237,61 @@
 .header__form {
   margin-left: 50px;
   margin-top: 30px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   color: var(--primary-white-color);
+  transition-property: transform, color;
+  transition-duration: 500ms;
+  transition-timing-function: var(--time-function);
 
   &:hover,
   &:focus {
-    color: #ff6b08;
+    color: var(--button-activ-color);
     transform: scale(1.1);
+  }
+  @media screen and (min-width: $tablet) {
+    margin-top: 20px;
   }
 }
 
 .header__input {
   min-width: 180px;
-
   color: inherit;
   background-color: transparent;
-
   border: none;
   border-bottom: 0.7px solid currentColor;
-
   outline: unset;
+  @media screen and (min-width: $tablet) {
+    min-width: 336px;
+    height: 20px;
+  }
+  @media screen and (min-width: $desktop) {
+    min-width: 395px;
+  }
 }
 
 .header__form-btn {
   position: relative;
   left: -18px;
   bottom: -3px;
-
   padding: 15px 0;
-
   border: none;
   background-color: transparent;
   color: transparent;
 }
 
 input::placeholder {
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 400;
+  @include font(400px, 12px, 400px);
+  //   font-size: 12px;
+  //   line-height: 16px;
+  //   font-weight: 400;
   color: inherit;
-}
-
-.header__btn {
-  width: 130px;
-  height: 44px;
-}
-
-.header__btn-wrapper {
-  gap: 20px;
 }
 
 .failure-message {
   width: fit-content;
   margin: 5px auto;
-
   color: #ff001b;
   font-size: 13px;
 }
