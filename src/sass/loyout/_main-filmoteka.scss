@@ -1,6 +1,6 @@
 .filmoteka {
   padding-top: 20px;
-  width: 100%;
+  // width: 100%;
 
   @media screen and (min-width: $tablet) {
     padding-top: 60px;
@@ -11,16 +11,25 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--card-gap);
+
+  @media screen and (min-width: $tablet) {
+    column-gap: 32px;
+  }
+  @media screen and (min-width: $desktop) {
+    column-gap: var(--card-gap);
+  }
 }
 
 .gallery-poster {
-  @include columns-media($mobile, 1);
-
+  //   @include columns-media($mobile, 1);
+  width: 280px;
   @media screen and (min-width: $tablet) {
-    @include columns-media($tablet, 2);
+    //     @include columns-media($tablet, 2);
+    width: 336px;
   }
   @media screen and (min-width: $desktop) {
-    @include columns-media($tablet, 3);
+    //     @include columns-media($tablet, 3);
+    width: 394px;
   }
 }
 
@@ -76,8 +85,8 @@
   }
 }
 
-.gallery-poster-box {
-  @include columns-media($mobile, 1);
-  @include columns-media($tablet, 2);
-  @include columns-media($desktop, 3);
-}
+// .gallery-poster-box {
+//   @include columns-media($mobile, 1);
+//   @include columns-media($tablet, 2);
+//   @include columns-media($desktop, 3);
+// }
