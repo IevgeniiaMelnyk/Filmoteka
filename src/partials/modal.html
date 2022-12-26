@@ -1,0 +1,123 @@
+<div class="backdrop" data-modal>
+  <div class="modal-window">
+    <button type="button" class="modal-close-btn" data-modal-close>
+      <svg class="modal-close-btn-icon" width="14" height="14">
+        <use href="./images/svg/symbol-defs.svg#icon-close"></use>
+      </svg>
+    </button>
+    <div class="modal-container">
+      <picture>
+        <source
+          srcset="
+            ./images/filmoteka/desktop/film-1d-1x.webp 1x,
+            ./images/filmoteka/desktop/film-1d-2x.webp 2x
+          "
+          media="(min-width:
+          1200px)"
+          type="image/webp"
+        />
+        <source
+          srcset="
+            ./images/filmoteka/desktop/film-1d-1x.jpg 1x,
+            ./images/filmoteka/desktop/film-1d-2x.jpg 2x
+          "
+          media="(min-width: 1200px)"
+        />
+        <source
+          srcset="
+            ./images/filmoteka/tablet/film-1t-1x.webp 1x,
+            ./images/filmoteka/tablet/film-1t-2x.webp 2x
+          "
+          media="(min-width: 768px)"
+          type="image/webp"
+        />
+        <source
+          srcset="
+            ./images/filmoteka/tablet/film-1t-1x.jpg 1x,
+            ./images/filmoteka/tablet/film-1t-2x.jpg 2x
+          "
+          media="(min-width: 768px)"
+        />
+        <source
+          srcset="
+            ./images/filmoteka/mobile/film-1m-1x.webp 1x,
+            ./images/filmoteka/mobile/film-1m-2x.webp 2x
+          "
+          media="(max-width: 767px)"
+          type="image/webp"
+        />
+        <source
+          srcset="
+            ./images/filmoteka/mobile/film-1m-1x.jpg 1x,
+            ./images/filmoteka/mobile/film-1m-2x.jpg 2x
+          "
+          media="(max-width: 767px)"
+        />
+
+        <img
+          class="movie-poster"
+          src="./images/filmoteka/mobile/film-1m-1x.jpg"
+          alt="film card"
+        />
+      </picture>
+
+      <div>
+        <table class="info">
+          <caption class="movie-title">
+            A FISTFUL OF LEAD
+          </caption>
+          <tbody>
+            <tr class="table-row">
+              <td class="td">
+                <p class="characteristic">Vote / Votes</p>
+              </td>
+              <td class="description">
+                <span class="vote">7.3 </span> &nbsp;
+                <span class="characteristic">/</span> 1260
+              </td>
+            </tr>
+            <tr class="table-row">
+              <td class="td">
+                <p class="characteristic">Popularity</p>
+              </td>
+              <td class="description">100.2</td>
+            </tr>
+            <tr class="table-row">
+              <td class="td">
+                <p class="characteristic">Original Title</p>
+              </td>
+              <td class="description">A FISTFUL OF LEAD</td>
+            </tr>
+            <tr class="table-row">
+              <td class="td">
+                <p class="characteristic">Genre</p>
+              </td>
+              <td class="description">Western</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 class="about">About</h3>
+        <p class="about-descr">
+          Four of the West’s most infamous outlaws assemble to steal a huge
+          stash of gold from the most corrupt settlement of the gold rush towns.
+          But not all goes to plan one is killed and the other three escapes
+          with bags of gold hide out in the abandoned gold mine where they
+          happen across another gang of three – who themselves were planning to
+          hit the very same bank! As tensions rise, things go from bad to worse
+          as they realise the bags of gold are filled with lead... they’ve been
+          double crossed – but by who and how?
+        </p>
+        <div class="buttons-wrapper">
+          <button
+            type="button"
+            class="button modal modal-activ add-to-watched-btn"
+          >
+            add to Watched</button
+          ><button type="button" class="button modal add-to-queue-btn">
+            add to queue
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
