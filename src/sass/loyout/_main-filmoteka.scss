@@ -46,7 +46,7 @@
 
 .gallery-poster-title {
   display: block;
-  width: 402px;
+  width: 280px;
   margin-top: 12px;
   text-transform: uppercase;
   color: var(--primary-text-color);
@@ -62,15 +62,18 @@
 }
 
 .gallery-poster-text {
+  width: 280px;
   margin-bottom: 4px;
   color: var(--button-activ-color);
   @include font($fs: 12px, $lh: 14px);
   @media screen and (min-width: $tablet) {
     @include font($fs: 12px, $lh: 16px);
     margin-bottom: 16px;
+    width: 336px;
   }
   @media screen and (min-width: $desktop) {
     @include font($fs: 20px, $lh: 24px);
+    width: 394px;
   }
 }
 

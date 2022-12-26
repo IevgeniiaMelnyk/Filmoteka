@@ -2,13 +2,21 @@ import FilmsData from "../moviesAPI/filmsData"
 
 const filmsData = new FilmsData();
 
-const gallery = document.querySelector('.gallery');
+const serch = document.querySelector('.button-test');
+serch.addEventListener('click', null);
 
-export async function renderMarkup() {
-    
+const gallery = document.querySelector('.gallery');
+gallery.addEventListener('click', getFilmId)
+
+
+class getFilms {
+    constructor() {
+        this.page = 1;
+    }
+    async getFilms() {
     try {
         const postersArr = await filmsData.getSearchQuery('new', 100, language = 'ru');
-        const posterProperties = postersArr.films.map(({  id, posters, title, genres, year }) => (
+        const posterProperties = postersArr.films.map(({ id, posters, title, genres, year }) => (
             {
                 id,
                 posters,
@@ -16,25 +24,42 @@ export async function renderMarkup() {
                 genres,
                 year,
             }));
-        
         return posterProperties;
-
-    } catch(err) {
+        } catch(err) {
         console.log(err);
-    };
-};
+        }
+    }
+}
 
-renderMarkup().then((posterProperties) => {
-    gallery.innerHTML = '';
+function onSerarh(e) {
+    e.preventDefault();
+}
 
-    gallery.insertAdjacentHTML('beforeend', posterProperties.map(markupCreating).join(''));
+
+
+
+getFilms().then((posterProperties) => {
+    console.log(posterProperties)
+
+    return posterProperties;
+    
+    // gallery.innerHTML = '';
+    // gallery.insertAdjacentHTML('beforeend', posterProperties.map(markupCreating).join(''));
 });
 
+
+function getFilmId(e) {
+    console.log(e.target)
+}
+
+
+// изменяет первую букву строки на заглавную
 String.prototype.replaceAt = function(index, replacement) {
   return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
 
-function markupCreating({ posters, title, genres, year }) {
+// принимает объект возвращает разметку на главную страницу
+function markupCreating({ id, posters, title, genres, year }) {
         
     if (posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && genres.length > 0) { 
     
@@ -49,6 +74,7 @@ function markupCreating({ posters, title, genres, year }) {
             class="gallery-poster-img"
             src="${posters[4].path}"
             alt="${title}"
+            data-id=${id}
             loading="lazy"
           />
     </div>
