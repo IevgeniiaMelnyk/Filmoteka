@@ -2,10 +2,10 @@ import { poster_sizes, genres_en } from '../dataStorage/moviesData';
 import axios from 'axios';
 
 const MOVIES_API_KEY = 'c1b8c874be54ebc5c34c225dbd6a36f5';
-// https://api.themoviedb.org/3/trending/all/day?api_key=c1b8c874be54ebc5c34c225dbd6a36f5&page=1&language=ru
+// https://api.themoviedb.org/3/trending/all/day?api_key=c1b8c874be54ebc5c34c225dbd6a36f5&page=1&language=rusort_by=popularity.desc
 const MOVIES_API_DAY = 'https://api.themoviedb.org/3/trending/all/day';
 
-// https://api.themoviedb.org/3/search/movie?api_key=c1b8c874be54ebc5c34c225dbd6a36f5&language=ru&query=Star%wars&page=1&include_adult=false
+// https://api.themoviedb.org/3/search/movie?api_key=c1b8c874be54ebc5c34c225dbd6a36f5&language=ru&query=Star%wars&page=1&include_adult=falsesort_by=popularity.desc
 const MOVIES_API_SEARCH = 'https://api.themoviedb.org/3/search/movie?';
 
 // https://api.themoviedb.org/3/movie/13778?api_key=c1b8c874be54ebc5c34c225dbd6a36f5&language=ru
@@ -70,6 +70,8 @@ class FilmsData {
       api_key: MOVIES_API_KEY,
       page: 1,
       language: 'en',
+      include_adult: false,
+      sort_by: 'popularity.desc',
     });
 
     this.#searchParamsQuery = new URLSearchParams({
@@ -77,6 +79,8 @@ class FilmsData {
       page: 1,
       language: language,
       query: '',
+      include_adult: false,
+      sort_by: 'popularity.desc',
     });
     this.#searchParamsID = new URLSearchParams({
       api_key: MOVIES_API_KEY,
