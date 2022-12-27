@@ -9,6 +9,16 @@ refs.search.addEventListener('submit', onSearch);
 
 const getFilmsServis = new GetFilmsServis();
 
+export function onFirstOupep() {
+    getFilmsServis.reset(); 
+    
+    getFilmsServis.getFilmsFirst().then((posterPropertiesFirst) => {
+        renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
+    });
+
+    incrementPage();
+};
+
 export function onSearch(e) {
     
     e.preventDefault();
@@ -20,6 +30,8 @@ export function onSearch(e) {
     getFilmsServis.getFilms().then((posterProperties) => {
         renderMarkupList(refs.gallery, posterProperties, markupCreating);
     });
+
+    incrementPage();
 };
 
 

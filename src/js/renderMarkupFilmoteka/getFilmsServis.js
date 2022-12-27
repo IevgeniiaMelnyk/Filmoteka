@@ -10,9 +10,26 @@ export class GetFilmsServis {
         this.page = 1;
     }
 
+    async getFilmsFirst() {
+    try {
+        const postersArrFirst = await filmsData.getDayPopular(this.page);
+        const posterPropertiesFirst = postersArrFirst.films.map(({ id, posters, title, genres, year }) => (
+            {
+                id,
+                posters,
+                title,
+                genres,
+                year,
+            }));
+        return posterPropertiesFirst;
+        } catch(err) {
+        console.log(err);
+        }
+    }
+
     async getFilms() {
     try {
-        const postersArr = await filmsData.getSearchQuery(this.userRequest, 100, 'ru');
+        const postersArr = await filmsData.getSearchQuery(this.userRequest, this.page);
         const posterProperties = postersArr.films.map(({ id, posters, title, genres, year }) => (
             {
                 id,
@@ -36,5 +53,5 @@ export class GetFilmsServis {
         this.page += 1;
     }
 
-    
+
 }
