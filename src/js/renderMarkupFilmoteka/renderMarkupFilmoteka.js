@@ -1,21 +1,20 @@
 import FilmsData from "../moviesAPI/filmsData"
+import { getRefs } from "../refs";
 
+
+const refs = getRefs();
 const filmsData = new FilmsData();
 
-// const serch = document.querySelector('.button-test');
-// serch.addEventListener('click', null);
-
-const gallery = document.querySelector('.gallery');
-gallery.addEventListener('click', getFilmId)
-
-
-class getFilms {
+refs.search.addEventListener('submit', onSearch);
+class GetFilmsServis {
     constructor() {
+        this.userRequest = '';
         this.page = 1;
     }
+
     async getFilms() {
     try {
-        const postersArr = await filmsData.getSearchQuery('new', 100, language = 'ru');
+        const postersArr = await filmsData.getSearchQuery(this.userRequest, 100, 'ru');
         const posterProperties = postersArr.films.map(({ id, posters, title, genres, year }) => (
             {
                 id,
@@ -29,36 +28,40 @@ class getFilms {
         console.log(err);
         }
     }
+
+    reset() {
+        this.page = 1;
+        refs.gallery.innerHTML = '';
+    }
 }
 
-function onSerarh(e) {
-    e.preventDefault();
-}
+const getFilmsServis = new GetFilmsServis();
 
-
-
-
-getFilms().then((posterProperties) => {
-    console.log(posterProperties)
-
-    return posterProperties;
+export function onSearch(e) {
     
-    // gallery.innerHTML = '';
-    // gallery.insertAdjacentHTML('beforeend', posterProperties.map(markupCreating).join(''));
-});
+    e.preventDefault();
+    getFilmsServis.reset(); 
+
+    getFilmsServis.userRequest = e.target[0].value.toLowerCase();
+    console.log(getFilmsServis.userRequest)
+
+    getFilmsServis.getFilms().then((posterProperties) => {
+        renderMarkupList(refs.gallery, posterProperties, markupCreating);
+    });
+};
 
 
-function getFilmId(e) {
-    console.log(e.target)
-}
-
+// рендерит разметку в галлерею
+function renderMarkupList(element, imgArr, markupCreating) {
+    element.insertAdjacentHTML('beforeend', imgArr.map(markupCreating).join('')) ; 
+};
 
 // изменяет первую букву строки на заглавную
 String.prototype.replaceAt = function(index, replacement) {
   return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
 
-// принимает объект возвращает разметку на главную страницу
+// принимает объект возвращает разметку одной карточки
 function markupCreating({ id, posters, title, genres, year }) {
         
     if (posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && genres.length > 0) { 
@@ -84,3 +87,4 @@ function markupCreating({ id, posters, title, genres, year }) {
     `
 }
 };
+
