@@ -40,15 +40,17 @@
   background-color: var(--primary-white-color);
   text-transform: uppercase;
   @include font($lh: 16px);
-}
 
-.button-modal.modal-activ {
-  padding-left: 27px;
-  padding-right: 27px;
-  filter: none;
-  background-color: var(--button-activ-color);
-  border: 1px solid var(--button-activ-color);
-  color: var(--primary-white-color);
+  transition: color 250ms var(--time-function),
+    background-color 250ms var(--time-function),
+    border 250ms var(--time-function);
+
+  &:hover,
+  &:focus {
+    background-color: var(--button-activ-color);
+    border: 1px solid var(--button-activ-color);
+    color: var(--primary-white-color);
+  }
 }
 
 @media screen and (min-width: $tablet) {
