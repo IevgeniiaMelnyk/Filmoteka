@@ -4,5 +4,8 @@ export function getRefs() {
         search: document.getElementById('search-form'),
         mBtnToQueue: document.querySelector('.add-to-queue-btn'),
         nBtnToWatched: document.querySelector('.add-to-watched-btn'),
+        filmoteka: document.querySelector('.header__logo'),
+        home: document.querySelector('.home'),
+        library: document.querySelector('.library'),
     }
 };
