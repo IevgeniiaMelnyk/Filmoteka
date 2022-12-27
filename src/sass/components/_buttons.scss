@@ -27,7 +27,7 @@
   filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
 }
 
-.button.modal {
+.button-modal {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -35,13 +35,14 @@
   height: 44px;
   padding: 13px 0;
   border: 1px solid var(--primary-text-color);
+  border-radius: 5px;
   color: var(--primary-text-color);
+  background-color: var(--primary-white-color);
+  text-transform: uppercase;
+  @include font($lh: 16px);
 }
 
-.button.modal-activ {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+.button-modal.modal-activ {
   padding-left: 27px;
   padding-right: 27px;
   filter: none;
@@ -55,12 +56,12 @@
     width: 130px;
   }
 
-  .button.modal {
+  .button-modal {
     width: 124px;
     padding: 14px 0 12px;
   }
 
-  .button.modal-activ {
+  .button-modal.modal-activ {
     display: inline-block;
     padding-left: 0;
     padding-right: 0;
@@ -73,7 +74,7 @@
     height: 42px;
   }
 
-  .button.modal {
+  .button-modal {
     width: 136px;
   }
 }

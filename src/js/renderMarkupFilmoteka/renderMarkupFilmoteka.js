@@ -2,8 +2,8 @@ import FilmsData from "../moviesAPI/filmsData"
 
 const filmsData = new FilmsData();
 
-const serch = document.querySelector('.button-test');
-serch.addEventListener('click', null);
+// const serch = document.querySelector('.button-test');
+// serch.addEventListener('click', null);
 
 const gallery = document.querySelector('.gallery');
 gallery.addEventListener('click', getFilmId)
