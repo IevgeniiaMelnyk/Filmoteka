@@ -3,21 +3,28 @@ import { getRefs } from "../refs";
 import { renderMarkupList } from "./renderMarkup";
 import { markupCreating } from "./renderMarkup";
 
-
 const refs = getRefs();
+
+document.addEventListener('DOMContentLoaded', onFirstOupep);
+
 refs.search.addEventListener('submit', onSearch);
 
 const getFilmsServis = new GetFilmsServis();
 
 export function onFirstOupep() {
-    getFilmsServis.reset(); 
-    
-    getFilmsServis.getFilmsFirst().then((posterPropertiesFirst) => {
+
+    if (getFilmsServis.page === 1) {
+        getFilmsServis.reset(); 
+    }
+        
+    getFilmsServis.getFilmsPopular().then((posterPropertiesFirst) => {
         renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
     });
 
-    incrementPage();
+    getFilmsServis.incrementPage();
 };
+
+onFirstOupep();
 
 export function onSearch(e) {
     
@@ -31,7 +38,7 @@ export function onSearch(e) {
         renderMarkupList(refs.gallery, posterProperties, markupCreating);
     });
 
-    incrementPage();
+    getFilmsServis.incrementPage();
 };
 
 

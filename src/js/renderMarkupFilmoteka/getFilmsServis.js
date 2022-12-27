@@ -10,7 +10,7 @@ export class GetFilmsServis {
         this.page = 1;
     }
 
-    async getFilmsFirst() {
+    async getFilmsPopular() {
     try {
         const postersArrFirst = await filmsData.getDayPopular(this.page);
         const posterPropertiesFirst = postersArrFirst.films.map(({ id, posters, title, genres, year }) => (
