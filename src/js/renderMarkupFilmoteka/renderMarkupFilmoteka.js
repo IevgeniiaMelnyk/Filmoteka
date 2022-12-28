@@ -2,6 +2,8 @@ import { GetFilmsServis } from "./getFilmsServis";
 import { getRefs } from "../refs";
 import { renderMarkupList } from "./renderMarkup";
 import { markupCreating } from "./renderMarkup";
+import { spinnerOn } from "../spiner/spiner";
+import { spinnerOff } from "../spiner/spiner";
 
 const refs = getRefs();
 
@@ -15,11 +17,12 @@ export function onFirstOupen() {
     if (getFilmsServis.page === 1) {
         getFilmsServis.reset(); 
     }
-
+    
+    spinnerOn();
     getFilmsServis.getFilmsPopular().then((posterPropertiesFirst) => {
         
         makeNewArrProp(posterPropertiesFirst);
-       
+        spinnerOff();
         renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
     });
 
@@ -34,10 +37,13 @@ export function onSearch(e) {
     getFilmsServis.reset(); 
 
     getFilmsServis.userRequest = e.target[0].value.toLowerCase();
+
+    spinnerOn();
     
     getFilmsServis.getFilms().then((posterProperties) => {
 
         makeNewArrProp(posterProperties);
+        spinnerOff();
 
         renderMarkupList(refs.gallery, posterProperties, markupCreating);
     });
