@@ -75,7 +75,7 @@
 }
 
 .header__nav {
-  margin-top: 40px;
+  margin-top: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -146,6 +146,10 @@
   // gap: 39px;
 }
 
+.autoriz-list {
+  justify-content: end;
+}
+
 .header__nav-link {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -154,13 +158,7 @@
 .header__nav-item:not(:last-child) {
   margin-right: 39px;
 }
-.autoriz {
-  padding: 0;
-  border: none;
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-}
+
 .header__nav-item {
   position: relative;
   display: flex;
@@ -188,6 +186,14 @@
   background: #ff001b;
 }
 
+.autoriz {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  text-transform: uppercase;
+}
 // =============
 .header__form {
   margin-left: 50px;
@@ -238,15 +244,12 @@
 
 input::placeholder {
   @include font(400px, 12px, 400px);
-  //   font-size: 12px;
-  //   line-height: 16px;
-  //   font-weight: 400;
   color: inherit;
 }
 
 .failure-message {
   width: fit-content;
-  margin: 5px auto;
+  margin: 0px auto;
   color: #ff001b;
   font-size: 13px;
 }
