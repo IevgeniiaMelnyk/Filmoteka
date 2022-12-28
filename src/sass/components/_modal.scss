@@ -1,11 +1,21 @@
+body.modal-open {
+  overflow: hidden;
+}
+
 .modal-window {
   position: absolute;
-  top: 50%;
+  top: 20px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   padding: 48px 20px 40px 20px;
   width: 280px;
   background-color: var(--primary-white-color);
+
+  @media screen and (min-height: 600px) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .modal-close-btn {
@@ -132,7 +142,7 @@ table tr {
 @media screen and (min-width: $desktop) {
   .modal-window {
     padding: 40px 12px;
-    max-width: 806px;
+    width: 806px;
   }
 
   .movie-poster {
