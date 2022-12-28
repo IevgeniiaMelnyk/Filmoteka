@@ -10,9 +10,9 @@ String.prototype.replaceAt = function(index, replacement) {
 
 // принимает объект возвращает разметку одной карточки
 export function markupCreating({ id, posters, title, genres, year }) {
-
+    
   if (posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && genres.length > 0) {
-      
+    
       const str = genres.join(', ');
       const letter = str[0].toUpperCase();
       const genr = str.replaceAt(0, letter);

@@ -15,9 +15,11 @@ export function onFirstOupen() {
     if (getFilmsServis.page === 1) {
         getFilmsServis.reset(); 
     }
-        
+
     getFilmsServis.getFilmsPopular().then((posterPropertiesFirst) => {
-        console.log(posterPropertiesFirst)
+        
+        makeNewArrProp(posterPropertiesFirst);
+       
         renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
     });
 
@@ -32,9 +34,11 @@ export function onSearch(e) {
     getFilmsServis.reset(); 
 
     getFilmsServis.userRequest = e.target[0].value.toLowerCase();
-    // console.log(getFilmsServis.userRequest)
-
+    
     getFilmsServis.getFilms().then((posterProperties) => {
+
+        makeNewArrProp(posterProperties);
+
         renderMarkupList(refs.gallery, posterProperties, markupCreating);
     });
 
@@ -43,4 +47,10 @@ export function onSearch(e) {
 
 
 
-
+function makeNewArrProp(arr) {
+    return arr.forEach(element => {
+            if (element.genres.length > 2) {
+                element.genres = [element.genres[0], element.genres[1], 'Other']
+            }
+        }); 
+};
