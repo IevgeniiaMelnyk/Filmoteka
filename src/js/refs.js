@@ -9,5 +9,6 @@ export function getRefs() {
     library: document.querySelector('.library'),
     modal: document.querySelector('[data-modal-film]'),
     closeModalBtn: document.querySelector('[data-modal-close]'),
+    spinner: document.querySelector('.loader'),
   };
 }

@@ -5,26 +5,26 @@ import { markupCreating } from "./renderMarkup";
 
 const refs = getRefs();
 
-document.addEventListener('DOMContentLoaded', onFirstOupep);
 
 refs.search.addEventListener('submit', onSearch);
 
 const getFilmsServis = new GetFilmsServis();
 
-export function onFirstOupep() {
+export function onFirstOupen() {
 
     if (getFilmsServis.page === 1) {
         getFilmsServis.reset(); 
     }
         
     getFilmsServis.getFilmsPopular().then((posterPropertiesFirst) => {
+        console.log(posterPropertiesFirst)
         renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
     });
 
     getFilmsServis.incrementPage();
 };
 
-onFirstOupep();
+onFirstOupen();
 
 export function onSearch(e) {
     
@@ -32,7 +32,7 @@ export function onSearch(e) {
     getFilmsServis.reset(); 
 
     getFilmsServis.userRequest = e.target[0].value.toLowerCase();
-    console.log(getFilmsServis.userRequest)
+    // console.log(getFilmsServis.userRequest)
 
     getFilmsServis.getFilms().then((posterProperties) => {
         renderMarkupList(refs.gallery, posterProperties, markupCreating);
