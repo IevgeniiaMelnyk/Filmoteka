@@ -98,6 +98,9 @@
   }
 }
 
+.film-rating {
+  @include font($fs: 20px, $lh: 24px);
+}
 // .gallery-poster-box {
 //   @include columns-media($mobile, 1);
 //   @include columns-media($tablet, 2);

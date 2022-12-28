@@ -9,7 +9,7 @@ String.prototype.replaceAt = function(index, replacement) {
 }
 
 // принимает объект возвращает разметку одной карточки
-export function markupCreating({ id, posters, title, genres, year }) {
+export function markupCreating({ id, posters, title, genres, year, vote }) {
     
   if (posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && genres.length > 0) {
     
@@ -23,15 +23,15 @@ export function markupCreating({ id, posters, title, genres, year }) {
     <picture>
           <source
             srcset="
-              ${posters[5].path} 1x,
-              ${posters[6].path} 2x
+              ${posters[4].path} 1x,
+              ${posters[5].path} 2x
             "
             media="(min-width: 1200px)"
           />
           <source
             srcset="
-              ${posters[4].path} 1x,
-              ${posters[5].path} 2x
+              ${posters[3].path} 1x,
+              ${posters[4].path} 2x
             "
             media="(min-width: 768px)"
           />
@@ -52,7 +52,7 @@ export function markupCreating({ id, posters, title, genres, year }) {
     </picture>
     </div>
     <h2 class="gallery-poster-title">${title}</h2>
-      <p class="gallery-poster-text">${genr}<span class="date-befor">${year}</span></p>
+      <p class="gallery-poster-text">${genr}<span class="date-befor">${year}</span><span class="film-rating">${vote}</span></p>
     </div>
     `
   }  
