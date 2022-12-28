@@ -52,7 +52,14 @@ export function markupCreating({ id, posters, title, genres, year, vote }) {
     </picture>
     </div>
     <h2 class="gallery-poster-title">${title}</h2>
-      <p class="gallery-poster-text">${genr}<span class="date-befor">${year}</span><span class="film-rating">${vote}</span></p>
+    <div class="gallery-poster-description">
+      <p class="gallery-poster-text">${genr}
+        <span class="date-befor">${year}</span>
+        <div class="film-rating-wrapper">
+      <p class="film-rating">${vote}</p>
+        </div>
+      </p>
+    </div>
     </div>
     `
   }  
