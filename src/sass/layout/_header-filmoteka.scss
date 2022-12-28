@@ -142,9 +142,8 @@
 
 .header__nav-list {
   display: flex;
-
   color: var(--primary-white-color);
-  gap: 39px;
+  // gap: 39px;
 }
 
 .header__nav-link {
@@ -152,10 +151,16 @@
   padding-bottom: 15px;
 }
 
-// .header__nav-item:not(:last-child) {
-//   margin-right: 39px;
-// }
-
+.header__nav-item:not(:last-child) {
+  margin-right: 39px;
+}
+.autoriz {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+}
 .header__nav-item {
   position: relative;
   display: flex;
@@ -183,6 +188,7 @@
   background: #ff001b;
 }
 
+// =============
 .header__form {
   margin-left: 50px;
   margin-top: 30px;
