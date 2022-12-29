@@ -20,8 +20,8 @@ const sStorage = new SStorage();
 
 
 let userSettings = {
-    // page: getFilmsServis.currentPage,
-    // request: getFilmsServis.userRequest,
+    page: getFilmsServis.currentPage,
+    request: getFilmsServis.userRequest,
 };
 
 
@@ -30,6 +30,7 @@ ifItFirstOupen();
 
 export function ifItFirstOupen() {
     if (sStorage.load('userSettings') === undefined || sStorage.load('userSettings') === 0) {
+        getFilmsServis.reset();
         popularFilmsRender();
     }
 };
