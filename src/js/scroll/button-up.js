@@ -5,10 +5,10 @@ const refs = getRefs();
 const buttonUp = {
   el: refs.buttonUp,
   show() {
-    this.el.classList.remove('btn-up_hide');
+    this.el.classList.remove('up-button_hiden');
   },
   hide() {
-    this.el.classList.add('btn-up_hide');
+    this.el.classList.add('up-button_hiden');
   },
   
 

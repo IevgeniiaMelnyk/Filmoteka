@@ -9,4 +9,4 @@ import { onFirstOupen } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
 import toggleModalFilm from './js/modals/modal-film';
 import toggleModalFilm from './js/scroll/button-up';
 
-// toggleModalFilm();
+toggleModalFilm();

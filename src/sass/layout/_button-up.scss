@@ -1,25 +1,6 @@
-.dse {
-width: 30px;
-height: 30px;
-background-color: red;
-}
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
 
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-}
-.btn-up_hide {
-    display: none;
-}
-.btn-up {
+
+.up-button {
     position: fixed;
     background-color: var(--button-activ-color);
     right: 10px;
@@ -33,7 +14,7 @@ background-color: red;
     height: 50px;
 }
 
-.btn-up__icon {
+.up-button__icon {
     content: '';
     width: 40px;
     height: 40px;
@@ -43,18 +24,20 @@ background-color: red;
 }
 
 
-.btn-up:hover {
+.up-button:hover {
     background-color: var(--secondary-text-color);
 }
-
+.up-button_hiden {
+    display: none;
+}
 
 @media screen and (max-width:480px) {
-    .btn-up {
+    .up-button {
         width: 40px;
         height: 40px;
     }
 
-    .btn-up__icon {
+    .up-button__icon {
         width: 30px;
         height: 30px;
     }
