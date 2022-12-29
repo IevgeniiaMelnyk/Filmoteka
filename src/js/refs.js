@@ -10,5 +10,6 @@ export function getRefs() {
     modal: document.querySelector('[data-modal-film]'),
     closeModalBtn: document.querySelector('[data-modal-close]'),
     spinner: document.querySelector('.loader'),
+    btnUp: document.querySelector(`.btn-up`)
   };
 }

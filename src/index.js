@@ -7,5 +7,6 @@ import { onSearch } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
 import { onFirstOupen } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
 
 import toggleModalFilm from './js/modals/modal-film';
+import toggleModalFilm from './js/btnClickTop';
 
-toggleModalFilm();
+// toggleModalFilm();
