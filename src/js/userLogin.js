@@ -8,7 +8,7 @@ export function markupUserLogin(isLogin, userName) {
   } else {
     refs.signOut.classList.remove('visually-hidden');
     refs.userIcon.classList.remove('visually-hidden');
-    document.getElementById('user').innerHTML = 'userName';
+    document.getElementById('user').innerHTML = `${userName}`;
     refs.signUp.classList.add('visually-hidden');
     refs.signIn.classList.add('visually-hidden');
   }
