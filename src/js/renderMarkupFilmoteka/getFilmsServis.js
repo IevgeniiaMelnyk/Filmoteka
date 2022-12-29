@@ -7,13 +7,13 @@ const filmsData = new FilmsData();
 export class GetFilmsServis {
     constructor() {
         this.userRequest = '';
-        this.page = 1;
+        this.nextPage = 1;
+        this.currentPage = 0;
     }
 
     async getFilmsPopular() {
     try {
-        const postersArrFirst = await filmsData.getDayPopular(this.page);
-        console.log(postersArrFirst)
+        const postersArrFirst = await filmsData.getDayPopular(this.nextPage);
         const posterPropertiesFirst = postersArrFirst.films.map(({ id, posters, title, genres, year, vote }) => (
             {
                 id,
@@ -31,7 +31,43 @@ export class GetFilmsServis {
 
     async getFilms() {
     try {
-        const postersArr = await filmsData.getSearchQuery(this.userRequest, this.page);
+        const postersArr = await filmsData.getSearchQuery(this.userRequest, this.nextPage);
+        const posterProperties = postersArr.films.map(({ id, posters, title, genres, year, vote }) => (
+            {
+                id,
+                posters,
+                title,
+                genres,
+                year,
+                vote,
+            }));
+        return posterProperties;
+        } catch(err) {
+        console.log(err);
+        }
+    }
+
+    async getFilmsPopularRestart(page) {
+    try {
+        const postersArrFirst = await filmsData.getDayPopular(page);
+        const posterPropertiesFirst = postersArrFirst.films.map(({ id, posters, title, genres, year, vote }) => (
+            {
+                id,
+                posters,
+                title,
+                genres,
+                year,
+                vote,
+            }));
+        return posterPropertiesFirst;
+        } catch(err) {
+        console.log(err);
+        }
+    }
+
+     async getFilmsRestart(request, page) {
+    try {
+        const postersArr = await filmsData.getSearchQuery(request, page);
         const posterProperties = postersArr.films.map(({ id, posters, title, genres, year, vote }) => (
             {
                 id,
@@ -48,12 +84,14 @@ export class GetFilmsServis {
     }
 
     reset() {
-        this.page = 1;
+        this.nextPage = 1;
+        this.currentPage = 0;
         refs.gallery.innerHTML = '';
     }
 
     incrementPage() {
-        this.page += 1;
+        this.nextPage += 1;
+        this.currentPage += 1;
     }
 
 

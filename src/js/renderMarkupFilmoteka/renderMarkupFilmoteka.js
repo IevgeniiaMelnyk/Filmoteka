@@ -4,29 +4,41 @@ import { renderMarkupList } from "./renderMarkup";
 import { markupCreating } from "./renderMarkup";
 import { spinnerOn } from "../spiner/spiner";
 import { spinnerOff } from "../spiner/spiner";
+import { SStorage } from "../storage/sessionStorage";
 
 const refs = getRefs();
 
+document.addEventListener('DOMContentLoaded', onCurrentPage)
 
+const loadMo = document.querySelector('.pagination__button_current')
+loadMo.addEventListener('click', loadMore)
 refs.search.addEventListener('submit', onSearch);
 
+
 const getFilmsServis = new GetFilmsServis();
-const settings = '';
+const sStorage = new SStorage();
+
+
+let userSettings = {
+    // page: getFilmsServis.currentPage,
+    // request: getFilmsServis.userRequest,
+};
+
 
 // первая загрузка страницы
 ifItFirstOupen();
-// onFirstOupen()
 
 export function ifItFirstOupen() {
-    if (!sessionStorage.getItem(settings)) {
-        onFirstOupen();
+    if (sStorage.load('userSettings') === undefined || sStorage.load('userSettings') === 0) {
+        popularFilmsRender();
     }
 };
 
 
-export function onFirstOupen() {
+// популярные фильмы рендер
+export function popularFilmsRender() {
 
-    if (getFilmsServis.page === 1) {
+    if (getFilmsServis.nextPage === 1 && getFilmsServis.currentPage === 0) {
         getFilmsServis.reset(); 
     }
     
@@ -39,7 +51,10 @@ export function onFirstOupen() {
     });
 
     getFilmsServis.incrementPage();
-    sessionStorage.setItem('settings', getFilmsServis.page);
+    userSettings.page = getFilmsServis.currentPage;
+    userSettings.request = getFilmsServis.userRequest;
+    sStorage.save('userSettings', userSettings);
+
 };
 
 
@@ -54,6 +69,7 @@ export function onSearch(e) {
     
     if (getFilmsServis.userRequest === '') {
         getFilmsServis.reset()
+        sStorage.clear();
     };
 
 
@@ -70,6 +86,43 @@ export function onSearch(e) {
             renderMarkupList(refs.gallery, posterProperties, markupCreating);
 
             getFilmsServis.incrementPage();
+            userSettings.page = getFilmsServis.currentPage;
+            userSettings.request = getFilmsServis.userRequest;
+            sStorage.save('userSettings', userSettings);
+            
+        });
+    }
+};
+
+
+// загрузка по кнопке или пагинации
+function loadMore() {
+    refs.gallery.innerHTML = '';
+    if (getFilmsServis.userRequest === '') {
+        popularFilmsRender();
+    } else {
+        nextLouding();
+    }
+}
+
+// следующая загрузка
+function nextLouding() {
+    if (getFilmsServis.userRequest) {
+        spinnerOn();
+        getFilmsServis.getFilms().then((posterProperties) => {
+            if (posterProperties.length === 0) {
+                getFilmsServis.reset();
+            };
+
+            makeNewArrProp(posterProperties);
+            spinnerOff();
+
+            renderMarkupList(refs.gallery, posterProperties, markupCreating);
+
+            getFilmsServis.incrementPage();
+            userSettings.page = getFilmsServis.currentPage;
+            userSettings.request = getFilmsServis.userRequest;
+            sStorage.save('userSettings', userSettings);
         });
     }
 };
@@ -84,3 +137,35 @@ function makeNewArrProp(arr) {
         }); 
 };
 
+function onCurrentPage(e) {
+    userSettings = sStorage.get('userSettings')
+    console.log(e)
+    console.log(userSettings)
+
+    if (userSettings.request === '' && userSettings.page > 0) {
+        refs.gallery.innerHTML = '';
+        spinnerOn();
+        getFilmsServis.getFilmsPopularRestart(userSettings.page).then((posterPropertiesFirst) => {
+        
+        makeNewArrProp(posterPropertiesFirst);
+        spinnerOff();
+        renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
+    });
+
+    getFilmsServis.incrementPage();
+    userSettings.page = getFilmsServis.currentPage;
+    userSettings.request = getFilmsServis.userRequest;
+    sStorage.save('userSettings', userSettings);
+    };
+
+    if (userSettings.request && userSettings.page > 0) {
+        refs.gallery.innerHTML = '';
+        spinnerOn();
+        getFilmsServis.getFilmsRestart(userSettings.request, userSettings.page).then((posterPropertiesFirst) => {
+        
+            makeNewArrProp(posterPropertiesFirst);
+            spinnerOff();
+            renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
+        });
+    }
+}
