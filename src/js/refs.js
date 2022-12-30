@@ -10,5 +10,9 @@ export function getRefs() {
     modal: document.querySelector('[data-modal-film]'),
     closeModalBtn: document.querySelector('[data-modal-close]'),
     spinner: document.querySelector('.loader'),
+    searchError: document.querySelector('.search-error'),
+    emptyLibraryError: document.querySelector('.empty-library-error'),
+    autofocusBtn: document.querySelector('.input-autofocus-btn'),
+    autofocusInput: document.querySelector('.header__input'),
   };
 }
