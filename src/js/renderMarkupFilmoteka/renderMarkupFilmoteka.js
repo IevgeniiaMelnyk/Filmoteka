@@ -10,6 +10,7 @@ const refs = getRefs();
 
 document.addEventListener('DOMContentLoaded', onCurrentPage)
 
+
 const loadMo = document.querySelector('.pagination__button_current')
 loadMo.addEventListener('click', loadMore)
 refs.search.addEventListener('submit', onSearch);
@@ -165,3 +166,4 @@ function onCurrentPage(e) {
         });
     }
 }
+

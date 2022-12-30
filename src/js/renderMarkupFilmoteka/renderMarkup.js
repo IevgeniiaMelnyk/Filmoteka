@@ -10,8 +10,8 @@ String.prototype.replaceAt = function(index, replacement) {
 
 // принимает объект возвращает разметку одной карточки
 export function markupCreating({ id, posters, title, genres, year, vote }) {
-    
-  if (posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && genres.length > 0) {
+  console.log(posters)    
+  if (posters[3].path !== 'https://image.tmdb.org/t/p/w342/null' && posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && posters[5].path !== 'https://image.tmdb.org/t/p/w780/null' && genres.length > 0) {
     
       const str = genres.join(', ');
       const letter = str[0].toUpperCase();
@@ -19,7 +19,7 @@ export function markupCreating({ id, posters, title, genres, year, vote }) {
 
       return `
     <div class="gallery-poster-box">
-    <div class="gallery-poster" data-id=${id}>
+    <div class="gallery-poster">
     <picture>
           <source
             srcset="
@@ -46,6 +46,7 @@ export function markupCreating({ id, posters, title, genres, year, vote }) {
             class="gallery-poster-img"
             src="${posters[3].path}"
             alt="${title}"
+            data-id=${id}
             loading="lazy"
           />
     </picture>
