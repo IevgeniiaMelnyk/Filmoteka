@@ -6,6 +6,7 @@ import { spinnerOn } from "../spiner/spiner";
 import { spinnerOff } from "../spiner/spiner";
 import { SStorage } from "../storage/sessionStorage";
 import { searchErrorShow } from "../errors/showAndHideErrors";
+import { searchErrorHiden } from "../errors/showAndHideErrors";
 
 
 const refs = getRefs();
@@ -63,7 +64,8 @@ export function popularFilmsRender() {
 // загрузка по поиску пользователя
 export function onSearch(e) {
   e.preventDefault();
-  getFilmsServis.reset();
+    getFilmsServis.reset();
+    
 
     getFilmsServis.userRequest = e.target[0].value.toLowerCase().trim();
 
@@ -87,6 +89,7 @@ export function onSearch(e) {
             };
 
             if (posterProperties.length > 0) {
+                
                 makeNewArrProp(posterProperties);
                 spinnerOff();
                 renderMarkupList(refs.gallery, posterProperties, markupCreating);
@@ -94,6 +97,9 @@ export function onSearch(e) {
                 userSettings.page = getFilmsServis.currentPage;
                 userSettings.request = getFilmsServis.userRequest;
                 sStorage.save('userSettings', userSettings);
+                searchErrorHiden(); 
+
+                
             }
         });
     }
@@ -150,7 +156,7 @@ function onCurrentPage(e) {
     userSettings = sStorage.get('userSettings')
     console.log(e)
 
-    if (userSettings.request === '' && userSettings.page > 0 && userSettings.firstOupen) {
+    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen) {
         console.log('eee')
         refs.gallery.innerHTML = '';
         spinnerOn();
