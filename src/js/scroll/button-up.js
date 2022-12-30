@@ -2,7 +2,7 @@ import { getRefs } from '../refs';
 
 const refs = getRefs();
 
-const buttonUp = {
+export const buttonUp = {
   el: refs.buttonUp,
   show() {
     this.el.classList.remove('up-button_hiden');
