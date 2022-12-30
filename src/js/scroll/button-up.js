@@ -10,14 +10,13 @@ const buttonUp = {
   hide() {
     this.el.classList.add('up-button_hiden');
   },
-  
 
   addEventListener() {
     window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
       scrollY > 700 ? this.show() : this.hide();
     });
-      document.querySelector('.up-button').onclick = () => {
+    document.querySelector('.up-button').onclick = () => {
       window.scrollTo({
         top: 0,
         left: 0,
