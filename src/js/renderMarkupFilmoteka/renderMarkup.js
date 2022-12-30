@@ -19,7 +19,7 @@ export function markupCreating({ id, posters, title, genres, year, vote }) {
 
       return `
     <div class="gallery-poster-box">
-    <div class="gallery-poster">
+    <div class="gallery-poster" data-id=${id}>
     <picture>
           <source
             srcset="
@@ -46,7 +46,6 @@ export function markupCreating({ id, posters, title, genres, year, vote }) {
             class="gallery-poster-img"
             src="${posters[3].path}"
             alt="${title}"
-            data-id=${id}
             loading="lazy"
           />
     </picture>

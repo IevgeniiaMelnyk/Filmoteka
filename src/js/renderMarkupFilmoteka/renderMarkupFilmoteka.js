@@ -29,8 +29,8 @@ let userSettings = {
 ifItFirstOupen();
 
 export function ifItFirstOupen() {
-    if (sStorage.load('userSettings') === undefined || sStorage.load('userSettings') === 0) {
-        getFilmsServis.reset();
+    if (sStorage.load('userSettings') === undefined) {
+        // getFilmsServis.reset();
         popularFilmsRender();
     }
 };
@@ -39,10 +39,10 @@ export function ifItFirstOupen() {
 // популярные фильмы рендер
 export function popularFilmsRender() {
 
-    if (getFilmsServis.nextPage === 1 && getFilmsServis.currentPage === 0) {
-        getFilmsServis.reset(); 
-    }
-    
+    // if (getFilmsServis.nextPage === 1 && getFilmsServis.currentPage === 0) {
+    //     getFilmsServis.reset(); 
+    // }
+    refs.gallery.innerHTML = '';
     spinnerOn();
     getFilmsServis.getFilmsPopular().then((posterPropertiesFirst) => {
         
