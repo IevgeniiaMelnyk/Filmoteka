@@ -8,6 +8,7 @@ export function getRefs() {
     home: document.querySelector('.home'),
     library: document.querySelector('.library'),
     modal: document.querySelector('[data-modal-film]'),
+    modalFilmWrapper: document.querySelector('.modal-film-wrapper'),
     closeModalBtn: document.querySelector('[data-modal-close]'),
     spinner: document.querySelector('.loader'),
   };
