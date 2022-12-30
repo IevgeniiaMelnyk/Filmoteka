@@ -25,6 +25,7 @@ const sStorage = new SStorage();
 let userSettings = {
     page: getFilmsServis.currentPage,
     request: getFilmsServis.userRequest,
+    firstOupen: false,
 };
 
 
@@ -34,6 +35,8 @@ ifItFirstOupen();
 export function ifItFirstOupen() {
     if (sStorage.load('userSettings') === undefined) {
         popularFilmsRender();
+        userSettings.firstOupen = false;
+        console.log('ggg')
     }
 };
 
@@ -145,8 +148,9 @@ function makeNewArrProp(arr) {
 // позволяет остаться на текущей странице при перезагрузке страницы
 function onCurrentPage(e) {
     userSettings = sStorage.get('userSettings')
+    console.log(e)
 
-    if (userSettings.request === '' && userSettings.page > 1) {
+    if (userSettings.request === '' && userSettings.page > 0 && userSettings.firstOupen) {
         console.log('eee')
         refs.gallery.innerHTML = '';
         spinnerOn();
