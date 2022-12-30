@@ -1,4 +1,7 @@
-import { refs } from '../refs';
+import { getRefs } from '../refs';
+
+const refs = getRefs();
+
 export function spinnerOn() {
   refs.spinner.classList.remove('visually-hidden');
 }

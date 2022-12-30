@@ -33,3 +33,5 @@ export default function toggleModalFilm() {
     refs.modal.removeEventListener('click', closeModalOnBackdrop);
   }
 }
+
+toggleModalFilm();

@@ -140,11 +140,18 @@
   }
 }
 
+.header_nav-button-wrapper,
+.header_nav-button {
+  display: block;
+  @media screen and (min-width: $tablet) {
+    display: flex;
+  }
+}
+
 .header__nav-list {
   display: flex;
-
   color: var(--primary-white-color);
-  gap: 39px;
+  padding-inline-start: 0px;
 }
 
 .header__nav-link {
@@ -152,15 +159,12 @@
   padding-bottom: 15px;
 }
 
-// .header__nav-item:not(:last-child) {
-//   margin-right: 39px;
-// }
-
 .header__nav-item {
   position: relative;
   display: flex;
   font-size: 12px;
   line-height: 14px;
+  margin-left: 39px;
   text-transform: uppercase;
   transition: transform, color;
   transition-duration: 500ms;
@@ -183,6 +187,15 @@
   background: #ff001b;
 }
 
+.header__nav-autoriz {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  text-transform: uppercase;
+}
+// =============
 .header__form {
   margin-left: 50px;
   margin-top: 30px;
@@ -232,15 +245,18 @@
 
 input::placeholder {
   @include font(400px, 12px, 400px);
-  //   font-size: 12px;
-  //   line-height: 16px;
-  //   font-weight: 400;
   color: inherit;
 }
 
 .failure-message {
   width: fit-content;
-  margin: 5px auto;
+  margin: 0px auto;
   color: #ff001b;
-  font-size: 13px;
+  font-size: 10px;
+  @media screen and (min-width: $tablet) {
+    font-size: 13px;
+  }
+}
+.user_icon {
+  fill: var(--button-activ-color);
 }

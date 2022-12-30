@@ -66,18 +66,13 @@
 }
 
 .gallery-poster-text {
-  width: 280px;
-  margin-bottom: 4px;
   color: var(--button-activ-color);
   @include font($fs: 12px, $lh: 14px);
   @media screen and (min-width: $tablet) {
     @include font($fs: 12px, $lh: 16px);
-    margin-bottom: 16px;
-    width: 336px;
   }
   @media screen and (min-width: $desktop) {
-    @include font($fs: 20px, $lh: 24px);
-    width: 394px;
+    @include font($fs: 18px, $lh: 20px);
   }
 }
 
@@ -98,6 +93,40 @@
   }
 }
 
+.gallery-poster-description {
+  display: flex;
+  align-items: center;
+  width: 280px;
+  margin-bottom: 4px;
+  @media screen and (min-width: $tablet) {
+    width: 336px;
+    margin-bottom: 16px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 394px;
+  }
+}
+
+.film-rating-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 16px;
+  margin-left: 8px;
+  border-radius: 5px;
+  background-color: var(--button-activ-color);
+
+  @media screen and (min-width: $desktop) {
+    width: 40px;
+    height: 20px;
+  }
+}
+
+.film-rating {
+  @include font($fs: 12px, $lh: 14px);
+  color: var(--primary-white-color);
+}
 // .gallery-poster-box {
 //   @include columns-media($mobile, 1);
 //   @include columns-media($tablet, 2);
