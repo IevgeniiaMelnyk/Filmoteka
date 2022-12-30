@@ -9,3 +9,5 @@ import { onFirstOupen } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
 import toggleModalFilm from './js/modals/modal-film';
 
 toggleModalFilm();
+
+import { firebaseAuth } from './js/firebase/fbAuth';

@@ -2,6 +2,10 @@ import { fbFilmsData, PLACE_Q, PLACE_W } from './fbFilms';
 import { firebaseAuth } from './fbAuth';
 import FilmsData from '../moviesAPI/filmsData';
 /*
+Ссылка на проект https://console.firebase.google.com/project/filmoteks-fs61/overview
+Вкладки Authentication
+RealTimeDatabase
+Нужно добавить всех в проект ?  в Discord почта Google!!
 Описание авторизации
 экземпляр класса FirebaseAuth 
     константа firebaseAuth
@@ -111,12 +115,14 @@ export function testFbDataBase() {
   const email = 'some7email@mail.com';
   const password = 'anypassword';
   refs.header.addEventListener('click', () => {
-    setTimeout(() => {
-      exampleWriteToLibrary();
-    }, 4000);
+    console.log('login');
+    exampleLogin();
+    // setTimeout(() => {
+    //   exampleWriteToLibrary();
+    // }, 4000);
     setTimeout(() => {
       exampleGetFilmFromQU();
-    }, 7000);
+    }, 3000);
   });
 }
 

@@ -70,6 +70,7 @@ class FilmsData {
       api_key: MOVIES_API_KEY,
       page: 1,
       language: 'en',
+      'vote_average.gte': 6,
       include_adult: false,
       sort_by: 'popularity.desc',
     });
@@ -80,6 +81,7 @@ class FilmsData {
       language: language,
       query: '',
       include_adult: false,
+      'vote_average.gte': 6,
       sort_by: 'popularity.desc',
     });
     this.#searchParamsID = new URLSearchParams({
@@ -124,7 +126,17 @@ class FilmsData {
           ? first_air_date
           : '';
         const year = release_year ? release_year.slice(0, 4) : '';
-        return {
+        // return {
+        //   id: id,
+        //   title: title ? title : name,
+        //   posters: posters,
+        //   genres: genres,
+        //   year: year,
+        //   poster_path,
+        //   vote: vote_average,
+        // };
+
+        return new FilmFromList({
           id: id,
           title: title ? title : name,
           posters: posters,
@@ -132,7 +144,8 @@ class FilmsData {
           year: year,
           poster_path,
           vote: vote_average,
-        };
+          language: this.language,
+        });
       }
     );
     return films;
@@ -310,7 +323,7 @@ export class FilmFromList {
     this.title = title;
     this.poster_path = poster_path;
     this.year = year;
-    this.vote = vote;
+    this.vote = vote.toFixed(2);
     this.genres = genres;
     this.language = language;
     this.posters = this.preparePosters(poster_path);
