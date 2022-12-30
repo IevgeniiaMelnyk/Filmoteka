@@ -7,15 +7,30 @@
         </svg>
         <span class="header__logo-text">Filmoteka</span></a
       >
+
       <ul class="header__nav-list">
-        <li class="header__nav-item">
-          <a href="./index.html" class="header__nav-link link">Home</a>
-        </li>
-        <li class="header__nav-item">
-          <a href="./library.html" class="header__nav-link link current"
-            >My library</a
-          >
-        </li>
+        <div class="header__nav-list-page">
+          <li class="header__nav-item">
+            <button
+              onclick="document.location='index.html'"
+              class="header__nav-autoriz"
+              type="button"
+              id="home"
+            >
+              Home
+            </button>
+          </li>
+          <li class="header__nav-item">
+            <button
+              onclick="document.location='library.html'"
+              class="header__nav-autoriz current"
+              type="button"
+              id="library"
+            >
+              My library
+            </button>
+          </li>
+        </div>
       </ul>
     </nav>
 
