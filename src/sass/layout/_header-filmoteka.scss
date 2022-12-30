@@ -2,15 +2,11 @@
 .header {
   margin-left: auto;
   margin-right: auto;
-
   display: flex;
-
   height: 230px;
-
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
   background-color: #303030;
   opacity: 0.9;
   box-shadow: -5px 10px 15px -6px var(--button-activ-color);
@@ -111,16 +107,13 @@
       position: absolute;
       top: 7%;
       left: 0%;
-
       display: block;
       width: 0px;
       height: 86%;
-
       opacity: 0;
       background: white;
       box-shadow: 0 0 15px 3px white;
       transform: skewX(-20deg);
-
       animation: shine 0.5s 0s linear;
     }
 
@@ -197,6 +190,10 @@
   background: #ff001b;
 }
 
+.afterhome::after {
+  width: 35px;
+}
+
 .header__nav-autoriz {
   padding: 0;
   border: none;
@@ -207,7 +204,6 @@
 }
 // =============
 .header__form {
-  // margin-left: 50px;
   padding-top: 10px;
   display: flex;
   justify-content: center;
@@ -269,4 +265,27 @@ input::placeholder {
 }
 .user_icon {
   fill: var(--button-activ-color);
+}
+
+.btnResetFilter {
+  margin: 0 auto;
+  width: 45px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--just-white);
+  color: var(--just-white);
+  background-color: inherit;
+  cursor: pointer;
+  text-align: center;
+}
+
+.toggle-theme-btn,
+.toggle-theme-btn-for-library {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  fill: var(--button-activ-color);
+  background-color: transparent;
+  border: none;
+  opacity: 70%;
 }
