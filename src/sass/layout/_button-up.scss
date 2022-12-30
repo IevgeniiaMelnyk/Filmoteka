@@ -2,9 +2,10 @@
 
 .up-button {
     position: fixed;
-    background-color: var(--button-activ-color);
     right: 10px;
-    bottom: 193px;
+        bottom: 193px;
+    background-color: var(--button-activ-color);
+   
     border-radius: 10%;
     cursor: pointer;
     display: flex;
