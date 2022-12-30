@@ -17,5 +17,7 @@ export function getRefs() {
     emptyLibraryError: document.querySelector('.empty-library-error'),
     autofocusBtn: document.querySelector('.input-autofocus-btn'),
     autofocusInput: document.querySelector('.header__input'),
+    // library: document.getElementById('library'),
   };
 }
+
