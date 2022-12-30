@@ -59,3 +59,15 @@
 .error__span {
   text-transform: capitalize;
 }
+
+.input-autofocus-btn {
+  transition: color 250ms var(--time-function),
+    background-color 250ms var(--time-function);
+
+  &:hover,
+  &:focus {
+    background-color: var(--primary-white-color);
+    color: var(--button-activ-color);
+    filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+  }
+}
