@@ -10,4 +10,4 @@ import toggleModalFilm from './js/modals/modal-film';
 
 import { retrySearch } from './js/errors/retrySearch';
 
-toggleModalFilm();
+
