@@ -93,9 +93,6 @@ export function onSearch(e) {
     }
 };
 
-    renderMarkupList(refs.gallery, posterProperties, markupCreating);
-  });
-
 // загрузка по кнопке или пагинации
 function loadMore(e) {
     refs.gallery.innerHTML = '';

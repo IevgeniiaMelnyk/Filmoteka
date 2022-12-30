@@ -7,7 +7,8 @@
   }
 }
 
-.gallery {
+.gallery,
+.library {
   display: flex;
   flex-wrap: wrap;
   gap: var(--card-gap);
