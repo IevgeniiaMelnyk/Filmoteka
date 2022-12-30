@@ -13,5 +13,9 @@ export function getRefs() {
     spinner: document.querySelector('.loader'),
     buttonUp: document.querySelector(`.up-button`),
     message: document.querySelector('.failure-message'),
+    searchError: document.querySelector('.search-error'),
+    emptyLibraryError: document.querySelector('.empty-library-error'),
+    autofocusBtn: document.querySelector('.input-autofocus-btn'),
+    autofocusInput: document.querySelector('.header__input'),
   };
 }

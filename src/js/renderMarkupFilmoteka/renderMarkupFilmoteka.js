@@ -57,9 +57,8 @@ export function popularFilmsRender() {
 
 // загрузка по поиску пользователя
 export function onSearch(e) {
-    
-    e.preventDefault();
-    getFilmsServis.reset(); 
+  e.preventDefault();
+  getFilmsServis.reset();
 
     getFilmsServis.userRequest = e.target[0].value.toLowerCase().trim();
 
@@ -94,6 +93,8 @@ export function onSearch(e) {
     }
 };
 
+    renderMarkupList(refs.gallery, posterProperties, markupCreating);
+  });
 
 // загрузка по кнопке или пагинации
 function loadMore(e) {
