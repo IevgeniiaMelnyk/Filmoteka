@@ -11,5 +11,6 @@ export function getRefs() {
     closeModalBtn: document.querySelector('[data-modal-close]'),
     spinner: document.querySelector('.loader'),
     buttonUp: document.querySelector(`.up-button`),
+    message: document.querySelector('.failure-message'),
   };
 }

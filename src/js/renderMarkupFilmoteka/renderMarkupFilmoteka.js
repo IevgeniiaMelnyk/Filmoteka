@@ -30,7 +30,6 @@ ifItFirstOupen();
 
 export function ifItFirstOupen() {
     if (sStorage.load('userSettings') === undefined) {
-        // getFilmsServis.reset();
         popularFilmsRender();
     }
 };
@@ -39,9 +38,6 @@ export function ifItFirstOupen() {
 // популярные фильмы рендер
 export function popularFilmsRender() {
 
-    // if (getFilmsServis.nextPage === 1 && getFilmsServis.currentPage === 0) {
-    //     getFilmsServis.reset(); 
-    // }
     refs.gallery.innerHTML = '';
     spinnerOn();
     getFilmsServis.getFilmsPopular().then((posterPropertiesFirst) => {
@@ -50,12 +46,11 @@ export function popularFilmsRender() {
         spinnerOff();
         renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
     });
-
+        
     getFilmsServis.incrementPage();
     userSettings.page = getFilmsServis.currentPage;
     userSettings.request = getFilmsServis.userRequest;
     sStorage.save('userSettings', userSettings);
-
 };
 
 
@@ -71,6 +66,7 @@ export function onSearch(e) {
     if (getFilmsServis.userRequest === '') {
         getFilmsServis.reset()
         sStorage.clear();
+        refs.message.classList.remove('visually-hidden');
     };
 
 
@@ -78,26 +74,28 @@ export function onSearch(e) {
         spinnerOn();
         getFilmsServis.getFilms().then((posterProperties) => {
             if (posterProperties.length === 0) {
-                getFilmsServis.reset();
+                getFilmsServis.reset()
+                sStorage.clear();
+                spinnerOff();
+                refs.message.classList.remove('visually-hidden');
             };
 
-            makeNewArrProp(posterProperties);
-            spinnerOff();
-
-            renderMarkupList(refs.gallery, posterProperties, markupCreating);
-
-            getFilmsServis.incrementPage();
-            userSettings.page = getFilmsServis.currentPage;
-            userSettings.request = getFilmsServis.userRequest;
-            sStorage.save('userSettings', userSettings);
-            
+            if (posterProperties.length > 0) {
+                makeNewArrProp(posterProperties);
+                spinnerOff();
+                renderMarkupList(refs.gallery, posterProperties, markupCreating);
+                getFilmsServis.incrementPage();
+                userSettings.page = getFilmsServis.currentPage;
+                userSettings.request = getFilmsServis.userRequest;
+                sStorage.save('userSettings', userSettings);
+            }
         });
     }
 };
 
 
 // загрузка по кнопке или пагинации
-function loadMore() {
+function loadMore(e) {
     refs.gallery.innerHTML = '';
     if (getFilmsServis.userRequest === '') {
         popularFilmsRender();
@@ -111,8 +109,11 @@ function nextLouding() {
     if (getFilmsServis.userRequest) {
         spinnerOn();
         getFilmsServis.getFilms().then((posterProperties) => {
+            console.log(posterProperties)
             if (posterProperties.length === 0) {
+                
                 getFilmsServis.reset();
+                refs.message.classList.remove('visually-hidden');
             };
 
             makeNewArrProp(posterProperties);
@@ -138,10 +139,9 @@ function makeNewArrProp(arr) {
         }); 
 };
 
+// позволяет остаться на текущей странице при перезагрузке страницы
 function onCurrentPage(e) {
     userSettings = sStorage.get('userSettings')
-    console.log(e)
-    console.log(userSettings)
 
     if (userSettings.request === '' && userSettings.page > 0) {
         refs.gallery.innerHTML = '';
@@ -152,11 +152,6 @@ function onCurrentPage(e) {
         spinnerOff();
         renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
     });
-
-    getFilmsServis.incrementPage();
-    userSettings.page = getFilmsServis.currentPage;
-    userSettings.request = getFilmsServis.userRequest;
-    sStorage.save('userSettings', userSettings);
     };
 
     if (userSettings.request && userSettings.page > 0) {
