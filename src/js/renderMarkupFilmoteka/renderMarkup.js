@@ -10,7 +10,7 @@ String.prototype.replaceAt = function(index, replacement) {
 
 // принимает объект возвращает разметку одной карточки
 export function markupCreating({ id, posters, title, genres, year, vote }) {
-  console.log(posters)    
+   
   if (posters[3].path !== 'https://image.tmdb.org/t/p/w342/null' && posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && posters[5].path !== 'https://image.tmdb.org/t/p/w780/null' && genres.length > 0) {
     
       const str = genres.join(', ');

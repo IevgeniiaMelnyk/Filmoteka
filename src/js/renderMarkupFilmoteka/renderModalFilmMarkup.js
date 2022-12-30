@@ -14,10 +14,6 @@ export function markupModalCreating({
   posters,
   year,
 }) {
-  if (
-    posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' &&
-    genres.length > 0
-  ) {
     const str = genres.map(genres => genres.name).join(', ');
     const letter = str[0].toUpperCase();
     const genre = str.replaceAt(0, letter);
@@ -112,6 +108,6 @@ export function markupModalCreating({
           </button>
         </div>
       </div>
-    </div>`;
-  }
+    </div>
+    `
 }

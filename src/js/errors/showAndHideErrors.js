@@ -6,7 +6,7 @@ export function searchErrorShow() {
   refs.searchError.classList.remove('no-display');
 }
 
-export function searchErrorShow() {
+export function searchErrorHiden() {
   refs.searchError.classList.add('no-display');
 }
 

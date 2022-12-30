@@ -19,3 +19,4 @@ export function getRefs() {
     autofocusInput: document.querySelector('.header__input'),
   };
 }
+

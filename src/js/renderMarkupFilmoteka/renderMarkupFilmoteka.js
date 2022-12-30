@@ -5,6 +5,8 @@ import { markupCreating } from "./renderMarkup";
 import { spinnerOn } from "../spiner/spiner";
 import { spinnerOff } from "../spiner/spiner";
 import { SStorage } from "../storage/sessionStorage";
+import { searchErrorShow } from "../errors/showAndHideErrors";
+
 
 const refs = getRefs();
 
@@ -67,8 +69,8 @@ export function onSearch(e) {
         getFilmsServis.reset()
         sStorage.clear();
         refs.message.classList.remove('visually-hidden');
+        searchErrorShow();
     };
-
 
     if (getFilmsServis.userRequest) {
         spinnerOn();
@@ -78,6 +80,7 @@ export function onSearch(e) {
                 sStorage.clear();
                 spinnerOff();
                 refs.message.classList.remove('visually-hidden');
+                searchErrorShow();
             };
 
             if (posterProperties.length > 0) {
@@ -108,11 +111,12 @@ function nextLouding() {
     if (getFilmsServis.userRequest) {
         spinnerOn();
         getFilmsServis.getFilms().then((posterProperties) => {
-            console.log(posterProperties)
+            
             if (posterProperties.length === 0) {
                 
                 getFilmsServis.reset();
                 refs.message.classList.remove('visually-hidden');
+                searchErrorShow();
             };
 
             makeNewArrProp(posterProperties);
@@ -142,7 +146,8 @@ function makeNewArrProp(arr) {
 function onCurrentPage(e) {
     userSettings = sStorage.get('userSettings')
 
-    if (userSettings.request === '' && userSettings.page > 0) {
+    if (userSettings.request === '' && userSettings.page > 1) {
+        console.log('eee')
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsPopularRestart(userSettings.page).then((posterPropertiesFirst) => {
