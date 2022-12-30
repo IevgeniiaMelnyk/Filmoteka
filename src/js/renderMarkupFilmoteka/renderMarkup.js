@@ -10,28 +10,51 @@ String.prototype.replaceAt = function(index, replacement) {
 
 // принимает объект возвращает разметку одной карточки
 export function markupCreating({ id, posters, title, genres, year }) {
-        
-    if (posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && genres.length > 0) { 
     
-        const str = genres.join(', '); 
-        const letter = str[0].toUpperCase();
-        const genr = str.replaceAt(0, letter);
+  if (posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && genres.length > 0) {
+    
+      const str = genres.join(', ');
+      const letter = str[0].toUpperCase();
+      const genr = str.replaceAt(0, letter);
 
-    return `
+      return `
     <div class="gallery-poster-box">
     <div class="gallery-poster">
-    <img
+    <picture>
+          <source
+            srcset="
+              ${posters[5].path} 1x,
+              ${posters[6].path} 2x
+            "
+            media="(min-width: 1200px)"
+          />
+          <source
+            srcset="
+              ${posters[4].path} 1x,
+              ${posters[5].path} 2x
+            "
+            media="(min-width: 768px)"
+          />
+          <source
+            srcset="
+              ${posters[3].path} 1x,
+              ${posters[4].path} 2x
+            "
+            media="(max-width: 767px)"
+          />
+          <img
             class="gallery-poster-img"
-            src="${posters[4].path}"
+            src="${posters[3].path}"
             alt="${title}"
             data-id=${id}
             loading="lazy"
           />
+    </picture>
     </div>
     <h2 class="gallery-poster-title">${title}</h2>
       <p class="gallery-poster-text">${genr}<span class="date-befor">${year}</span></p>
     </div>
     `
-}
+  }  
 };
 

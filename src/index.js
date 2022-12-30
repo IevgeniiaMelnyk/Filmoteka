@@ -4,5 +4,8 @@ import testFilms from './js/moviesAPI/test';
 
 import { onSearch } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
 
-import { onFirstOupep } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
-onFirstOupep();
+import { onFirstOupen } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
+
+import toggleModalFilm from './js/modals/modal-film';
+
+toggleModalFilm();

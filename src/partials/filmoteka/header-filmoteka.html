@@ -9,13 +9,31 @@
       >
       <ul class="header__nav-list">
         <li class="header__nav-item">
-          <a href="./index.html" class="header__nav-link current link">Home</a>
+          <a href="./index.html" class="header__nav-link current link home"
+            >Home</a
+          >
         </li>
         <li class="header__nav-item">
-          <a href="./library.html" class="header__nav-link link">My library</a>
+          <a href="./library.html" class="header__nav-link link library"
+            >My library</a
+          >
+        </li>
+
+        <li class="header__nav-item">
+          <a href="./library.html" class="header__nav-link link signin"
+            >Sign in</a
+          >
         </li>
       </ul>
     </nav>
+    <!-- <ul class="header__nav-list">
+      <li class="header__nav-item">
+        <button>Sign in<input type="button" id="sign_in" /></button>
+      </li>
+      <li class="header__nav-item">
+        <button>Sign up<input type="button" id="sign_up" /></button>
+      </li>
+    </ul> -->
 
     <form class="header__form" id="search-form">
       <div class="header__content">
@@ -34,4 +52,5 @@
     </form>
     <p class="failure-message"></p>
   </div>
+  <span class="loader"></span>
 </header>
