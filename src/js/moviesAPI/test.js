@@ -7,9 +7,9 @@ async function testFilms() {
     const films = newLocal;
     console.log('======================');
     // console.log(films);
-    const films2 = await getFilms.getById(9471, 'ua');
+    const films2 = await getFilms.getById(9471, 'ru');
     console.log('======================');
-    // console.log(films2);
+    console.log(films2);
   } catch (e) {
     console.log('Error', e);
   }
