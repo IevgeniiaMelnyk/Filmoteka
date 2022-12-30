@@ -4,20 +4,48 @@ import { renderMarkupList } from "./renderMarkup";
 import { markupCreating } from "./renderMarkup";
 import { spinnerOn } from "../spiner/spiner";
 import { spinnerOff } from "../spiner/spiner";
+import { SStorage } from "../storage/sessionStorage";
+import { searchErrorShow } from "../errors/showAndHideErrors";
+import { searchErrorHiden } from "../errors/showAndHideErrors";
+
 
 const refs = getRefs();
 
+document.addEventListener('DOMContentLoaded', onCurrentPage)
 
+
+const loadMo = document.querySelector('.pagination__button_current')
+loadMo.addEventListener('click', loadMore)
 refs.search.addEventListener('submit', onSearch);
 
+
 const getFilmsServis = new GetFilmsServis();
+const sStorage = new SStorage();
 
-export function onFirstOupen() {
 
-    if (getFilmsServis.page === 1) {
-        getFilmsServis.reset(); 
+let userSettings = {
+    page: getFilmsServis.currentPage,
+    request: getFilmsServis.userRequest,
+    firstOupen: false,
+};
+
+
+// первая загрузка страницы
+ifItFirstOupen();
+
+export function ifItFirstOupen() {
+    if (sStorage.load('userSettings') === undefined) {
+        popularFilmsRender();
+        userSettings.firstOupen = false;
+        console.log('ggg')
     }
-    
+};
+
+
+// популярные фильмы рендер
+export function popularFilmsRender() {
+
+    refs.gallery.innerHTML = '';
     spinnerOn();
     getFilmsServis.getFilmsPopular().then((posterPropertiesFirst) => {
         
@@ -25,34 +53,96 @@ export function onFirstOupen() {
         spinnerOff();
         renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
     });
-
+        
     getFilmsServis.incrementPage();
+    userSettings.page = getFilmsServis.currentPage;
+    userSettings.request = getFilmsServis.userRequest;
+    sStorage.save('userSettings', userSettings);
 };
 
-onFirstOupen();
 
+// загрузка по поиску пользователя
 export function onSearch(e) {
+  e.preventDefault();
+    getFilmsServis.reset();
     
-    e.preventDefault();
-    getFilmsServis.reset(); 
 
-    getFilmsServis.userRequest = e.target[0].value.toLowerCase();
+    getFilmsServis.userRequest = e.target[0].value.toLowerCase().trim();
 
-    spinnerOn();
     
-    getFilmsServis.getFilms().then((posterProperties) => {
+    if (getFilmsServis.userRequest === '') {
+        getFilmsServis.reset()
+        sStorage.clear();
+        refs.message.classList.remove('visually-hidden');
+        searchErrorShow();
+    };
 
-        makeNewArrProp(posterProperties);
-        spinnerOff();
+    if (getFilmsServis.userRequest) {
+        spinnerOn();
+        getFilmsServis.getFilms().then((posterProperties) => {
+            if (posterProperties.length === 0) {
+                getFilmsServis.reset()
+                sStorage.clear();
+                spinnerOff();
+                refs.message.classList.remove('visually-hidden');
+                searchErrorShow();
+            };
 
-        renderMarkupList(refs.gallery, posterProperties, markupCreating);
-    });
+            if (posterProperties.length > 0) {
+                
+                makeNewArrProp(posterProperties);
+                spinnerOff();
+                renderMarkupList(refs.gallery, posterProperties, markupCreating);
+                getFilmsServis.incrementPage();
+                userSettings.page = getFilmsServis.currentPage;
+                userSettings.request = getFilmsServis.userRequest;
+                sStorage.save('userSettings', userSettings);
+                searchErrorHiden(); 
 
-    getFilmsServis.incrementPage();
+                
+            }
+        });
+    }
+};
+
+// загрузка по кнопке или пагинации
+function loadMore(e) {
+    refs.gallery.innerHTML = '';
+    if (getFilmsServis.userRequest === '') {
+        popularFilmsRender();
+    } else {
+        nextLouding();
+    }
+}
+
+// следующая загрузка
+function nextLouding() {
+    if (getFilmsServis.userRequest) {
+        spinnerOn();
+        getFilmsServis.getFilms().then((posterProperties) => {
+            
+            if (posterProperties.length === 0) {
+                
+                getFilmsServis.reset();
+                refs.message.classList.remove('visually-hidden');
+                searchErrorShow();
+            };
+
+            makeNewArrProp(posterProperties);
+            spinnerOff();
+
+            renderMarkupList(refs.gallery, posterProperties, markupCreating);
+
+            getFilmsServis.incrementPage();
+            userSettings.page = getFilmsServis.currentPage;
+            userSettings.request = getFilmsServis.userRequest;
+            sStorage.save('userSettings', userSettings);
+        });
+    }
 };
 
 
-
+// вспомогательные функции
 function makeNewArrProp(arr) {
     return arr.forEach(element => {
             if (element.genres.length > 2) {
@@ -60,3 +150,33 @@ function makeNewArrProp(arr) {
             }
         }); 
 };
+
+// позволяет остаться на текущей странице при перезагрузке страницы
+function onCurrentPage(e) {
+    userSettings = sStorage.get('userSettings')
+    console.log(e)
+
+    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen) {
+        console.log('eee')
+        refs.gallery.innerHTML = '';
+        spinnerOn();
+        getFilmsServis.getFilmsPopularRestart(userSettings.page).then((posterPropertiesFirst) => {
+        
+        makeNewArrProp(posterPropertiesFirst);
+        spinnerOff();
+        renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
+    });
+    };
+
+    if (userSettings.request && userSettings.page > 0) {
+        refs.gallery.innerHTML = '';
+        spinnerOn();
+        getFilmsServis.getFilmsRestart(userSettings.request, userSettings.page).then((posterPropertiesFirst) => {
+        
+            makeNewArrProp(posterPropertiesFirst);
+            spinnerOff();
+            renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
+        });
+    }
+}
+

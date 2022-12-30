@@ -7,33 +7,72 @@
         </svg>
         <span class="header__logo-text">Filmoteka</span></a
       >
-      <ul class="header__nav-list">
-        <li class="header__nav-item">
-          <a href="./index.html" class="header__nav-link current link home"
-            >Home</a
-          >
-        </li>
-        <li class="header__nav-item">
-          <a href="./library.html" class="header__nav-link link library"
-            >My library</a
-          >
-        </li>
+      <!--  -->
+      <div class="header_nav-button-wrapper">
+        <ul class="header__nav-list">
+          <div class="header__nav-list-page">
+            <li class="header__nav-item">
+              <button
+                onclick="document.location='index.html'"
+                class="header__nav-autoriz current"
+                type="button"
+                id="home"
+              >
+                Home
+              </button>
+            </li>
+            <li class="header__nav-item">
+              <button
+                onclick="document.location='library.html'"
+                class="header__nav-autoriz"
+                type="button"
+                id="library"
+              >
+                My library
+              </button>
+            </li>
+          </div>
 
-        <li class="header__nav-item">
-          <a href="./library.html" class="header__nav-link link signin"
-            >Sign in</a
-          >
-        </li>
-      </ul>
+          <!-- -->
+          <div class="header__nav-list-autorization">
+            <li class="header__nav-item">
+              <button class="header__nav-autoriz" type="button" id="signup">
+                Sign up
+              </button>
+            </li>
+            <li class="header__nav-item">
+              <button class="header__nav-autoriz" type="button" id="signin">
+                Sign in
+              </button>
+            </li>
+            <li class="header__nav-item">
+              <button
+                class="header__nav-autoriz visually-hidden"
+                type="button"
+                id="signout"
+              >
+                Sign out
+              </button>
+            </li>
+            <li class="header__nav-item">
+              <a href="" class="header__logo link">
+                <svg
+                  class="header__logo-svg user_icon visually-hidden"
+                  width="24"
+                  height="24"
+                  id="usericon"
+                >
+                  <use
+                    href="./images/svg/symbol-defs.svg#icon-user-check"
+                  ></use>
+                </svg>
+              </a>
+            </li>
+          </div>
+        </ul>
+      </div>
+      <!--  -->
     </nav>
-    <!-- <ul class="header__nav-list">
-      <li class="header__nav-item">
-        <button>Sign in<input type="button" id="sign_in" /></button>
-      </li>
-      <li class="header__nav-item">
-        <button>Sign up<input type="button" id="sign_up" /></button>
-      </li>
-    </ul> -->
 
     <form class="header__form" id="search-form">
       <div class="header__content">
@@ -50,7 +89,9 @@
         </button>
       </div>
     </form>
-    <p class="failure-message"></p>
+    <p class="failure-message visually-hidden">
+      Search result not successful (: Enter the correct movie name
+    </p>
   </div>
-  <span class="loader"></span>
+  <!-- <span class="loader"></span> -->
 </header>

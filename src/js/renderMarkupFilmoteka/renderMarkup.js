@@ -9,9 +9,9 @@ String.prototype.replaceAt = function(index, replacement) {
 }
 
 // принимает объект возвращает разметку одной карточки
-export function markupCreating({ id, posters, title, genres, year }) {
-    
-  if (posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && genres.length > 0) {
+export function markupCreating({ id, posters, title, genres, year, vote }) {
+   
+  if (posters[3].path !== 'https://image.tmdb.org/t/p/w342/null' && posters[4].path !== 'https://image.tmdb.org/t/p/w500/null' && posters[5].path !== 'https://image.tmdb.org/t/p/w780/null' && genres.length > 0) {
     
       const str = genres.join(', ');
       const letter = str[0].toUpperCase();
@@ -23,15 +23,15 @@ export function markupCreating({ id, posters, title, genres, year }) {
     <picture>
           <source
             srcset="
-              ${posters[5].path} 1x,
-              ${posters[6].path} 2x
+              ${posters[4].path} 1x,
+              ${posters[5].path} 2x
             "
             media="(min-width: 1200px)"
           />
           <source
             srcset="
-              ${posters[4].path} 1x,
-              ${posters[5].path} 2x
+              ${posters[3].path} 1x,
+              ${posters[4].path} 2x
             "
             media="(min-width: 768px)"
           />
@@ -52,7 +52,14 @@ export function markupCreating({ id, posters, title, genres, year }) {
     </picture>
     </div>
     <h2 class="gallery-poster-title">${title}</h2>
-      <p class="gallery-poster-text">${genr}<span class="date-befor">${year}</span></p>
+    <div class="gallery-poster-description">
+      <p class="gallery-poster-text">${genr}
+        <span class="date-befor">${year}</span>
+        <div class="film-rating-wrapper">
+      <p class="film-rating">${vote}</p>
+        </div>
+      </p>
+    </div>
     </div>
     `
   }  

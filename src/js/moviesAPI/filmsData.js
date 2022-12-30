@@ -33,7 +33,8 @@ const MOVIES_API_BASE_IMAGE = 'https://image.tmdb.org/t/p';
    *  genres - массив жанров string
    * year -год запуска в прокат string
    * poster_path - путь к постеру относительный без размера
-   * }
+   * vote_average
+   * } 
    * total_pages
    * total_results
    *  base_poster_path - начало пути к постеру путь к постеру  <<base_poster_path>>/<size>/<poster_path>
@@ -72,6 +73,7 @@ class FilmsData {
       language: 'en',
       'vote_average.gte': 6,
       include_adult: false,
+      'vote_average.gte': 5,
       sort_by: 'popularity.desc',
     });
 
@@ -93,7 +95,7 @@ class FilmsData {
     return poster_sizes.map(size => {
       return {
         size: size,
-        path: `${MOVIES_API_BASE_IMAGE}/${size}/${poster_path}`,
+        path: `${MOVIES_API_BASE_IMAGE}/${size}${poster_path}`,
       };
     });
   }

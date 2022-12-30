@@ -8,7 +8,16 @@ export function getRefs() {
     home: document.querySelector('.home'),
     library: document.querySelector('.library'),
     modal: document.querySelector('[data-modal-film]'),
+    modalFilmWrapper: document.querySelector('#data-modal-film-wrapper'),
     closeModalBtn: document.querySelector('[data-modal-close]'),
     spinner: document.querySelector('.loader'),
+    buttonUp: document.querySelector(`.up-button`),
+    message: document.querySelector('.failure-message'),
+    searchError: document.querySelector('.search-error'),
+    emptyLibraryError: document.querySelector('.empty-library-error'),
+    autofocusBtn: document.querySelector('.input-autofocus-btn'),
+    autofocusInput: document.querySelector('.header__input'),
+    // library: document.getElementById('library'),
   };
 }
+
