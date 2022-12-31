@@ -6,13 +6,10 @@ async function testFilms() {
     const newLocal = await getFilms.getDayPopular(1, 'en');
     const films = newLocal;
     console.log('======================');
-    console.log(films);
-    const films2 = await getFilms.getById(569094, 'ua');
+    // console.log(films);
+    const films2 = await getFilms.getById(9471, 'ru');
     console.log('======================');
-    console.log(films2);
-    const films3 = await getFilms.getSearchQuery('new', 2, 'en');
-    console.log('======================');
-    console.log(films3);
+    // console.log(films2);
   } catch (e) {
     console.log('Error', e);
   }

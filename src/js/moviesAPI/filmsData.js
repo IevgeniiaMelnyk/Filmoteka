@@ -17,13 +17,13 @@ const MOVIES_API_BASE_IMAGE = 'https://image.tmdb.org/t/p';
    async getDayPopular(page, language = 'en')  
    Список фильмов для главной страницы
    * @param {int} page
-   * @param {string} language  one of 'en' 'ru' 'ua'
+   * @param {string} language  one of 'en' 'ru' 'uk'
    
    async getSearchQuery(query, page, language = 'en') 
    Список фильмов для главной страницы поиск 
    *  @param {string} query
    * @param {int} page
-   * @param {string} language  one of 'en' 'ru' 'ua'
+   * @param {string} language  one of 'en' 'ru' 'uk'
    *    
    * @returns {object} {
    * films  {
@@ -64,13 +64,14 @@ class FilmsData {
   #searchParamsQuery;
   #searchParamsID;
   /**
-   * @param {string} language one of 'en' 'ru' 'ua'
+   * @param {string} language one of 'en' 'ru' 'uk'
    */
   constructor(language = 'en') {
     this.#searchParamsDay = new URLSearchParams({
       api_key: MOVIES_API_KEY,
       page: 1,
       language: 'en',
+      'vote_average.gte': 6,
       include_adult: false,
       'vote_average.gte': 5,
       sort_by: 'popularity.desc',
@@ -82,7 +83,7 @@ class FilmsData {
       language: language,
       query: '',
       include_adult: false,
-      'vote_average.gte': 5,
+      'vote_average.gte': 6,
       sort_by: 'popularity.desc',
     });
     this.#searchParamsID = new URLSearchParams({
@@ -127,8 +128,17 @@ class FilmsData {
           ? first_air_date
           : '';
         const year = release_year ? release_year.slice(0, 4) : '';
-        vote_average = vote_average.toFixed(1);
-        return {
+        // return {
+        //   id: id,
+        //   title: title ? title : name,
+        //   posters: posters,
+        //   genres: genres,
+        //   year: year,
+        //   poster_path,
+        //   vote: vote_average,
+        // };
+
+        return new FilmFromList({
           id: id,
           title: title ? title : name,
           posters: posters,
@@ -136,7 +146,8 @@ class FilmsData {
           year: year,
           poster_path,
           vote: vote_average,
-        };
+          language: this.language,
+        });
       }
     );
     return films;
@@ -159,6 +170,7 @@ class FilmsData {
         total_results,
         sizes: poster_sizes,
         base_poster_path: MOVIES_API_BASE_IMAGE,
+        language: this.language,
       };
     } catch (err) {
       throw err;
@@ -168,6 +180,7 @@ class FilmsData {
   #getFilmDataSingle(filmObj) {
     const title = filmObj.title ? filmObj.title : filmObj.original_title;
     const {
+      id,
       genres,
       original_title,
       overview,
@@ -180,7 +193,8 @@ class FilmsData {
     const about = overview;
     const posters = this.preparePosters(poster_path);
     const year = release_date ? release_date.slice(0, 4) : '';
-    return {
+    return new SingleFilm({
+      id,
       title,
       vote: vote_average,
       votes: vote_count,
@@ -191,7 +205,8 @@ class FilmsData {
       poster_path,
       posters,
       release_date: year,
-    };
+      language: this.language,
+    });
   }
 
   async #getSingleFromParams(searchParams, url) {
@@ -209,7 +224,7 @@ class FilmsData {
   //==========Основные методы====================
   /**Список фильмов для главной страницы
    * @param {int} page
-   * @param {string} language
+   * @param {string} language 'en' 'ru' 'uk'
    * @returns {object} {
    * films  {
    * id string
@@ -234,7 +249,7 @@ class FilmsData {
    *Поиск Список фильмов для главной страницы поиск
    * @param {string} query
    * @param {int} page
-   * @param {string} language  one of 'en' 'ru' 'ua'
+   * @param {string} language  one of 'en' 'ru' 'uk'
    * @returns {object} {
    * films  {
    * id string
@@ -273,11 +288,12 @@ class FilmsData {
   /**
    * Данные одного фильма для модалки
    * @param {*} id
-   * @param {*} language
+   * @param {*} language  'en' 'ru' 'uk'
    * @returns {object}
    */
   async getById(id, language = 'en') {
     try {
+      this.language = language;
       const url = `${MOVIES_API_ID}${id}`;
       this.#searchParamsID.set('language', language);
       return this.#getSingleFromParams(this.#searchParamsID, url);
@@ -303,3 +319,54 @@ async function TestFilms() {
 }
 
 export default FilmsData;
+export class FilmFromList {
+  constructor({ id, title, genres, year, poster_path, vote, language = 'en' }) {
+    this.id = id;
+    this.title = title;
+    this.poster_path = poster_path;
+    this.year = year;
+    this.vote = vote.toFixed(2);
+    this.genres = genres;
+    this.language = language;
+    this.posters = this.preparePosters(poster_path);
+  }
+
+  preparePosters(poster_path) {
+    return poster_sizes.map(size => {
+      return {
+        size: size,
+        path: `${MOVIES_API_BASE_IMAGE}/${size}/${poster_path}`,
+      };
+    });
+  }
+}
+
+export class SingleFilm {
+  constructor({
+    id,
+    title,
+    vote,
+    votes,
+    popularity,
+    original_title,
+    genres,
+    about,
+    poster_path,
+    posters,
+    release_date,
+    language,
+  }) {
+    this.id = id;
+    this.title = title;
+    this.vote = vote;
+    this.votes = votes;
+    this.popularity = popularity;
+    this.original_title = original_title;
+    this.genres = genres;
+    this.about = about;
+    this.poster_path = poster_path;
+    this.posters = posters;
+    this.release_date = release_date;
+    this.language = language;
+  }
+}
