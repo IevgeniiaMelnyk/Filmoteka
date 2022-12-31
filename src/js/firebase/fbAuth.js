@@ -1,11 +1,11 @@
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  deleteUser,
-  updateProfile,
-} from 'firebase/auth';
+// import {
+//   getAuth,
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+//   onAuthStateChanged,
+//   deleteUser,
+//   updateProfile,
+// } from 'firebase/auth';
 
 import { renderLogin } from '../renderLogin/renderLogin';
 import { auth } from './fbInit';
