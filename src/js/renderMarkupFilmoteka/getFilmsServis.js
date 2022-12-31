@@ -94,5 +94,14 @@ export class GetFilmsServis {
         this.currentPage += 1;
     }
 
+    get request() {
+        return this.userRequest;
+    } 
+
+    set request(newUserRequest) {
+        this.userRequest = newUserRequest;
+    }
 
 }
+
+

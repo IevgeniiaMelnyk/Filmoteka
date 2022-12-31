@@ -69,6 +69,7 @@ export function onSearch(e) {
     getFilmsServis.reset();
         
     getFilmsServis.userRequest = e.target[0].value.toLowerCase().trim();
+    console.log(getFilmsServis.userRequest)
 
     
     if (getFilmsServis.userRequest === '') {
@@ -99,8 +100,7 @@ export function onSearch(e) {
                 userSettings.request = getFilmsServis.userRequest;
                 sStorage.save('userSettings', userSettings);
                 searchErrorHiden(); 
-
-                
+                                
             }
         });
     }
@@ -110,7 +110,12 @@ export function onSearch(e) {
 function loadMore(e) {
     userSettings.firstOupen = false;
     sStorage.save('userSettings', userSettings);
-
+    
+    userSettings = sStorage.get('userSettings')
+    getFilmsServis.currentPage = userSettings.page;
+    getFilmsServis.userRequest = userSettings.request;
+    getFilmsServis.nextPage = userSettings.page + 1;
+    
     refs.gallery.innerHTML = '';
     if (getFilmsServis.userRequest === '') {
         popularFilmsRender();
@@ -161,8 +166,7 @@ function onCurrentPage(e) {
     userSettings = sStorage.get('userSettings')
     
     if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen) {
-        console.log('второй')
-        
+                
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsPopularRestart(userSettings.page).then((posterPropertiesFirst) => {
@@ -191,3 +195,5 @@ function onClickLibrary() {
     userSettings.firstOupen = false;
     sStorage.save('userSettings', userSettings);
 }
+
+
