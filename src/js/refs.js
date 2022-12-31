@@ -5,8 +5,6 @@ export function getRefs() {
     mBtnToQueue: document.querySelector('.add-to-queue-btn'),
     nBtnToWatched: document.querySelector('.add-to-watched-btn'),
     filmoteka: document.querySelector('.header__logo'),
-    home: document.querySelector('.home'),
-    library: document.querySelector('.library'),
     modal: document.querySelector('[data-modal-film]'),
     modalFilmWrapper: document.querySelector('#data-modal-film-wrapper'),
     closeModalBtn: document.querySelector('[data-modal-close]'),
@@ -17,7 +15,10 @@ export function getRefs() {
     emptyLibraryError: document.querySelector('.empty-library-error'),
     autofocusBtn: document.querySelector('.input-autofocus-btn'),
     autofocusInput: document.querySelector('.header__input'),
-    // library: document.getElementById('library'),
+    home: document.getElementById('home'),
+    library: document.getElementById('library'),
+    input: document.querySelector('.header__input')
+
   };
 }
 

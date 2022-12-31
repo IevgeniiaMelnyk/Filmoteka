@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', onCurrentPage)
 const loadMo = document.querySelector('.pagination__button_current')
 loadMo.addEventListener('click', loadMore)
 refs.search.addEventListener('submit', onSearch);
+refs.library.addEventListener('click', onClickLibrary);
 
 
 const getFilmsServis = new GetFilmsServis();
@@ -31,15 +32,16 @@ let userSettings = {
 
 
 // первая загрузка страницы
-ifItFirstOupen();
 
 export function ifItFirstOupen() {
     if (sStorage.load('userSettings') === undefined) {
         popularFilmsRender();
-        userSettings.firstOupen = false;
-        console.log('ggg')
+        userSettings.firstOupen = true;
+        sStorage.save('userSettings', userSettings);
     }
 };
+
+ifItFirstOupen();
 
 
 // популярные фильмы рендер
@@ -65,8 +67,7 @@ export function popularFilmsRender() {
 export function onSearch(e) {
   e.preventDefault();
     getFilmsServis.reset();
-    
-
+        
     getFilmsServis.userRequest = e.target[0].value.toLowerCase().trim();
 
     
@@ -107,6 +108,9 @@ export function onSearch(e) {
 
 // загрузка по кнопке или пагинации
 function loadMore(e) {
+    userSettings.firstOupen = false;
+    sStorage.save('userSettings', userSettings);
+
     refs.gallery.innerHTML = '';
     if (getFilmsServis.userRequest === '') {
         popularFilmsRender();
@@ -117,6 +121,7 @@ function loadMore(e) {
 
 // следующая загрузка
 function nextLouding() {
+    
     if (getFilmsServis.userRequest) {
         spinnerOn();
         getFilmsServis.getFilms().then((posterProperties) => {
@@ -154,17 +159,18 @@ function makeNewArrProp(arr) {
 // позволяет остаться на текущей странице при перезагрузке страницы
 function onCurrentPage(e) {
     userSettings = sStorage.get('userSettings')
-    console.log(e)
-
+    
     if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen) {
-        console.log('eee')
+        console.log('второй')
+        
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsPopularRestart(userSettings.page).then((posterPropertiesFirst) => {
         
         makeNewArrProp(posterPropertiesFirst);
         spinnerOff();
-        renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
+            renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
+            
     });
     };
 
@@ -176,7 +182,12 @@ function onCurrentPage(e) {
             makeNewArrProp(posterPropertiesFirst);
             spinnerOff();
             renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
+            
         });
     }
 }
 
+function onClickLibrary() {
+    userSettings.firstOupen = false;
+    sStorage.save('userSettings', userSettings);
+}
