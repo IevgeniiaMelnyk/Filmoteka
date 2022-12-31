@@ -14,7 +14,7 @@
             <li class="header__nav-item">
               <button
                 onclick="document.location='index.html'"
-                class="header__nav-autoriz current"
+                class="header__nav-autoriz current afterhome"
                 type="button"
                 id="home"
               >
@@ -32,7 +32,6 @@
               </button>
             </li>
           </div>
-
           <!-- -->
           <div class="header__nav-list-autorization">
             <li class="header__nav-item">
@@ -71,7 +70,6 @@
           </div>
         </ul>
       </div>
-      <!--  -->
     </nav>
 
     <form class="header__form" id="search-form">
@@ -89,6 +87,23 @@
         </button>
       </div>
     </form>
+    <!-- ====switch======= -->
+    <button id="toggle-theme-btn" class="toggle-theme-btn">
+      <svg width="28px" height="28px">
+        <!-- <use
+            class="moon"
+            id="toggle-theme-image"
+            href="./images/svg/symbol-defs.svg#moon"
+          ></use> -->
+        <use
+          class="sun"
+          id="toggle-theme-image"
+          href="./images/svg/symbol-defs.svg#sun"
+        ></use>
+      </svg>
+      <span class="visually-hidden">theme</span>
+    </button>
+    <!--  -->
     <p class="failure-message visually-hidden">
       Search result not successful (: Enter the correct movie name
     </p>
