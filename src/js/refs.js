@@ -17,7 +17,10 @@ export function getRefs() {
     autofocusInput: document.querySelector('.header__input'),
     home: document.getElementById('home'),
     library: document.getElementById('library'),
-    input: document.querySelector('.header__input')
+    input: document.querySelector('.header__input'),
+    modeButton: document.querySelector('.toggle-theme-btn'),
+    moon: document.querySelector('.moon'),
+    sun: document.querySelector('.sun'),
 
   };
 }

@@ -11,12 +11,20 @@ import { searchErrorHiden } from "../errors/showAndHideErrors";
 
 const refs = getRefs();
 
-document.addEventListener('DOMContentLoaded', onCurrentPage)
-
 
 const loadMo = document.querySelector('.pagination__button_current')
-loadMo.addEventListener('click', loadMore)
-refs.search.addEventListener('submit', onSearch);
+loadMo.addEventListener('click', loadMore);
+
+// проверяет текущую страницу и вешает слушатель на форму поиска
+export function onDocumentCurrentPage() {
+    if (document.location.pathname === '/index.html') {
+        refs.search.addEventListener('submit', onSearch);
+    }
+}
+onDocumentCurrentPage();
+
+document.addEventListener('DOMContentLoaded', onCurrentPage)
+
 refs.library.addEventListener('click', onClickLibrary);
 
 
@@ -32,7 +40,6 @@ let userSettings = {
 
 
 // первая загрузка страницы
-
 export function ifItFirstOupen() {
     if (sStorage.load('userSettings') === undefined) {
         popularFilmsRender();
@@ -40,7 +47,6 @@ export function ifItFirstOupen() {
         sStorage.save('userSettings', userSettings);
     }
 };
-
 ifItFirstOupen();
 
 
@@ -170,7 +176,7 @@ function makeNewArrProp(arr) {
 function onCurrentPage(e) {
     userSettings = sStorage.get('userSettings')
     
-    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen) {
+    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen && document.location.pathname === '/index.html') {
                 
         refs.gallery.innerHTML = '';
         spinnerOn();
@@ -183,7 +189,7 @@ function onCurrentPage(e) {
     });
     };
 
-    if (userSettings.request && userSettings.page > 0) {
+    if (userSettings.request && userSettings.page > 0 && document.location.pathname === '/index.html') {
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsRestart(userSettings.request, userSettings.page).then((posterPropertiesFirst) => {
@@ -196,9 +202,11 @@ function onCurrentPage(e) {
     }
 }
 
+// оновляет хранилище после перехода со страницы первой загрузки на другую страницу
 function onClickLibrary() {
     userSettings.firstOupen = false;
     sStorage.save('userSettings', userSettings);
 }
+
 
 
