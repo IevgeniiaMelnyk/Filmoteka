@@ -132,13 +132,15 @@ function nextLouding() {
         getFilmsServis.getFilms().then((posterProperties) => {
             
             if (posterProperties.length === 0) {
-                
+                spinnerOff();
                 getFilmsServis.reset();
                 refs.message.classList.remove('visually-hidden');
                 searchErrorShow();
+                sStorage.clear()
             };
 
-            makeNewArrProp(posterProperties);
+            if (posterProperties.length > 0) {
+                 makeNewArrProp(posterProperties);
             spinnerOff();
 
             renderMarkupList(refs.gallery, posterProperties, markupCreating);
@@ -147,6 +149,9 @@ function nextLouding() {
             userSettings.page = getFilmsServis.currentPage;
             userSettings.request = getFilmsServis.userRequest;
             sStorage.save('userSettings', userSettings);
+            }
+
+           
         });
     }
 };
