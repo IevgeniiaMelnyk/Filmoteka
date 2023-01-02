@@ -9,5 +9,6 @@ import { buttonUp } from './js/scroll/button-up';
 import toggleModalFilm from './js/modals/modal-film';
 import { onDocumentCurrentPage } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
 import { retrySearch } from './js/errors/retrySearch';
+import { onPagination } from './js/pagination/pagination';
 
 // import { firebaseAuth } from './js/firebase/fbAuth';

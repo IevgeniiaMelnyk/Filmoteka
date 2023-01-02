@@ -21,6 +21,7 @@ export function getRefs() {
     modeButton: document.querySelector('.toggle-theme-btn'),
     moon: document.querySelector('.moon'),
     sun: document.querySelector('.sun'),
+    logo: document.querySelector('.header__logo'),
 
   };
 }

@@ -9,11 +9,14 @@ export class GetFilmsServis {
         this.userRequest = '';
         this.nextPage = 1;
         this.currentPage = 0;
+        this.totalResults = 0;
     }
 
     async getFilmsPopular() {
     try {
         const postersArrFirst = await filmsData.getDayPopular(this.nextPage);
+        this.totalResults = postersArrFirst.total_results;
+        
         const posterPropertiesFirst = postersArrFirst.films.map(({ id, posters, title, genres, year, vote }) => (
             {
                 id,
@@ -32,6 +35,8 @@ export class GetFilmsServis {
     async getFilms() {
     try {
         const postersArr = await filmsData.getSearchQuery(this.userRequest, this.nextPage);
+        this.totalResults = postersArr.total_results;
+        
         const posterProperties = postersArr.films.map(({ id, posters, title, genres, year, vote }) => (
             {
                 id,
@@ -50,6 +55,8 @@ export class GetFilmsServis {
     async getFilmsPopularRestart(page) {
     try {
         const postersArrFirst = await filmsData.getDayPopular(page);
+        this.totalResults = postersArrFirst.total_results;
+        
         const posterPropertiesFirst = postersArrFirst.films.map(({ id, posters, title, genres, year, vote }) => (
             {
                 id,
@@ -68,6 +75,8 @@ export class GetFilmsServis {
      async getFilmsRestart(request, page) {
     try {
         const postersArr = await filmsData.getSearchQuery(request, page);
+        this.totalResults = postersArr.total_results;
+        
         const posterProperties = postersArr.films.map(({ id, posters, title, genres, year, vote }) => (
             {
                 id,

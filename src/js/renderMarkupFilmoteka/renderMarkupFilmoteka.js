@@ -7,13 +7,23 @@ import { spinnerOff } from "../spiner/spiner";
 import { SStorage } from "../storage/sessionStorage";
 import { searchErrorShow } from "../errors/showAndHideErrors";
 import { searchErrorHiden } from "../errors/showAndHideErrors";
+import { pagination } from "../pagination/pagination";
 
 
 const refs = getRefs();
 
+const getFilmsServis = new GetFilmsServis();
+const sStorage = new SStorage();
 
+
+// ========================
 const loadMo = document.querySelector('.pagination__button_current')
 loadMo.addEventListener('click', loadMore);
+// ========================
+
+
+document.addEventListener('DOMContentLoaded', onCurrentPage)
+
 
 // проверяет текущую страницу и вешает слушатель на форму поиска
 export function onDocumentCurrentPage() {
@@ -23,21 +33,12 @@ export function onDocumentCurrentPage() {
 }
 onDocumentCurrentPage();
 
-document.addEventListener('DOMContentLoaded', onCurrentPage)
 
-refs.library.addEventListener('click', onClickLibrary);
-
-
-const getFilmsServis = new GetFilmsServis();
-const sStorage = new SStorage();
-
-
-let userSettings = {
+export let userSettings = {
     page: getFilmsServis.currentPage,
     request: getFilmsServis.userRequest,
     firstOupen: false,
 };
-
 
 // первая загрузка страницы
 export function ifItFirstOupen() {
@@ -45,9 +46,11 @@ export function ifItFirstOupen() {
         popularFilmsRender();
         userSettings.firstOupen = true;
         sStorage.save('userSettings', userSettings);
+
     }
 };
 ifItFirstOupen();
+
 
 
 // популярные фильмы рендер
@@ -75,9 +78,7 @@ export function onSearch(e) {
     getFilmsServis.reset();
         
     getFilmsServis.userRequest = e.target[0].value.toLowerCase().trim();
-    console.log(getFilmsServis.userRequest)
-
-    
+        
     if (getFilmsServis.userRequest === '') {
         getFilmsServis.reset()
         sStorage.clear();
@@ -112,6 +113,18 @@ export function onSearch(e) {
     }
 };
 
+// =========================================
+// пагинация
+let pageToLoad = 0;
+const tuiPagCont = document.getElementById('tui-pagination-container');
+tuiPagCont.addEventListener('click', onClickTui);
+function onClickTui(e) {
+    pageToLoad = pagination.getCurrentPage()
+    console.log(pageToLoad)
+    
+    
+}
+
 // загрузка по кнопке или пагинации
 function loadMore(e) {
     userSettings.firstOupen = false;
@@ -129,6 +142,8 @@ function loadMore(e) {
         nextLouding();
     }
 }
+// ======================================
+
 
 // следующая загрузка
 function nextLouding() {
@@ -172,10 +187,13 @@ function makeNewArrProp(arr) {
         }); 
 };
 
+
 // позволяет остаться на текущей странице при перезагрузке страницы
 function onCurrentPage(e) {
-    userSettings = sStorage.get('userSettings')
-    
+    userSettings = sStorage.get('userSettings');
+    getFilmsServis.currentPage = userSettings.page;
+    getFilmsServis.request = userSettings.request;
+       
     if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen && document.location.pathname === '/index.html') {
                 
         refs.gallery.innerHTML = '';
@@ -202,11 +220,16 @@ function onCurrentPage(e) {
     }
 }
 
+
 // оновляет хранилище после перехода со страницы первой загрузки на другую страницу
 function onClickLibrary() {
+    sStorage.get('userSettings')
+    userSettings = {
+        ...sStorage.get('userSettings')
+    }
     userSettings.firstOupen = false;
     sStorage.save('userSettings', userSettings);
 }
-
+onClickLibrary();
 
 
