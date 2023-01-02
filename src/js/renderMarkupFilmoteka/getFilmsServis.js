@@ -17,7 +17,7 @@ export class GetFilmsServis {
     try {
         const postersArrFirst = await filmsData.getDayPopular(this.nextPage);
         this.totalResults = postersArrFirst.total_results;
-        tuiPagination(this.totalResults);
+        // tuiPagination(this.totalResults);
         
         const posterPropertiesFirst = postersArrFirst.films.map(({ id, posters, title, genres, year, vote }) => (
             {
@@ -38,7 +38,7 @@ export class GetFilmsServis {
     try {
         const postersArr = await filmsData.getSearchQuery(this.userRequest, this.nextPage);
         this.totalResults = postersArr.total_results;
-        tuiPagination(this.totalResults);
+        // tuiPagination(this.totalResults);
         
         const posterProperties = postersArr.films.map(({ id, posters, title, genres, year, vote }) => (
             {
@@ -59,7 +59,7 @@ export class GetFilmsServis {
     try {
         const postersArrFirst = await filmsData.getDayPopular(page);
         this.totalResults = postersArrFirst.total_results;
-        tuiPagination(this.totalResults);
+        // tuiPagination(this.totalResults);
         
         const posterPropertiesFirst = postersArrFirst.films.map(({ id, posters, title, genres, year, vote }) => (
             {
@@ -80,7 +80,7 @@ export class GetFilmsServis {
     try {
         const postersArr = await filmsData.getSearchQuery(request, page);
         this.totalResults = postersArr.total_results;
-        tuiPagination(this.totalResults);
+        // tuiPagination(this.totalResults);
         
         const posterProperties = postersArr.films.map(({ id, posters, title, genres, year, vote }) => (
             {
