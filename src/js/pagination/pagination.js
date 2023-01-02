@@ -33,12 +33,7 @@ export function tuiPagination(totalItems) {
 
     const pagination = new Pagination(refs.tuiContainer, options);
     console.log(pagination)
-    // console.log(options.totalItems);
-    // refs.tuiContainer.addEventListener('ckick', onClick)
-    // function onClick() {
-    //     console.log(pagination.getCurrentPage())
-    // }
-    
+       
 }
 
 
