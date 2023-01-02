@@ -10,4 +10,8 @@ import toggleModalFilm from './js/modals/modal-film';
 import { onDocumentCurrentPage } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
 import { retrySearch } from './js/errors/retrySearch';
 
+
 // import { firebaseAuth } from './js/firebase/fbAuth';
+
+
+import { changeMode } from './js/changeMode/changeMode';
