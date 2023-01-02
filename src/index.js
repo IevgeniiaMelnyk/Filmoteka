@@ -11,4 +11,8 @@ import { onDocumentCurrentPage } from './js/renderMarkupFilmoteka/renderMarkupFi
 import { retrySearch } from './js/errors/retrySearch';
 import { onPagination } from './js/pagination/pagination';
 
+
 // import { firebaseAuth } from './js/firebase/fbAuth';
+
+
+import { changeMode } from './js/changeMode/changeMode';
