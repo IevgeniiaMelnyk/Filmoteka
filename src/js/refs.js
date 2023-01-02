@@ -29,7 +29,11 @@ export function getRefs() {
     loginFormBtn: document.querySelector('.logbtn'),
     regFormBtn: document.querySelector('.regbtn'),
     tuiContainer: document.getElementById('tui-pagination-container'),
-    galleryPosterTitle: document.querySelector('.gallery-poster-title')
+    galleryPosterTitle: document.querySelector('.gallery-poster-title'),
+    signOut: document.querySelector('#signout'),
+    signUp: document.querySelector('#signup'),
+    signIn: document.querySelector('#signin'),
+    userIcon: document.querySelector('#usericon'),
   };
 }
 
