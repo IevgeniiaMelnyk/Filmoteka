@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-// import '/node_modules/tui-pagination/dist/tui-pagination.css';
+import '/node_modules/tui-pagination/dist/tui-pagination.css';
 import { getRefs } from '../refs';
 
 const refs = getRefs();
