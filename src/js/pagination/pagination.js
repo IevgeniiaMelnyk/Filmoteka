@@ -32,7 +32,7 @@ export function tuiPagination(totalItems) {
     }
 
     const pagination = new Pagination(refs.tuiContainer, options);
-    
+    console.log()
 }
 
 
