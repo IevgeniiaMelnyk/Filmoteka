@@ -7,7 +7,7 @@ import { spinnerOff } from "../spiner/spiner";
 import { SStorage } from "../storage/sessionStorage";
 import { searchErrorShow } from "../errors/showAndHideErrors";
 import { searchErrorHiden } from "../errors/showAndHideErrors";
-import { pagination } from "../pagination/pagination";
+
 
 
 const refs = getRefs();
@@ -113,17 +113,6 @@ export function onSearch(e) {
     }
 };
 
-// =========================================
-// пагинация
-let pageToLoad = 0;
-const tuiPagCont = document.getElementById('tui-pagination-container');
-tuiPagCont.addEventListener('click', onClickTui);
-function onClickTui(e) {
-    pageToLoad = pagination.getCurrentPage()
-    console.log(pageToLoad)
-    
-    
-}
 
 // загрузка по кнопке или пагинации
 function loadMore(e) {
