@@ -3,12 +3,6 @@ import '/node_modules/tui-pagination/dist/tui-pagination.css';
 import { SStorage } from '../storage/sessionStorage';
 import { userSettings } from '../renderMarkupFilmoteka/renderMarkupFilmoteka';
 
-// const sStorage = new SStorage;
-// const settings = {
-//     ...sStorage.get('userSettings')
-// };
-
-
 
 const container = document.getElementById('tui-pagination-container');
 const options = {

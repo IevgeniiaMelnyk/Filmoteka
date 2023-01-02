@@ -22,7 +22,12 @@ export function getRefs() {
     moon: document.querySelector('.moon'),
     sun: document.querySelector('.sun'),
     logo: document.querySelector('.header__logo'),
-
+    loginModal: document.querySelector('.modallogin'),
+    regModal: document.querySelector('.modalreg'),
+    loginForm: document.querySelector('.login-form'),
+    regForm: document.querySelector('.reg-form'),
+    loginFormBtn: document.querySelector('.logbtn'),
+    regFormBtn: document.querySelector('.regbtn'),
   };
 }
 

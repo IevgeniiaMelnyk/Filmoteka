@@ -207,6 +207,9 @@ function onCurrentPage(e) {
     });
     };
 
+    userSettings.firstOupen = false;
+    sStorage.save('userSettings', userSettings);
+
     if (userSettings.request && userSettings.page > 0 && document.location.pathname === '/index.html') {
         refs.gallery.innerHTML = '';
         spinnerOn();
@@ -221,15 +224,6 @@ function onCurrentPage(e) {
 }
 
 
-// оновляет хранилище после перехода со страницы первой загрузки на другую страницу
-function onClickLibrary() {
-    sStorage.get('userSettings')
-    userSettings = {
-        ...sStorage.get('userSettings')
-    }
-    userSettings.firstOupen = false;
-    sStorage.save('userSettings', userSettings);
-}
-onClickLibrary();
+
 
 
