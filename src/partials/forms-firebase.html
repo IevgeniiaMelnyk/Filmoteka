@@ -1,4 +1,4 @@
-<div class="backdrop is_hidden">
+<div class="backdrop is_hidden" login-data-modal>
   <div class="modal__login">
     <button type="button" class="modal-close-btn" login-modal-close>
       <svg class="modal-close__icon" width="14px" height="14px">
@@ -9,19 +9,19 @@
     <form class="login-form">
       <label class="login__field">
         <span class="login__desc">Email</span>
-        <input class="log__input" type="email" name="email" />
+        <input class="log__input" required type="email" name="email" />
       </label>
       <label class="login__field">
         <span class="login__desc">Password</span>
-        <input class="log__input" type="password" name="password" />
+        <input class="log__input" required type="password" name="password" />
       </label>
       <button type="submit" class="button log__btn">Sing in</button>
     </form>
   </div>
 </div>
-<div class="backdrop is_hidden">
+<div class="backdrop is_hidden" reg-data-modal>
   <div class="modal__reg">
-    <button type="button" class="modal-close-btn" login-modal-close>
+    <button type="button" class="modal-close-btn" reg-modal-close>
       <svg class="modal-close__icon" width="14px" height="14px">
         <use href="./images/svg/symbol-defs.svg#icon-close"></use>
       </svg>
@@ -30,15 +30,15 @@
     <form class="reg-form">
       <label class="reg__field">
         <span class="reg__desc">Name</span>
-        <input class="reg__input" type="text" name="name" />
+        <input class="reg__input" required type="text" name="name" />
       </label>
       <label class="reg__field">
         <span class="reg__desc">Email</span>
-        <input class="reg__input" type="email" name="email" />
+        <input class="reg__input" required type="email" name="email" />
       </label>
       <label class="reg__field">
         <span class="reg__desc">Password</span>
-        <input class="reg__input" type="password" name="password" />
+        <input class="reg__input" required type="password" name="password" />
       </label>
       <button type="submit" class="button reg__btn">Sing up</button>
     </form>

@@ -10,5 +10,6 @@ import toggleModalFilm from './js/modals/modal-film';
 import { onDocumentCurrentPage } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
 import { retrySearch } from './js/errors/retrySearch';
 import { onPagination } from './js/pagination/pagination';
+import { loginModal } from './js/firebase/loginModal';
 
 // import { firebaseAuth } from './js/firebase/fbAuth';
