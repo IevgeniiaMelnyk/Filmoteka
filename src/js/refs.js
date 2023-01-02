@@ -29,6 +29,7 @@ export function getRefs() {
     loginFormBtn: document.querySelector('.logbtn'),
     regFormBtn: document.querySelector('.regbtn'),
     tuiContainer: document.getElementById('tui-pagination-container'),
+    galleryPosterTitle: document.querySelector('.gallery-poster-title')
   };
 }
 
