@@ -8,7 +8,7 @@ export function tuiPagination(totalItems) {
     const options = {
         totalItems: totalItems,
         itemsPerPage: 20,
-        visiblePages: 3,
+        visiblePages: 5,
         page: 1,
         centerAlign: false,
         firstItemClassName: 'tui-first-child',
@@ -32,7 +32,12 @@ export function tuiPagination(totalItems) {
     }
 
     const pagination = new Pagination(refs.tuiContainer, options);
-    console.log(options.totalItems);
+    console.log(pagination)
+    // console.log(options.totalItems);
+    // refs.tuiContainer.addEventListener('ckick', onClick)
+    // function onClick() {
+    //     console.log(pagination.getCurrentPage())
+    // }
     
 }
 
