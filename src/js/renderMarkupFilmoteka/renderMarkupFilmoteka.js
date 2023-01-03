@@ -14,7 +14,8 @@ const refs = getRefs();
 
 const getFilmsServis = new GetFilmsServis();
 const sStorage = new SStorage();
-
+const addrressLiveOfPage = 'https://ievgeniiamelnyk.github.io/Filmoteka/index.html';
+const addrressLocalPage = '/index.html'
 
 // ========================
 const loadMo = document.querySelector('.tui-pagination')
@@ -183,7 +184,7 @@ function onCurrentPage(e) {
     getFilmsServis.currentPage = userSettings.page;
     getFilmsServis.request = userSettings.request;
        
-    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen && document.location.pathname === 'https://ievgeniiamelnyk.github.io/Filmoteka/index.html') {
+    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen) {
                 
         refs.gallery.innerHTML = '';
         spinnerOn();
@@ -199,7 +200,7 @@ function onCurrentPage(e) {
     userSettings.firstOupen = false;
     sStorage.save('userSettings', userSettings);
 
-    if (userSettings.request && userSettings.page > 0 && document.location.pathname === 'https://ievgeniiamelnyk.github.io/Filmoteka/index.html') {
+    if (userSettings.request && userSettings.page > 0) {
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsRestart(userSettings.request, userSettings.page).then((posterPropertiesFirst) => {
