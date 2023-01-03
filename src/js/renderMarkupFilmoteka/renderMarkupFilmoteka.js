@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', onCurrentPage)
 
 
 // проверяет текущую страницу и вешает слушатель на форму поиска
-// export function onDocumentCurrentPage() {
-//     if (document.location.pathname === '/index.html') {
-//         refs.search.addEventListener('submit', onSearch);
-//     }
-// }
-// onDocumentCurrentPage();
+export function onDocumentCurrentPage() {
+    if (document.location.pathname === 'https://ievgeniiamelnyk.github.io/Filmoteka/index.html') {
+        refs.search.addEventListener('submit', onSearch);
+    }
+}
+onDocumentCurrentPage();
 
 refs.search.addEventListener('submit', onSearch);
 export let userSettings = {
@@ -199,7 +199,7 @@ function onCurrentPage(e) {
     userSettings.firstOupen = false;
     sStorage.save('userSettings', userSettings);
 
-    if (userSettings.request && userSettings.page > 0 && document.location.pathname === '/index.html') {
+    if (userSettings.request && userSettings.page > 0 && document.location.pathname === 'https://ievgeniiamelnyk.github.io/Filmoteka/index.html') {
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsRestart(userSettings.request, userSettings.page).then((posterPropertiesFirst) => {
