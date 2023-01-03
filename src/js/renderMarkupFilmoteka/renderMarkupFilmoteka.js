@@ -26,14 +26,14 @@ document.addEventListener('DOMContentLoaded', onCurrentPage)
 
 
 // проверяет текущую страницу и вешает слушатель на форму поиска
-export function onDocumentCurrentPage() {
-    if (document.location.pathname === '/index.html') {
-        refs.search.addEventListener('submit', onSearch);
-    }
-}
-onDocumentCurrentPage();
+// export function onDocumentCurrentPage() {
+//     if (document.location.pathname === '/index.html') {
+//         refs.search.addEventListener('submit', onSearch);
+//     }
+// }
+// onDocumentCurrentPage();
 
-
+refs.search.addEventListener('submit', onSearch);
 export let userSettings = {
     page: getFilmsServis.currentPage,
     request: getFilmsServis.userRequest,
