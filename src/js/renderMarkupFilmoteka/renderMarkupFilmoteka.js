@@ -14,7 +14,7 @@ const refs = getRefs();
 
 const getFilmsServis = new GetFilmsServis();
 const sStorage = new SStorage();
-const addrressLivePage = 'https://ievgeniiamelnyk.github.io/Filmoteka/index.html';
+const addrressLivePage = 'https://ievgeniiamelnyk.github.io/Filmoteka/';
 const addrressLocalPage = '/index.html';
 
 // ========================
