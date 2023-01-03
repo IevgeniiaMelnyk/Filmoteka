@@ -183,7 +183,7 @@ function onCurrentPage(e) {
     getFilmsServis.currentPage = userSettings.page;
     getFilmsServis.request = userSettings.request;
        
-    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen && document.location.pathname === '/index.html') {
+    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen && document.location.pathname === 'https://ievgeniiamelnyk.github.io/Filmoteka/index.html') {
                 
         refs.gallery.innerHTML = '';
         spinnerOn();
