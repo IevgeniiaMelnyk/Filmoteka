@@ -14,27 +14,27 @@ const refs = getRefs();
 
 const getFilmsServis = new GetFilmsServis();
 const sStorage = new SStorage();
-const addrressLiveOfPage = 'https://ievgeniiamelnyk.github.io/Filmoteka/index.html';
-const addrressLocalPage = '/index.html'
+const addrressLivePage = 'https://ievgeniiamelnyk.github.io/Filmoteka/index.html';
+const addrressLocalPage = '/index.html';
 
 // ========================
 const loadMo = document.querySelector('.tui-pagination')
 loadMo.addEventListener('click', loadMore);
 // ========================
 
-
+console.log(document.location.pathname)
 document.addEventListener('DOMContentLoaded', onCurrentPage)
-
 
 // проверяет текущую страницу и вешает слушатель на форму поиска
 export function onDocumentCurrentPage() {
-    if (document.location.pathname === 'https://ievgeniiamelnyk.github.io/Filmoteka/index.html') {
+    if (document.location.pathname === addrressLivePage) {
+        console.log(document.location.pathname)
         refs.search.addEventListener('submit', onSearch);
     }
 }
 onDocumentCurrentPage();
 
-refs.search.addEventListener('submit', onSearch);
+
 export let userSettings = {
     page: getFilmsServis.currentPage,
     request: getFilmsServis.userRequest,
@@ -184,7 +184,7 @@ function onCurrentPage(e) {
     getFilmsServis.currentPage = userSettings.page;
     getFilmsServis.request = userSettings.request;
        
-    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen) {
+    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen && document.location.pathname === addrressLivePage) {
                 
         refs.gallery.innerHTML = '';
         spinnerOn();
@@ -200,7 +200,7 @@ function onCurrentPage(e) {
     userSettings.firstOupen = false;
     sStorage.save('userSettings', userSettings);
 
-    if (userSettings.request && userSettings.page > 0) {
+    if (userSettings.request && userSettings.page > 0 && document.location.pathname === addrressLivePage) {
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsRestart(userSettings.request, userSettings.page).then((posterPropertiesFirst) => {
