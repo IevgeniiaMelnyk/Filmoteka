@@ -3,7 +3,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
-  background-color: rgb(255, 245, 233);
+  background-color: var(--background-color);
 }
 
 body.modal-open {
