@@ -111,6 +111,7 @@ async function exampleWriteToLibrary() {
 }
 
 export function testFbDataBase() {
+  console.log('login');
   const getFilms = new FilmsData();
   const email = 'some7email@mail.com';
   const password = 'anypassword';
