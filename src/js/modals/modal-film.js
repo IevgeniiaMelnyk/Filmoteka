@@ -16,7 +16,7 @@ export default function toggleModalFilm() {
     refs.modal.classList.toggle('is_hidden');
   }
 
-  function toggleModal(event) {
+    function toggleModal(event) {
     if (event.target === event.currentTarget) return;
     refs.modalFilmWrapper.innerHTML = '';
     document.addEventListener('keydown', closeModal);

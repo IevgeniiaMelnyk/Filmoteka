@@ -27,8 +27,7 @@ document.addEventListener('DOMContentLoaded', onCurrentPage)
 
 // проверяет текущую страницу и вешает слушатель на форму поиска
 export function onDocumentCurrentPage() {
-    if (document.location.pathname === addrressLivePage) {
-        console.log(document.location.pathname)
+    if (document.location.pathname === addrressLocalPage) {
         refs.search.addEventListener('submit', onSearch);
     }
 }
@@ -184,7 +183,7 @@ function onCurrentPage(e) {
     getFilmsServis.currentPage = userSettings.page;
     getFilmsServis.request = userSettings.request;
        
-    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen && document.location.pathname === addrressLivePage) {
+    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen && document.location.pathname === addrressLocalPage) {
                 
         refs.gallery.innerHTML = '';
         spinnerOn();
@@ -200,7 +199,7 @@ function onCurrentPage(e) {
     userSettings.firstOupen = false;
     sStorage.save('userSettings', userSettings);
 
-    if (userSettings.request && userSettings.page > 0 && document.location.pathname === addrressLivePage) {
+    if (userSettings.request && userSettings.page > 0 && document.location.pathname === addrressLocalPage) {
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsRestart(userSettings.request, userSettings.page).then((posterPropertiesFirst) => {
