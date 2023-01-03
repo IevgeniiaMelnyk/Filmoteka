@@ -14,11 +14,11 @@ export function markupModalCreating({
   posters,
   year,
 }) {
-    const str = genres.map(genres => genres.name).join(', ');
-    const letter = str[0].toUpperCase();
-    const genre = str.replaceAt(0, letter);
+  const str = genres.map(genres => genres.name).join(', ');
+  const letter = str[0].toUpperCase();
+  const genre = str.replaceAt(0, letter);
 
-    return `<div class="modal-container">
+  return `<div class="modal-container">
       <div class="poster-thumb">
         <picture>
             <source
@@ -109,5 +109,5 @@ export function markupModalCreating({
         </div>
       </div>
     </div>
-    `
+    `;
 }

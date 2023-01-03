@@ -13,15 +13,18 @@ body.modal-open {
   left: 50%;
   transform: translateX(-50%);
   padding: 48px 20px 40px 20px;
-  width: 280px;
+  max-width: 280px;
+  border-radius: 5px;
+
   background-color: var(--primary-white-color);
+  box-shadow: 7px 7px 22px 2px rgb(255 107 1 / 60%);
 
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  @media screen and (min-height: 600px) {
+  @media screen and (min-height: 800px) {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -53,7 +56,11 @@ body.modal-open {
 }
 
 .movie-poster {
+  display: block;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
+  object-fit: cover;
 }
 
 .movie-title {
@@ -121,17 +128,30 @@ table tr {
   margin-right: 20px;
 }
 
+.error-img-thumb {
+  width: 240px;
+  height: 357px;
+}
+
+.error-text {
+  width: 240px;
+  text-align: center;
+  color: var(--secondary-text-color);
+  @include font($fs: 16px, $lh: 26px);
+}
+
 @media screen and (max-width: 767px) {
-  .movie-poster {
-    margin-bottom: 20px;
+  .poster-thumb {
     width: 240px;
+    height: 357px;
+    margin-bottom: 20px;
   }
 }
 
 @media screen and (min-width: $tablet) {
   .modal-window {
     padding: 40px 72px 40px 36px;
-    width: 704px;
+    max-width: 704px;
   }
 
   .modal-container {
@@ -139,9 +159,23 @@ table tr {
     justify-content: space-between;
   }
 
-  .movie-poster {
+  .poster-thumb {
+    width: 264px;
+    height: 374px;
     margin-right: 68px;
-    max-width: 264px;
+  }
+
+  .error-img-thumb {
+    width: 264px;
+    height: 374px;
+  }
+
+  .error-text {
+    width: 264px;
+  }
+
+  .about-descr {
+    width: 264px;
   }
 
   .add-to-watched-btn {
@@ -152,15 +186,29 @@ table tr {
 @media screen and (min-width: $desktop) {
   .modal-window {
     padding: 40px 12px;
-    width: 806px;
+    max-width: 806px;
   }
 
-  .movie-poster {
+  .poster-thumb {
+    width: 375px;
+    height: 478px;
     margin-right: 16px;
-    max-width: 375px;
+  }
+
+  .error-img-thumb {
+    width: 375px;
+    height: 478px;
+  }
+
+  .error-text {
+    width: 375px;
   }
 
   .movie-title {
     @include font($fs: 30px, $lh: 35px);
+  }
+
+  .about-descr {
+    width: 391px;
   }
 }

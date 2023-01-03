@@ -5,25 +5,30 @@ import { markupModalCreating } from '../renderMarkupFilmoteka/renderModalFilmMar
 
 const refs = getRefs();
 const filmsData = new FilmsData();
+const modalErrorMarkup = document.querySelector('.modal-error');
 
 export default function toggleModalFilm() {
-  refs.gallery.addEventListener('click', toggleModal);
+  if (document.location.pathname === '/index.html') {
+    refs.gallery.addEventListener('click', toggleModal);
 
-  refs.gallery.addEventListener('click', event => {
-    filmsData
-      .getById(event.target.dataset.id)
-      .then(filmProperties => {
-        console.log(filmProperties);
-        refs.modalFilmWrapper.innerHTML = '';
-        renderModalMarkup(
-          refs.modalFilmWrapper,
-          markupModalCreating(filmProperties)
-        );
-      })
-      .catch(error => console.log(error));
-  });
+    refs.gallery.addEventListener('click', event => {
+      refs.modalFilmWrapper.innerHTML = '';
 
-  refs.closeModalBtn.addEventListener('click', toggleModal);
+      filmsData
+        .getById(event.target.dataset.id)
+        .then(filmProperties => {
+          console.log(filmProperties);
+          modalErrorMarkup.classList.add('visually-hidden');
+          renderModalMarkup(
+            refs.modalFilmWrapper,
+            markupModalCreating(filmProperties)
+          );
+        })
+        .catch(modalErrorMarkup.classList.remove('visually-hidden'));
+    });
+
+    refs.closeModalBtn.addEventListener('click', toggleModal);
+  }
 
   function toggleClasses() {
     document.body.classList.toggle('modal-open');
