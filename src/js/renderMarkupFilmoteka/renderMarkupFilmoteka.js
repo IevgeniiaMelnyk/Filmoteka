@@ -14,8 +14,8 @@ const refs = getRefs();
 
 const getFilmsServis = new GetFilmsServis();
 const sStorage = new SStorage();
-const addrressLivePage = '/Filmoteka/';
-const addrressLocalPage = '/index.html';
+// const addrressLivePage = '/Filmoteka/';
+// const addrressLocalPage = '/index.html';
 
 // ========================
 const loadMo = document.querySelector('.tui-pagination')
@@ -26,13 +26,12 @@ console.log(document.location.pathname)
 document.addEventListener('DOMContentLoaded', onCurrentPage)
 
 // проверяет текущую страницу и вешает слушатель на форму поиска
-export function onDocumentCurrentPage() {
-    if (document.location.pathname === addrressLocalPage) {
-        refs.search.addEventListener('submit', onSearch);
-    }
-}
-onDocumentCurrentPage();
-
+// export function onDocumentCurrentPage() {
+//     if (document.location.pathname === addrressLocalPage) {
+//         refs.search.addEventListener('submit', onSearch);
+//     }
+// }
+// onDocumentCurrentPage();
 
 export let userSettings = {
     page: getFilmsServis.currentPage,
@@ -183,7 +182,7 @@ function onCurrentPage(e) {
     getFilmsServis.currentPage = userSettings.page;
     getFilmsServis.request = userSettings.request;
        
-    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen && document.location.pathname === addrressLocalPage) {
+    if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen) {
                 
         refs.gallery.innerHTML = '';
         spinnerOn();
@@ -199,7 +198,7 @@ function onCurrentPage(e) {
     userSettings.firstOupen = false;
     sStorage.save('userSettings', userSettings);
 
-    if (userSettings.request && userSettings.page > 0 && document.location.pathname === addrressLocalPage) {
+    if (userSettings.request && userSettings.page > 0) {
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsRestart(userSettings.request, userSettings.page).then((posterPropertiesFirst) => {
