@@ -8,10 +8,10 @@ export default function retrySearch() {
 }
 
 function onInputFocus() {
-  refs.autofocusInput.focus();
+  refs.input.focus();
 }
 function onInputClear() {
-  refs.autofocusInput.value = '';
+  refs.input.value = '';
 }
 
 refs.autofocusBtn.addEventListener('click', retrySearch);
