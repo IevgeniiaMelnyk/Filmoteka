@@ -14,9 +14,7 @@ export function markupModalCreating({
   posters,
   year,
 }) {
-  const str = genres.map(genres => genres.name).join(', ');
-  const letter = str[0].toUpperCase();
-  const genre = str.replaceAt(0, letter);
+  const genre = genres.map(genres => genres.name).join(', ');
 
   return `<div class="modal-container">
       <div class="poster-thumb">

@@ -65,6 +65,7 @@ body.modal-open {
 
 .movie-title {
   text-align: left;
+  color: var(--primary-text-color);
   @include font($fs: 20px, $lh: 23px);
   margin-bottom: 20px;
 }
@@ -93,6 +94,7 @@ table tr {
 }
 
 .description {
+  color: var(--primary-text-color);
   @include font($lh: 14px);
 }
 
@@ -111,12 +113,14 @@ table tr {
 
 .about {
   margin-bottom: 8px;
+  color: var(--primary-text-color);
   @include font($lh: 16px);
   text-transform: uppercase;
 }
 
 .about-descr {
   margin-bottom: 20px;
+  color: var(--primary-text-color);
   @include font();
 }
 
