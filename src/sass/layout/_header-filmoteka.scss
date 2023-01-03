@@ -205,6 +205,7 @@
 // =============
 .header__form {
   padding-top: 10px;
+  padding-left: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -220,6 +221,7 @@
   }
   @media screen and (min-width: $tablet) {
     padding-top: 15px;
+    padding-left: 50px;
   }
 }
 
