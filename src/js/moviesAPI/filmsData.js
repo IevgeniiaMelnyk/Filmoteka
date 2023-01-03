@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const MOVIES_API_KEY = 'c1b8c874be54ebc5c34c225dbd6a36f5';
 // https://api.themoviedb.org/3/trending/all/day?api_key=c1b8c874be54ebc5c34c225dbd6a36f5&page=1&language=rusort_by=popularity.desc
-const MOVIES_API_DAY = 'https://api.themoviedb.org/3/trending/all/day';
+const MOVIES_API_DAY = 'https://api.themoviedb.org/3/trending/movie/day';
 
 // https://api.themoviedb.org/3/search/movie?api_key=c1b8c874be54ebc5c34c225dbd6a36f5&language=ru&query=Star%wars&page=1&include_adult=falsesort_by=popularity.desc
 const MOVIES_API_SEARCH = 'https://api.themoviedb.org/3/search/movie?';
