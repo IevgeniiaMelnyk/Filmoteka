@@ -12,6 +12,8 @@
   color: var(--primary-white-color);
   text-transform: uppercase;
   @include font($lh: 16px);
+  transition: background-color 250ms var(--time-function),
+    border 250ms var(--time-function);
 
   &:hover,
   &:focus {

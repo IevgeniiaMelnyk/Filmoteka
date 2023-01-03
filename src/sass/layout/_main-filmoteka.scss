@@ -39,6 +39,12 @@
 
 .gallery-poster-box {
   cursor: pointer;
+  transition: scale 250ms var(--time-function);
+
+  &:hover {
+    scale: 1.05;
+    filter: drop-shadow(0 8px 13px #ff6b0199);
+  }
 }
 
 .gallery-poster-img {
