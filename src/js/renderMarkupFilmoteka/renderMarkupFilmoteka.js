@@ -17,7 +17,7 @@ const sStorage = new SStorage();
 
 
 // ========================
-const loadMo = document.querySelector('.pagination__button_current')
+const loadMo = document.querySelector('.tui-pagination')
 loadMo.addEventListener('click', loadMore);
 // ========================
 
