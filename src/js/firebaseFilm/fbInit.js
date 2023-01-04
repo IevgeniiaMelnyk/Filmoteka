@@ -5,6 +5,6 @@ import { firebaseConfig } from './fireBaseData';
 import { getDatabase } from 'firebase/database';
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const filmsDatabase = getDatabase(app);
+export const appMy = initializeApp(firebaseConfig);
+export const authMy = getAuth(appMy);
+export const filmsDatabase = getDatabase(appMy);

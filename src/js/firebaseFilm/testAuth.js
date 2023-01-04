@@ -1,24 +1,20 @@
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
-  deleteUser,
   updateProfile,
 } from 'firebase/auth';
 
-import { renderLogin } from '../renderLogin/renderLogin';
-import { auth } from './fbInit';
-import { fbFilmsData } from './fbFilms';
+import { authMy } from './fbInit';
 import { returnMessage } from '../dataStorage/errorsMessage';
+import { renderLogin } from '../renderLogin/renderLogin';
 
-class FirebaseAuth {
+export class FbFilmsAuth {
   constructor(user, language = 'en') {
+    console.log('constructor');
     this.user = user;
     this.isLogin = !!user;
     this.language = language;
   }
-
   /**
    * @returns {String} имя авторизированного пользователя
    */
@@ -48,26 +44,11 @@ class FirebaseAuth {
   async login(email, password) {
     try {
       const userCredential = await signInWithEmailAndPassword(
-        auth,
+        authMy,
         email,
         password
       );
       this.user = userCredential.user;
-      return '';
-    } catch (e) {
-      return returnMessage(e.code, this.language);
-    }
-  }
-  // Исключение
-  /**
-   *
-   * @returns {Prommise} String сообщение об ошибке
-   */
-  async logOut() {
-    //auth/user-not-found
-    if (!this.isLogin) return '';
-    try {
-      await auth.signOut();
       return '';
     } catch (e) {
       return returnMessage(e.code, this.language);
@@ -83,7 +64,7 @@ class FirebaseAuth {
   async singUp(email, password, userName = '') {
     try {
       const userCredential = await createUserWithEmailAndPassword(
-        auth,
+        authMy,
         email,
         password
       );
@@ -99,19 +80,33 @@ class FirebaseAuth {
       return returnMessage(e.code, this.language);
     }
   }
+  // Исключение
+  /**
+   *
+   * @returns {Prommise} String сообщение об ошибке
+   */
+  async logOut() {
+    //auth/user-not-found
+    if (!this.isLogin) return '';
+    try {
+      await authMy.signOut();
+      return '';
+    } catch (e) {
+      return returnMessage(e.code, this.language);
+    }
+  }
 }
 
-export const firebaseAuth = new FirebaseAuth(null);
+export const fbFilmsAuth = new FbFilmsAuth(null);
+
 // Прослушивает авторизацию
-auth.onAuthStateChanged(user => {
+authMy.onAuthStateChanged(user => {
   if (user) {
-    firebaseAuth.user = user;
-    firebaseAuth.isLogin = true;
-    fbFilmsData.setUid(user.uid);
+    fbFilmsAuth.user = user;
+    fbFilmsAuth.isLogin = true;
   } else {
-    firebaseAuth.user = null;
-    firebaseAuth.isLogin = false;
-    fbFilmsData.setUid(null);
+    fbFilmsAuth.user = null;
+    fbFilmsAuth.isLogin = false;
   }
-  renderLogin(firebaseAuth.isLogin, firebaseAuth.getUserDisplayName());
+  renderLogin(fbFilmsAuth.isLogin, fbFilmsAuth.getUserDisplayName());
 });

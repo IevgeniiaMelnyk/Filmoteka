@@ -1,5 +1,5 @@
 import { fbFilmsData, PLACE_Q, PLACE_W } from './fbFilms';
-import { firebaseAuth } from './fbAuth';
+import { fbFilmsAuth } from './testAuth';
 import FilmsData from '../moviesAPI/filmsData';
 /*
 Ссылка на проект https://console.firebase.google.com/project/filmoteks-fs61/overview
@@ -58,10 +58,6 @@ firebaseAuth.singUp(
 );
 
 */
-const refs = {
-  header: document.querySelector('.header'),
-  footer: document.querySelector('.footer'),
-};
 
 /* Примеры использования*/
 const getFilms = new FilmsData();
@@ -69,31 +65,31 @@ const getFilms = new FilmsData();
 Пользователь с таким именем уже есть
 */
 async function exampleRegistration() {
-  const email = 'some9email@mail.com';
+  const email = 'some19email@mail.com';
   const password = 'anypassword';
   const user = 'some';
-  const result = await firebaseAuth.singUp(email, password, user);
+  const result = await fbFilmsAuth.singUp(email, password, user);
   console.log(result);
-  console.log(firebaseAuth.getUserDisplayName());
+  console.log(fbFilmsAuth.getUserDisplayName());
 }
 
 /* Вход */
 async function exampleLogin() {
   const email = 'some9email@mail.com';
   const password = 'anypassword';
-  const result = await firebaseAuth.login(email, password);
+  const result = await fbFilmsAuth.login(email, password);
   console.log(result);
-  console.log(firebaseAuth.getUserDisplayName());
+  console.log(fbFilmsAuth.getUserDisplayName());
 }
 /* Выход */
 async function exampleLogOut() {
-  const result = await firebaseAuth.logOut();
+  const result = await fbFilmsAuth.logOut();
   console.log(result);
 }
 
-/* Получение списка фильмов */
+// /* Получение списка фильмов */
 async function exampleGetFilmFromQU() {
-  if (firebaseAuth.isLogin) {
+  if (fbFilmsAuth.isLogin) {
     const films = await fbFilmsData.getFilms(PLACE_Q);
 
     console.log('filmsQU', films);
@@ -104,29 +100,23 @@ async function exampleGetFilmFromQU() {
 
 /* Запись фильма в библиотеку */
 async function exampleWriteToLibrary() {
-  const film1 = await getFilms.getById(106541);
+  const film1 = await getFilms.getById(19995);
   console.log('film1 =', film1);
-  result = await fbFilmsData.writeTo(film1, 'WA');
+  const result = await fbFilmsData.writeTo(film1, 'WA');
   console.log('result = ', result);
 }
 
 export function testFbDataBase() {
-  console.log('login');
-  const getFilms = new FilmsData();
-  const email = 'some7email@mail.com';
+  const email = 'some17email@mail.com';
   const password = 'anypassword';
-  refs.header.addEventListener('click', () => {
+  document.querySelector('.header').addEventListener('click', () => {
     console.log('login');
-    exampleLogin();
-    // setTimeout(() => {
-    //   exampleWriteToLibrary();
-    // }, 4000);
-    setTimeout(() => {
-      exampleGetFilmFromQU();
-    }, 3000);
+
+    exampleGetFilmFromQU();
+    exampleWriteToLibrary();
   });
 }
 
-refs.footer.addEventListener('click', () => {
+document.querySelector('.footer').addEventListener('click', () => {
   exampleLogOut();
 });
