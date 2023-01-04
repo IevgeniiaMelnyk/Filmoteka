@@ -1,18 +1,17 @@
 import Pagination from 'tui-pagination';
 // import '/node_modules/tui-pagination/dist/tui-pagination.css';
 import { getRefs } from '../refs';
-import { getFilmsServis } from '../renderMarkupFilmoteka/getFilmsServis';
 import { GetFilmsServis } from '../renderMarkupFilmoteka/getFilmsServis';
 import { spinnerOn } from "../spiner/spiner";
 import { spinnerOff } from "../spiner/spiner";
 import { sStorage } from '../renderMarkupFilmoteka/renderMarkupFilmoteka';
-import { userSettings } from '../renderMarkupFilmoteka/renderMarkupFilmoteka';
 import { markupCreating } from '../renderMarkupFilmoteka/renderMarkup';
 import { renderMarkupList } from '../renderMarkupFilmoteka/renderMarkup';
 import { makeNewArrProp } from '../renderMarkupFilmoteka/renderMarkupFilmoteka';
 
 const refs = getRefs();
 
+let userSettings = {};
 
 export function tuiPagination(totalItems) {
     

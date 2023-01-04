@@ -21,7 +21,7 @@ refs.search.addEventListener('submit', onSearch);
 refs.filmoteka.addEventListener('click', onClickLogo);
 
 
-export let userSettings = {
+let userSettings = {
     page: getFilmsServis.currentPage,
     request: getFilmsServis.userRequest,
     firstOupen: false,
