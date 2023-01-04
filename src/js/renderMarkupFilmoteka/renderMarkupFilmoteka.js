@@ -14,8 +14,6 @@ const refs = getRefs();
 
 const getFilmsServis = new GetFilmsServis();
 const sStorage = new SStorage();
-// const addrressLivePage = '/Filmoteka/';
-// const addrressLocalPage = '/index.html';
 
 // ========================
 const loadMo = document.querySelector('.tui-pagination')
