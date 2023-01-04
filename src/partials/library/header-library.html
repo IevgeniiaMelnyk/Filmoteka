@@ -9,34 +9,32 @@
       >
 
       <ul class="header__nav-list">
-        <div class="header__nav-list-page">
-          <li class="header__nav-item">
-            <button
-              onclick="document.location='index.html'"
-              class="header__nav-autoriz"
-              type="button"
-              id="home"
-            >
-              Home
-            </button>
-          </li>
-          <li class="header__nav-item">
-            <button
-              onclick="document.location='library.html'"
-              class="header__nav-autoriz current"
-              type="button"
-              id="library"
-            >
-              My library
-            </button>
-          </li>
-        </div>
+        <li class="header__nav-item">
+          <button
+            onclick="document.location='index.html'"
+            class="header__nav-autoriz"
+            type="button"
+            id="home"
+          >
+            Home
+          </button>
+        </li>
+        <li class="header__nav-item">
+          <button
+            onclick="document.location='library.html'"
+            class="header__nav-autoriz current"
+            type="button"
+            id="library"
+          >
+            My library
+          </button>
+        </li>
       </ul>
     </nav>
 
     <ul class="header__button-wrapper list">
       <li>
-        <button class="header__button button activ" type="button">
+        <button class="header__button button activ current-btn" type="button">
           Watched
         </button>
       </li>
@@ -45,21 +43,22 @@
       </li>
     </ul>
     <!-- ====switch======= -->
-    <button id="toggle-theme-btn" class="toggle-theme-btn">
-      <svg width="28px" height="28px">
-        <use
-          class="moon visually-hidden"
-          id="toggle-theme-image"
-          href="./images/svg/symbol-defs.svg#moon"
-        ></use>
-        <use
-          class="sun"
-          id="toggle-theme-image"
-          href="./images/svg/symbol-defs.svg#sun"
-        ></use>
-      </svg>
-      <span class="visually-hidden">theme</span>
-    </button>
-    <!--  -->
+    <div class="switch switch-library">
+      <button id="toggle-theme-btn" class="toggle-theme-btn">
+        <svg width="28px" height="28px">
+          <use
+            class="moon visually-hidden"
+            id="toggle-theme-image"
+            href="./images/svg/symbol-defs.svg#moon"
+          ></use>
+          <use
+            class="sun"
+            id="toggle-theme-image"
+            href="./images/svg/symbol-defs.svg#sun"
+          ></use>
+        </svg>
+        <span class="visually-hidden">theme</span>
+      </button>
+    </div>
   </div>
 </header>
