@@ -1,6 +1,7 @@
 import testFilms from './js/moviesAPI/test';
 
 // testFilms();
+
 import { ifItFirstOupen } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
 import { onSearch } from './js/renderMarkupFilmoteka/renderMarkupFilmoteka';
 

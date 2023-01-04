@@ -32,6 +32,7 @@ export function getRefs() {
     signUp: document.querySelector('#signup'),
     signIn: document.querySelector('#signin'),
     userIcon: document.querySelector('#usericon'),
+    nextPageBtn: document.querySelector('.button-next'),
   };
 }
 

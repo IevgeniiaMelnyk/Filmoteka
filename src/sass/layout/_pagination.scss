@@ -3,9 +3,10 @@
     box-shadow: 0 0 0 0 var(--secondary-text-color);
   }
 }
+
 .pagination {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   align-items: center;
   &__svg {
     fill: currentColor;

@@ -12,19 +12,17 @@ import { searchErrorHiden } from "../errors/showAndHideErrors";
 
 const refs = getRefs();
 
-const getFilmsServis = new GetFilmsServis();
-const sStorage = new SStorage();
+export const getFilmsServis = new GetFilmsServis();
+export const sStorage = new SStorage();
 
 // ========================
-const loadMo = document.querySelector('.tui-pagination')
-loadMo.addEventListener('click', loadMore);
+refs.nextPageBtn.addEventListener('click', loadMore);
 // ========================
 
-console.log(document.location.pathname)
-document.addEventListener('DOMContentLoaded', onCurrentPage)
 
-
+document.addEventListener('DOMContentLoaded', onCurrentPage);
 refs.search.addEventListener('submit', onSearch);
+refs.filmoteka.addEventListener('click', onClickLogo);
 
 
 export let userSettings = {
@@ -33,17 +31,41 @@ export let userSettings = {
     firstOupen: false,
 };
 
+
 // первая загрузка страницы
 export function ifItFirstOupen() {
     if (sStorage.load('userSettings') === undefined) {
         popularFilmsRender();
         userSettings.firstOupen = true;
         sStorage.save('userSettings', userSettings);
-
     }
 };
 ifItFirstOupen();
 
+
+// при нажатии на лого загрузка первой страницы популярных фильмов
+export function onClickLogo() {
+    getFilmsServis.reset();
+    sStorage.clear();
+}
+
+
+// загрузка по кнопке или пагинации
+function loadMore(e) {
+     
+    userSettings = sStorage.get('userSettings')
+    getFilmsServis.currentPage = userSettings.page;
+    getFilmsServis.userRequest = userSettings.request;
+    getFilmsServis.nextPage = userSettings.page + 1;
+    
+    refs.gallery.innerHTML = '';
+    if (getFilmsServis.userRequest === '') {
+        popularFilmsRender();
+    } else {
+        nextLouding();
+    }
+}
+// ======================================
 
 
 // популярные фильмы рендер
@@ -62,6 +84,35 @@ export function popularFilmsRender() {
     userSettings.page = getFilmsServis.currentPage;
     userSettings.request = getFilmsServis.userRequest;
     sStorage.save('userSettings', userSettings);
+};
+
+
+// следующая загрузка
+function nextLouding() {
+    
+    if (getFilmsServis.userRequest) {
+        spinnerOn();
+        getFilmsServis.getFilms().then((posterProperties) => {
+            
+            if (posterProperties.length === 0) {
+                spinnerOff();
+                getFilmsServis.reset();
+                refs.message.classList.remove('visually-hidden');
+                searchErrorShow();
+                sStorage.clear();
+            };
+
+            if (posterProperties.length > 0) {
+                makeNewArrProp(posterProperties);
+                spinnerOff();
+                renderMarkupList(refs.gallery, posterProperties, markupCreating);
+                getFilmsServis.incrementPage();
+                userSettings.page = getFilmsServis.currentPage;
+                userSettings.request = getFilmsServis.userRequest;
+                sStorage.save('userSettings', userSettings);
+            };
+        });
+    };
 };
 
 
@@ -91,7 +142,6 @@ export function onSearch(e) {
             };
 
             if (posterProperties.length > 0) {
-                
                 makeNewArrProp(posterProperties);
                 spinnerOff();
                 renderMarkupList(refs.gallery, posterProperties, markupCreating);
@@ -100,68 +150,14 @@ export function onSearch(e) {
                 userSettings.request = getFilmsServis.userRequest;
                 sStorage.save('userSettings', userSettings);
                 searchErrorHiden(); 
-                                
             }
-        });
-    }
-};
-
-
-// загрузка по кнопке или пагинации
-function loadMore(e) {
-    userSettings.firstOupen = false;
-    sStorage.save('userSettings', userSettings);
-    
-    userSettings = sStorage.get('userSettings')
-    getFilmsServis.currentPage = userSettings.page;
-    getFilmsServis.userRequest = userSettings.request;
-    getFilmsServis.nextPage = userSettings.page + 1;
-    
-    refs.gallery.innerHTML = '';
-    if (getFilmsServis.userRequest === '') {
-        popularFilmsRender();
-    } else {
-        nextLouding();
-    }
-}
-// ======================================
-
-
-// следующая загрузка
-function nextLouding() {
-    
-    if (getFilmsServis.userRequest) {
-        spinnerOn();
-        getFilmsServis.getFilms().then((posterProperties) => {
-            
-            if (posterProperties.length === 0) {
-                spinnerOff();
-                getFilmsServis.reset();
-                refs.message.classList.remove('visually-hidden');
-                searchErrorShow();
-                sStorage.clear()
-            };
-
-            if (posterProperties.length > 0) {
-                 makeNewArrProp(posterProperties);
-            spinnerOff();
-
-            renderMarkupList(refs.gallery, posterProperties, markupCreating);
-
-            getFilmsServis.incrementPage();
-            userSettings.page = getFilmsServis.currentPage;
-            userSettings.request = getFilmsServis.userRequest;
-            sStorage.save('userSettings', userSettings);
-            }
-
-           
         });
     }
 };
 
 
 // вспомогательные функции
-function makeNewArrProp(arr) {
+export function makeNewArrProp(arr) {
     return arr.forEach(element => {
             if (element.genres.length > 2) {
                 element.genres = [element.genres[0], element.genres[1], 'Other']
@@ -177,15 +173,12 @@ function onCurrentPage(e) {
     getFilmsServis.request = userSettings.request;
        
     if (userSettings.request === '' && userSettings.page > 0 && !userSettings.firstOupen) {
-                
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsPopularRestart(userSettings.page).then((posterPropertiesFirst) => {
-        
         makeNewArrProp(posterPropertiesFirst);
         spinnerOff();
-            renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
-            
+        renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
     });
     };
 
@@ -196,14 +189,12 @@ function onCurrentPage(e) {
         refs.gallery.innerHTML = '';
         spinnerOn();
         getFilmsServis.getFilmsRestart(userSettings.request, userSettings.page).then((posterPropertiesFirst) => {
-        
             makeNewArrProp(posterPropertiesFirst);
             spinnerOff();
             renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
-            
         });
-    }
-}
+    };
+};
 
 
 
