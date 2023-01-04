@@ -12,6 +12,8 @@ import { renderMarkupList } from '../renderMarkupFilmoteka/renderMarkup';
 import { makeNewArrProp } from '../renderMarkupFilmoteka/renderMarkupFilmoteka';
 
 const refs = getRefs();
+
+
 export function tuiPagination(totalItems) {
     
     const options = {
@@ -41,27 +43,67 @@ export function tuiPagination(totalItems) {
     }
 
     const pagination = new Pagination(refs.tuiContainer, options);
-     const getFilmsServis = new GetFilmsServis();
+    const getFilmsServis = new GetFilmsServis();
+    
     pagination.on('afterMove', getPage);
+
     function getPage(e) {
         const currentPage = e.page;
-        getFilmsServis.nextPage = currentPage;
-        console.log(getFilmsServis.nextPage)
-        refs.gallery.innerHTML = '';
-        spinnerOn();
-        getFilmsServis.getFilmsPopular().then((posterPropertiesFirst) => {
+        getFilmsServis.currentPage = currentPage;
+        getFilmsServis.nextPage = currentPage + 1;
+        userSettings = sStorage.get('userSettings')
+                
+        if (userSettings.request === '') {
+            refs.gallery.innerHTML = '';
+            spinnerOn();
+            getFilmsServis.getFilmsPopularPag().then((posterPropertiesPag) => {
         
-            makeNewArrProp(posterPropertiesFirst);
-            spinnerOff();
-            renderMarkupList(refs.gallery, posterPropertiesFirst, markupCreating);
-            userSettings.page = getFilmsServis.nextPage;
-            userSettings.request = getFilmsServis.userRequest;
-            sStorage.save('userSettings', userSettings);
-            // pagination.movePageTo(getFilmsServis.nextPage);
-    });
+                makeNewArrProp(posterPropertiesPag);
+                spinnerOff();
+                renderMarkupList(refs.gallery, posterPropertiesPag, markupCreating);
+                userSettings.page = getFilmsServis.currentPage;
+                userSettings.request = getFilmsServis.userRequest;
+                sStorage.save('userSettings', userSettings);
+            
+            });
+        };
+
+        if (userSettings.request) {
+            refs.gallery.innerHTML = '';
+            spinnerOn();
+            getFilmsServis.getFilmsPag(userSettings.request).then((posterPropertiesRecPag) => {
+        
+                makeNewArrProp(posterPropertiesRecPag);
+                spinnerOff();
+                renderMarkupList(refs.gallery, posterPropertiesRecPag, markupCreating);
+                userSettings.page = getFilmsServis.currentPage;
+                userSettings.request = userSettings.request;
+                userSettings.newSerch = false;
+                sStorage.save('userSettings', userSettings);
+            
+            });
+        };
     };
-    // pagination.movePageTo(getFilmsServis.nextPage)
-}
+    
+    refs.search.addEventListener('submit', restartPag);
+
+    function restartPag() {
+        pagination.setItemsPerPage(1);
+        userSettings.page = 1;
+        sStorage.save('userSettings', userSettings);
+    }
+
+    userSettings = sStorage.get('userSettings');
+    console.log(userSettings)
+    
+    const page = pagination.getCurrentPage();
+    if (page !== userSettings.page) {
+        pagination.movePageTo(userSettings.page);
+        userSettings.request = userSettings.request;
+        sStorage.save('userSettings', userSettings);
+    };
+
+};
 
 
 

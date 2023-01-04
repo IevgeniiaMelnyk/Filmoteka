@@ -34,6 +34,25 @@ export class GetFilmsServis {
         }
     }
 
+    async getFilmsPopularPag() {
+    try {
+        const postersArrPag = await filmsData.getDayPopular(this.currentPage);
+                        
+        const posterPropertiesPag = postersArrPag.films.map(({ id, posters, title, genres, year, vote }) => (
+            {
+                id,
+                posters,
+                title,
+                genres,
+                year,
+                vote,
+            }));
+        return posterPropertiesPag;
+        } catch(err) {
+        console.log(err);
+        }
+    }
+
     async getFilms() {
     try {
         const postersArr = await filmsData.getSearchQuery(this.userRequest, this.nextPage);
@@ -50,6 +69,25 @@ export class GetFilmsServis {
                 vote,
             }));
         return posterProperties;
+        } catch(err) {
+        console.log(err);
+        }
+    }
+
+    async getFilmsPag(request) {
+    try {
+        const postersArrRecPag = await filmsData.getSearchQuery(request, this.currentPage);
+                        
+        const posterPropertiesRecPag = postersArrRecPag.films.map(({ id, posters, title, genres, year, vote }) => (
+            {
+                id,
+                posters,
+                title,
+                genres,
+                year,
+                vote,
+            }));
+        return posterPropertiesRecPag;
         } catch(err) {
         console.log(err);
         }

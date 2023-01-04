@@ -15,10 +15,6 @@ const refs = getRefs();
 export const getFilmsServis = new GetFilmsServis();
 export const sStorage = new SStorage();
 
-// ========================
-refs.nextPageBtn.addEventListener('click', loadMore);
-// ========================
-
 
 document.addEventListener('DOMContentLoaded', onCurrentPage);
 refs.search.addEventListener('submit', onSearch);
@@ -29,6 +25,7 @@ export let userSettings = {
     page: getFilmsServis.currentPage,
     request: getFilmsServis.userRequest,
     firstOupen: false,
+    newSerch: false,
 };
 
 
@@ -50,21 +47,26 @@ export function onClickLogo() {
 }
 
 
-// загрузка по кнопке или пагинации
-function loadMore(e) {
+// загрузка по кнопке
+
+// refs.nextPageBtn.addEventListener('click', loadMore);
+
+// function loadMore(e) {
      
-    userSettings = sStorage.get('userSettings')
-    getFilmsServis.currentPage = userSettings.page;
-    getFilmsServis.userRequest = userSettings.request;
-    getFilmsServis.nextPage = userSettings.page + 1;
+//     userSettings = sStorage.get('userSettings')
+//     getFilmsServis.currentPage = userSettings.page;
+//     getFilmsServis.userRequest = userSettings.request;
+//     getFilmsServis.nextPage = userSettings.page + 1;
+//     userSettings.newSerch = false;
+//     sStorage.save('userSettings', userSettings);
     
-    refs.gallery.innerHTML = '';
-    if (getFilmsServis.userRequest === '') {
-        popularFilmsRender();
-    } else {
-        nextLouding();
-    }
-}
+//     refs.gallery.innerHTML = '';
+//     if (getFilmsServis.userRequest === '') {
+//         popularFilmsRender();
+//     } else {
+//         nextLouding();
+//     }
+// }
 // ======================================
 
 
@@ -120,6 +122,7 @@ function nextLouding() {
 export function onSearch(e) {
   e.preventDefault();
     getFilmsServis.reset();
+
         
     getFilmsServis.userRequest = e.target[0].value.toLowerCase().trim();
         
@@ -148,6 +151,7 @@ export function onSearch(e) {
                 getFilmsServis.incrementPage();
                 userSettings.page = getFilmsServis.currentPage;
                 userSettings.request = getFilmsServis.userRequest;
+                userSettings.newSerch = true;
                 sStorage.save('userSettings', userSettings);
                 searchErrorHiden(); 
             }
