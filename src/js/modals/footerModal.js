@@ -2,6 +2,7 @@ const refs = {
   openModalBtn: document.querySelector('[data-modal-open]'),
   closeModalBtn: document.querySelector('[data-modal-footer-close]'),
   modal: document.querySelector('[data-modal-footer]'),
+  
 };
 
 refs.openModalBtn.addEventListener('click', onOpenModal);
@@ -11,6 +12,7 @@ refs.modal.addEventListener('click', onBackdropClick);
 function onOpenModal() {
   refs.modal.classList.remove('is-hidden');
   window.addEventListener('keydown', onEscKeyPress);
+  
 }
 
 function onCloseModal() {
@@ -26,6 +28,7 @@ function onBackdropClick(event) {
 
 function onEscKeyPress(event) {
   if (event.code === 'Escape') {
+onCloseModal();
   }
-  onCloseModal();
+  
 }
