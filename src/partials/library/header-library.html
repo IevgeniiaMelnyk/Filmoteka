@@ -1,15 +1,14 @@
 <header class="header-library">
   <div class="container">
     <nav class="header__nav">
-      <a href="./index.html" class="header__logo link">
+      <a href="./index.html" class="header__logo link header__logo-library">
         <svg class="header__logo-svg" width="24" height="24">
           <use href="./images/svg/symbol-defs.svg#icon-film-from-header"></use>
         </svg>
         <span class="header__logo-text">Filmoteka</span></a
       >
-
-      <ul class="header__nav-list">
-        <div class="header__nav-list-page">
+      <div class="header_nav-button-wrapper">
+        <ul class="header__nav-list">
           <li class="header__nav-item">
             <button
               onclick="document.location='index.html'"
@@ -30,13 +29,13 @@
               My library
             </button>
           </li>
-        </div>
-      </ul>
+        </ul>
+      </div>
     </nav>
 
     <ul class="header__button-wrapper list">
       <li>
-        <button class="header__button button activ" type="button">
+        <button class="header__button button activ current-btn" type="button">
           Watched
         </button>
       </li>
@@ -45,21 +44,24 @@
       </li>
     </ul>
     <!-- ====switch======= -->
-    <button id="toggle-theme-btn" class="toggle-theme-btn">
-      <svg width="28px" height="28px">
-        <use
-          class="moon visually-hidden"
-          id="toggle-theme-image"
-          href="./images/svg/symbol-defs.svg#moon"
-        ></use>
-        <use
-          class="sun"
-          id="toggle-theme-image"
-          href="./images/svg/symbol-defs.svg#sun"
-        ></use>
-      </svg>
-      <span class="visually-hidden">theme</span>
-    </button>
+    <div class="switch switch-library">
+      <button id="toggle-theme-btn" class="toggle-theme-btn">
+        <svg width="28px" height="28px">
+          <use
+            class="moon visually-hidden"
+            id="toggle-theme-image"
+            href="./images/svg/symbol-defs.svg#moon"
+          ></use>
+          <use
+            class="sun"
+            id="toggle-theme-image"
+            href="./images/svg/symbol-defs.svg#sun"
+          ></use>
+        </svg>
+        <span class="visually-hidden">theme</span>
+      </button>
+    </div>
+
     <!--  -->
   </div>
 </header>
