@@ -8,13 +8,6 @@ const refs = getRefs();
 const filmsData = new FilmsData();
 
 export default function toggleModalFilm() {
-  let atHome = true;
-
-  if (!atHome) {
-    console.log(atHome);
-    return;
-  }
-
   refs.gallery.addEventListener('click', openModalFilm);
   refs.closeModalBtn.addEventListener('click', closeModal);
 
@@ -34,15 +27,14 @@ export default function toggleModalFilm() {
       .getById(event.target.dataset.id)
       .then(filmProperties => {
         console.log(filmProperties);
-        // refs.modalErrorMarkup.classList.add('visually-hidden');
         renderModalMarkup(
           refs.modalFilmWrapper,
           markupModalCreating(filmProperties)
         );
       })
-      // .catch(refs.modalErrorMarkup.classList.remove('visually-hidden'));
       .catch(renderErrorModalMarkup);
   }
+
   function closeModal(event) {
     toggleClasses();
   }
@@ -52,7 +44,6 @@ export default function toggleModalFilm() {
 
     toggleClasses();
     document.removeEventListener('keydown', closeModalOnEscape);
-    refs.modalFilmWrapper.innerHTML = '';
   }
 
   function closeModalOnBackdrop(event) {
@@ -60,7 +51,6 @@ export default function toggleModalFilm() {
 
     toggleClasses();
     refs.modal.removeEventListener('click', closeModalOnBackdrop);
-    refs.modalFilmWrapper.innerHTML = '';
   }
 }
 
