@@ -13,7 +13,7 @@ import { onPagination } from './js/pagination/pagination';
 import { loginModal } from './js/firebase/loginModal';
 
 
-import { firebaseAuth } from './js/firebase/fbAuth';
-import { auth, filmsDatabase } from './js/firebase/fbInit';
+// import { firebaseAuth } from './js/firebase/fbAuth';
+// import { auth, filmsDatabase } from './js/firebase/fbInit';
 
 import { changeMode } from './js/changeMode/changeMode';

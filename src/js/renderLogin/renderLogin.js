@@ -29,6 +29,6 @@ function markupUserLogin(isLogin, userName) {
  * @param {boolean} isLogin
  */
 export function renderLogin(isLogin, user) {
-  // markupUserLogin(isLogin, user);
+  markupUserLogin(isLogin, user);
   console.log('RenderLoginMainPage =', isLogin, 'user=', user);
 }
