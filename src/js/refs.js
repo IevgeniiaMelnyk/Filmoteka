@@ -32,7 +32,9 @@ export function getRefs() {
     signUp: document.querySelector('#signup'),
     signIn: document.querySelector('#signin'),
     userIcon: document.querySelector('#usericon'),
-    libraryLogo: document.querySelector('.header__logo-library')
+    libraryLogo: document.querySelector('.header__logo-library'),
+    libraryBtnW: document.querySelector('.library-watched'),
+    libraryBtnQ: document.querySelector('.library-queue'),
   };
 }
 
