@@ -115,9 +115,19 @@
 }
 
 .activ:hover {
-  //   animation: rotate 0.7s ease-in-out both;
-  //   animation-delay: 0.05s;
   box-shadow: 0 0 0 18px transparent;
   animation: pulse 1s;
-  //   animation: jelly 0.5s;
+}
+
+.current-btn {
+  background-color: var(--button-activ-color);
+  border: 1px solid var(--button-activ-color);
+  filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
+}
+
+.switch-library {
+  margin-top: 25px;
+  @media screen and (min-width: $tablet) {
+    margin-top: 0px;
+  }
 }
