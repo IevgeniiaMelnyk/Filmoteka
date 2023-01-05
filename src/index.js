@@ -17,4 +17,3 @@ import { testFbDataBase } from './js/firebaseFilm/test';
 testFbDataBase();
 console.log('change13');
 
-import { watchTrailer } from './js/trailer/trailer';
