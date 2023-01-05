@@ -128,8 +128,14 @@ table tr {
   display: flex;
 }
 
-.add-to-watched-btn {
+.add-to-watched,
+.remove-from-watched {
   margin-right: 20px;
+}
+
+.remove-from-queue {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .error-img-thumb {
@@ -182,7 +188,8 @@ table tr {
     width: 264px;
   }
 
-  .add-to-watched-btn {
+  .add-to-watched,
+  .remove-from-watched {
     margin-right: 15px;
   }
 }
