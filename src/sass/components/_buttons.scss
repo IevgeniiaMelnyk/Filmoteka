@@ -84,10 +84,12 @@
   }
 }
 
-.button-next {
+.button-trailer {
   position: absolute;
-  top: -25px;
-  width: 100px;
+  z-index: 100;
+  top: 369px;
+  left: 197px;
+  width: 80px;
   height: 30px;
   display: flex;
   justify-content: center;
@@ -97,27 +99,26 @@
   border: 1px solid var(--button-activ-color);
   text-transform: uppercase;
   @include font($lh: 16px);
-  color: var(--button-activ-color);
+  color: var(--primary-white-color);
+  background-color: var(--button-activ-color);
   padding-top: 5px;
 
   @media screen and (min-width: $tablet) {
-    top: -5px;
+    top: 422px;
+    left: 253px;
   }
+
+  @media screen and (min-width: $desktop) {
+    top: 541px;
+    left: 311px;
+  }
+
   transition: background-color 250ms var(--time-function),
     color 250ms var(--time-function);
 
   &:hover,
   &:focus {
-    background-color: var(--button-activ-color);
-    color: var(--primary-white-color);
-    .button-next__icon {
-      fill: var(--primary-white-color);
-    }
+    background-color: transparent;
+    color: var(--button-activ-color);
   }
-}
-
-.button-next__icon {
-  margin-bottom: 3px;
-  fill: var(--button-activ-color);
-  transition: fill 250ms var(--time-function);
 }

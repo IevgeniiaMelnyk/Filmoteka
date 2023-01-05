@@ -4,7 +4,7 @@ export function getRefs() {
     search: document.getElementById('search-form'),
     mBtnToQueue: document.querySelector('.add-to-queue-btn'),
     nBtnToWatched: document.querySelector('.add-to-watched-btn'),
-    filmoteka: document.querySelector('.header__logo'),
+    filmotekaLogo: document.querySelector('.header__logo-filmoteka'),
     modal: document.querySelector('[data-modal-film]'),
     modalFilmWrapper: document.querySelector('#data-modal-film-wrapper'),
     closeModalBtn: document.querySelector('[data-modal-close]'),
@@ -32,7 +32,7 @@ export function getRefs() {
     signUp: document.querySelector('#signup'),
     signIn: document.querySelector('#signin'),
     userIcon: document.querySelector('#usericon'),
-    nextPageBtn: document.querySelector('.button-next'),
+    libraryLogo: document.querySelector('.header__logo-library')
   };
 }
 

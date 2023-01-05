@@ -7,7 +7,7 @@ import { spinnerOff } from "../spiner/spiner";
 import { SStorage } from "../storage/sessionStorage";
 import { searchErrorShow } from "../errors/showAndHideErrors";
 import { searchErrorHiden } from "../errors/showAndHideErrors";
-
+import { watchTrailer } from "../trailer/trailer";
 
 
 const refs = getRefs();
@@ -18,7 +18,7 @@ export const sStorage = new SStorage();
 
 document.addEventListener('DOMContentLoaded', onCurrentPage);
 refs.search.addEventListener('submit', onSearch);
-refs.filmoteka.addEventListener('click', onClickLogo);
+refs.filmotekaLogo.addEventListener('click', onClickLogoFilmoteka);
 
 
 let userSettings = {
@@ -41,33 +41,10 @@ ifItFirstOupen();
 
 
 // при нажатии на лого загрузка первой страницы популярных фильмов
-export function onClickLogo() {
+export function onClickLogoFilmoteka() {
     getFilmsServis.reset();
     sStorage.clear();
 }
-
-
-// загрузка по кнопке
-
-// refs.nextPageBtn.addEventListener('click', loadMore);
-
-// function loadMore(e) {
-     
-//     userSettings = sStorage.get('userSettings')
-//     getFilmsServis.currentPage = userSettings.page;
-//     getFilmsServis.userRequest = userSettings.request;
-//     getFilmsServis.nextPage = userSettings.page + 1;
-//     userSettings.newSerch = false;
-//     sStorage.save('userSettings', userSettings);
-    
-//     refs.gallery.innerHTML = '';
-//     if (getFilmsServis.userRequest === '') {
-//         popularFilmsRender();
-//     } else {
-//         nextLouding();
-//     }
-// }
-// ======================================
 
 
 // популярные фильмы рендер
@@ -86,6 +63,7 @@ export function popularFilmsRender() {
     userSettings.page = getFilmsServis.currentPage;
     userSettings.request = getFilmsServis.userRequest;
     sStorage.save('userSettings', userSettings);
+    
 };
 
 
