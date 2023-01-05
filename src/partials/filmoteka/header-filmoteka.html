@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header container-header">
   <div class="container">
     <nav class="header__nav">
       <a href="./index.html" class="header__logo link header__logo-filmoteka">
@@ -70,10 +70,11 @@
           name="query"
           class="header__input"
           type="text"
+          autocomplete="off"
           placeholder="Movie search"
         />
         <button type="submit" class="header__form-btn">
-          <svg class="header__form-icon" width="15" height="15">
+          <svg class="header__form-icon" width="18" height="18">
             <use href="./images/svg/symbol-defs.svg#icon-lupa-for-input"></use>
           </svg>
         </button>
@@ -85,12 +86,12 @@
         <svg width="28px" height="28px">
           <use
             class="moon visually-hidden"
-            id="toggle-theme-image"
+            id="toggle-theme-image-moon"
             href="./images/svg/symbol-defs.svg#moon"
           ></use>
           <use
             class="sun"
-            id="toggle-theme-image"
+            id="toggle-theme-image-sun"
             href="./images/svg/symbol-defs.svg#sun"
           ></use>
         </svg>
