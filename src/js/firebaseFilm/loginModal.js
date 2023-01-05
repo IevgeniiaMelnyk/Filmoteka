@@ -1,3 +1,5 @@
+import { fbFilmsAuth } from "./testAuth";
+
 (() => {
   const refs = {
     openModalBtn: document.querySelector('#signin'),
@@ -57,8 +59,10 @@ function regSubmit(event) {
   const {
     elements: { name, email, password },
   } = event.currentTarget;
+  
 
   async function exampleRegistration() {
+    console.log(name)
     const email = email.value;
     const password = password.value;
     const user = name.value;

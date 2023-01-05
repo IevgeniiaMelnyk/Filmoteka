@@ -92,7 +92,7 @@ async function exampleGetFilmFromQU() {
   if (fbFilmsAuth.isLogin) {
     const films = await fbFilmsData.getFilms(PLACE_Q);
     console.log('filmsQU', films);
-    
+
     const films2 = await fbFilmsData.getFilms(PLACE_W);
     console.log('films WA= ', films2);
   }

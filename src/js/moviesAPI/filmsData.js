@@ -325,7 +325,7 @@ export class FilmFromList {
     this.title = title;
     this.poster_path = poster_path;
     this.year = year;
-    this.vote = vote.toFixed(2);
+    this.vote = vote;
     this.genres = genres;
     this.language = language;
     this.posters = this.preparePosters(poster_path);
