@@ -7,7 +7,7 @@ import { spinnerOff } from "../spiner/spiner";
 import { SStorage } from "../storage/sessionStorage";
 import { searchErrorShow } from "../errors/showAndHideErrors";
 import { searchErrorHiden } from "../errors/showAndHideErrors";
-import { watchTrailer } from "../trailer/trailer";
+
 
 
 const refs = getRefs();
