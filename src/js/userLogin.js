@@ -1,14 +1,5 @@
 // import { getRefs } from '../refs';
 
-// function getRefs() {
-//   return {
-//     signOut: document.querySelector('#signout'),
-//     signUp: document.querySelector('#signup'),
-//     signIn: document.querySelector('#signin'),
-//     userIcon: document.querySelector('#usericon'),
-//   };
-// }
-
 // const refs = getRefs();
 
 // export function markupUserLogin(isLogin, userName) {

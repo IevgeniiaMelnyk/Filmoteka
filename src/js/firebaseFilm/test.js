@@ -91,8 +91,8 @@ async function exampleLogOut() {
 async function exampleGetFilmFromQU() {
   if (fbFilmsAuth.isLogin) {
     const films = await fbFilmsData.getFilms(PLACE_Q);
-
     console.log('filmsQU', films);
+
     const films2 = await fbFilmsData.getFilms(PLACE_W);
     console.log('films WA= ', films2);
   }
@@ -110,10 +110,10 @@ export function testFbDataBase() {
   const email = 'some17email@mail.com';
   const password = 'anypassword';
   document.querySelector('.header').addEventListener('click', () => {
-    console.log('login');
+    exampleLogin();
 
-    exampleGetFilmFromQU();
-    exampleWriteToLibrary();
+    // exampleGetFilmFromQU();
+    // exampleWriteToLibrary();
   });
 }
 

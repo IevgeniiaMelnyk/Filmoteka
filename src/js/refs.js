@@ -35,6 +35,7 @@ export function getRefs() {
     libraryLogo: document.querySelector('.header__logo-library'),
     libraryBtnW: document.querySelector('.library-watched'),
     libraryBtnQ: document.querySelector('.library-queue'),
+
     library: document.querySelector('.library'),
   };
 }
