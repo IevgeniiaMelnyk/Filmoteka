@@ -33,11 +33,11 @@
 .tui-pagination .tui-page-btn {
   display: inline-block;
   position: relative;
-  width: 28px;
+  width: 30px;
   padding: 8px 0 6px;
   margin-left: 5px;
   color: #333;
-  font-size: 12px;
+  font-size: 17px;
   font-weight: normal;
   line-height: 1;
   text-decoration: none;
@@ -68,23 +68,23 @@
   margin-left: 0;
 }
 
-.tui-pagination .tui-first-child,
-.tui-pagination .tui-prev-is-ellip {
-  border-left: 1px solid #ddd;
-}
+// .tui-pagination .tui-first-child,
+// .tui-pagination .tui-prev-is-ellip {
+//   border-left: 1px solid #ddd;
+// }
 
-.tui-pagination .tui-last-child,
-.tui-pagination .tui-next-is-ellip {
-  border-right: 1px solid #ddd;
-}
+// .tui-pagination .tui-last-child,
+// .tui-pagination .tui-next-is-ellip {
+//   border-right: 1px solid #ddd;
+// }
 
-.tui-pagination .tui-first-child.tui-is-selected {
-  border-left: 1px solid #ff6b08;
-}
+// .tui-pagination .tui-first-child.tui-is-selected {
+//   border-left: 1px solid #ff6b08;
+// }
 
-.tui-pagination .tui-last-child.tui-is-selected {
-  border-right: 1px solid #ff6b08;
-}
+// .tui-pagination .tui-last-child.tui-is-selected {
+//   border-right: 1px solid #ff6b08;
+// }
 
 .tui-pagination .tui-first,
 .tui-pagination .tui-prev,
