@@ -67,8 +67,8 @@ body.data-modal-open {
   background-color: #505050;
   box-shadow: 1px 1px 3px 3px var(--button-activ-color);
   overflow-y: scroll;
-  height: 90%;
-  min-width: 55%;
+  height: 95%;
+  width: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -106,9 +106,13 @@ body.data-modal-open {
 // --------------------------MOBILE-------------------
 // @media screen and (max-width: 767px) {
 
-// @media screen and (min-width: 1200px) {
+ 
+ .team{
+padding-top: 10px;
+ }
 
-.team-list {
+
+  .team-list {
   display: flex;
   flex-wrap: wrap;
   margin: 0px;
@@ -121,7 +125,7 @@ body.data-modal-open {
 }
 
 .section-tittle {
-  padding-top: 10px;
+  padding-top: 20px;
   margin-bottom: 30px;
   font-weight: 400;
   font-size: 30px;
@@ -232,6 +236,40 @@ box-shadow: 1px 1px 10px 1px var(--button-activ-color);
 .team-tittle {
   color: var(--button-activ-color);
 }
+//  @media screen and (min-width: 768px) {
+//    .footer-modal {
+//      width: 80%;
+//    }
+//  }
+
+// @media screen and (min-width: 1200px) {
+//   .footer-modal {
+//   height: 95%;
+//     width: 70%;
+//   }
+// }
+
+ @media screen and (min-width: 1600px) {
+  
+   .footer-modal {
+ 
+     width: 70%;
+   }
+ }
+     @media screen and (min-width: 1900px) {
+  
+       .footer-modal {
+         height: 80%;
+         width: 70%;
+       }
+     }
+    @media screen and (min-width: 2500px) {
+  
+      .footer-modal {
+        height: 30%;
+        width: 70%;
+      }
+    }
 // }
 
 // Developers
