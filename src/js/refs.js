@@ -2,10 +2,10 @@ export function getRefs() {
   return {
     gallery: document.querySelector('.gallery'),
     search: document.getElementById('search-form'),
-    mBtnToQueue: document.querySelector('.add-to-queue-btn'),
-    nBtnToWatched: document.querySelector('.add-to-watched-btn'),
+    // mBtnToQueue: document.querySelector('.add-to-queue-btn'),
+    // nBtnToWatched: document.querySelector('.add-to-watched-btn'),
     filmoteka: document.querySelector('.header__logo'),
-    modal: document.querySelector('[data-modal-film]'),
+    modal: document.querySelector('.modal-film-backdrop'),
     modalFilmWrapper: document.querySelector('#data-modal-film-wrapper'),
     closeModalBtn: document.querySelector('[data-modal-close]'),
     spinner: document.querySelector('.loader'),
@@ -35,4 +35,3 @@ export function getRefs() {
     nextPageBtn: document.querySelector('.button-next'),
   };
 }
-
