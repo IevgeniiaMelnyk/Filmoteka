@@ -321,6 +321,7 @@ async function TestFilms() {
 export default FilmsData;
 export class FilmFromList {
   constructor({ id, title, genres, year, poster_path, vote, language = 'en' }) {
+    // console.log('constructor ', id, title, genres, year, poster_path, vote);
     this.id = id;
     this.title = title;
     this.poster_path = poster_path;
