@@ -243,7 +243,7 @@
 }
 // =============
 .header__form {
-  padding-top: 10px;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -258,7 +258,7 @@
     transform: scale(1.1);
   }
   @media screen and (min-width: $tablet) {
-    padding-top: 15px;
+    margin-top: 15px;
   }
 }
 
