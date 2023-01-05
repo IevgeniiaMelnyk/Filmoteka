@@ -42,6 +42,7 @@ class FbFilmsData {
     if (!this.isReadFilm) {
       await this.#readFilmToUser();
     }
+
     for (let i = 0; i < this.filmList.length; i += 1) {
       if (this.filmList[i].id === id) {
         this.filmList[i].place = place;
@@ -60,6 +61,8 @@ class FbFilmsData {
    * @returns {Promise} String сообщение об ошибке если пустая строка значит все в порядке
    */
   async writeTo(film, place) {
+    this.setUid();
+    console.log(this.uid);
     if (place != PLACE_Q && place != PLACE_W) {
       return returnMessage('films/place', this.language);
     }
@@ -101,7 +104,6 @@ class FbFilmsData {
    * @returns
    */
   async #readFilmToUser() {
-    this.setUid();
     if (!this.refs) {
       return false;
     }
@@ -110,7 +112,6 @@ class FbFilmsData {
 
       if (snapshot.exists()) {
         const filmObjects = snapshot.val();
-        console.log(filmObjects);
         this.filmList = Object.values(filmObjects).map(
           ({ id, title, genres, year, poster_path, vote, place }) => {
             const film = new FilmFromList({
@@ -121,11 +122,13 @@ class FbFilmsData {
               poster_path,
               vote,
             });
+
             film.place = place;
             return film;
           }
         );
       }
+
       this.isReadFilm = true;
       return true;
     }
