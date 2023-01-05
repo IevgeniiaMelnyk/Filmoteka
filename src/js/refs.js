@@ -15,7 +15,7 @@ export function getRefs() {
     emptyLibraryError: document.querySelector('.empty-library-error'),
     autofocusBtn: document.querySelector('.input-autofocus-btn'),
     home: document.getElementById('home'),
-    library: document.getElementById('library'),
+    // library: document.getElementById('library'),
     input: document.querySelector('.header__input'),
     modeButton: document.querySelector('.toggle-theme-btn'),
     moon: document.querySelector('.moon'),
@@ -35,6 +35,7 @@ export function getRefs() {
     libraryLogo: document.querySelector('.header__logo-library'),
     libraryBtnW: document.querySelector('.library-watched'),
     libraryBtnQ: document.querySelector('.library-queue'),
+    library: document.querySelector('.library')
   };
 }
 
