@@ -110,10 +110,10 @@ export function testFbDataBase() {
   const email = 'some17email@mail.com';
   const password = 'anypassword';
   document.querySelector('.header').addEventListener('click', () => {
-    console.log('login');
+    exampleLogin();
 
-    exampleGetFilmFromQU();
-    exampleWriteToLibrary();
+    // exampleGetFilmFromQU();
+    // exampleWriteToLibrary();
   });
 }
 
