@@ -12,10 +12,6 @@ import { onDocumentCurrentPage } from './js/renderMarkupFilmoteka/renderMarkupFi
 import { retrySearch } from './js/errors/retrySearch';
 import { onPagination } from './js/pagination/pagination';
 import { loginModal } from './js/firebaseFilm/loginModal';
-
-// import { firebaseAuth } from './js/firebase/fbAuth';
-// import { auth, filmsDatabase } from './js/firebase/fbInit';
-
 import { changeMode } from './js/changeMode/changeMode';
 import { testFbDataBase } from './js/firebaseFilm/test';
 testFbDataBase();

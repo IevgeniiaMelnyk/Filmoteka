@@ -93,8 +93,7 @@ export function tuiPagination(totalItems) {
     }
 
     userSettings = sStorage.get('userSettings');
-    console.log(userSettings)
-    
+        
     const page = pagination.getCurrentPage();
     if (page !== userSettings.page) {
         pagination.movePageTo(userSettings.page);
