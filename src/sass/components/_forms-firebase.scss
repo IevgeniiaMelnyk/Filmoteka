@@ -10,29 +10,40 @@
 
 .modal__login,
 .modal__reg {
-  position: absolute;
-  top: 50%;
-  right: auto;
-  bottom: auto;
+  position: fixed;
+  // top: 50%;
+  // right: auto;
+  // bottom: auto;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%) scale(1);
   padding: 40px;
-  width: 100%;
+  width: 280px;
   opacity: 1;
   background-color: var(--background-color);
   box-shadow: 7px 7px 22px 2px rgb(255 107 1 / 60%);
-  transform: translate(-50%, -50%) scale(1);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
 }
 @media screen and (min-width: 480px) {
+  .modal__login,
+  .modal__reg {
+    top: 20%;
+    right: auto;
+    bottom: auto;
+  }
+}
+
+@media screen and (min-width: 480px) {
   .modal__login {
-    width: 400px;
     height: 330px;
   }
+}
+
+@media screen and (min-width: 768px) {
+  .modal__login,
   .modal__reg {
-    width: 400px;
-    height: 410px;
+    width: 394px;
   }
 }
 
