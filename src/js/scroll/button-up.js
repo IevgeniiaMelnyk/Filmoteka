@@ -15,7 +15,7 @@ export const buttonUp = {
   addEventListener() {
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY || document.documentElement.scrollTop;
-      scrollY > 700 ? this.show() : this.hide();
+      scrollY > 400 ? this.show() : this.hide();
     });
       document.querySelector('.up-button').onclick = () => {
       window.scrollTo({
