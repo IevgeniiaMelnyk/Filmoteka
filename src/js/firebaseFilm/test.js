@@ -112,7 +112,7 @@ export function testFbDataBase() {
   document.querySelector('.header').addEventListener('click', () => {
     exampleLogin();
 
-    exampleGetFilmFromQU();
+    // exampleGetFilmFromQU();
     // exampleWriteToLibrary();
   });
 }

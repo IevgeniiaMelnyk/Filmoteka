@@ -13,8 +13,8 @@ export function renderMarkupLibraryQ() {
     // refs.library.innerHTML = '';
     refs.libraryBtnW.classList.remove('current-btn');
     refs.libraryBtnQ.classList.add('current-btn')
-    getFilmFromQU().then((postersQ) => {
-        console.log(postersQ)
+    getFilmFromQU().then((films) => {
+        console.log(films)
     })
 }
 
@@ -23,6 +23,7 @@ async function getFilmFromQU() {
       console.log(fbFilmsAuth.isLogin)
     const films = await fbFilmsData.getFilms(PLACE_Q);
       console.log('filmsQU', films);
+      return films;
   }
 }
 
