@@ -13,7 +13,7 @@ body.modal-open {
   left: 50%;
   transform: translateX(-50%);
   padding: 48px 20px 40px 20px;
-  max-width: 280px;
+  width: 280px;
   border-radius: 5px;
 
   background-color: var(--primary-white-color);
@@ -103,7 +103,7 @@ table tr {
   justify-content: center;
   align-items: center;
   min-width: 36;
-  height: 16px;
+  height: 20px;
   padding: 1px 10px;
   border-radius: 5px;
 
@@ -155,7 +155,7 @@ table tr {
 @media screen and (min-width: $tablet) {
   .modal-window {
     padding: 40px 72px 40px 36px;
-    max-width: 704px;
+    width: 704px;
   }
 
   .modal-container {
@@ -190,7 +190,7 @@ table tr {
 @media screen and (min-width: $desktop) {
   .modal-window {
     padding: 40px 12px;
-    max-width: 806px;
+    width: 806px;
   }
 
   .poster-thumb {
