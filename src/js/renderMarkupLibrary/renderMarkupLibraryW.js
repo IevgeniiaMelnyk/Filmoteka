@@ -13,6 +13,9 @@ import { renderLogin } from "../renderLogin/renderLogin";
 
 const refs = getRefs();
 
+
+setTimeout(libraryFirstOpen, 1000);
+
 // первая загрузка библиотеки
 export function libraryFirstOpen() {
     
@@ -43,7 +46,6 @@ export function libraryFirstOpen() {
 
 
 // загрузка по кнопке смотреть
-libraryFirstOpen();
 
 refs.libraryBtnW.addEventListener('click', renderMarkupLibraryW);
 
