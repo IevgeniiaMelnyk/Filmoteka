@@ -1,3 +1,5 @@
+import { fbFilmsAuth } from "./testAuth";
+
 (() => {
   const refs = {
     openModalBtn: document.querySelector('#signin'),
@@ -10,6 +12,7 @@
 
   function toggleModal() {
     refs.modal.classList.toggle('is_hidden');
+    document.body.classList.toggle('modal-open');
   }
 })();
 
@@ -25,5 +28,47 @@
 
   function toggleModal() {
     refs.modal.classList.toggle('is_hidden');
+    document.body.classList.toggle('modal-open');
   }
 })();
+
+const formLog = document.querySelector('.login-form');
+const formReg = document.querySelector('.reg-form');
+
+formLog.addEventListener('submit', logSubmit);
+formReg.addEventListener('submit', regSubmit);
+
+function logSubmit(event) {
+  event.preventDefault();
+  const {
+    elements: { email, password },
+  } = event.currentTarget;
+
+  async function exampleLogin() {
+    const email = email.value;
+    const password = password.value;
+    const result = await fbFilmsAuth.login(email, password);
+    console.log(result);
+    console.log(fbFilmsAuth.getUserDisplayName());
+  }
+  event.currentTarget.reset();
+}
+
+function regSubmit(event) {
+  event.preventDefault();
+  const {
+    elements: { name, email, password },
+  } = event.currentTarget;
+  
+
+  async function exampleRegistration() {
+    console.log(name)
+    const email = email.value;
+    const password = password.value;
+    const user = name.value;
+    const result = await fbFilmsAuth.singUp(email, password, user);
+    console.log(result);
+    console.log(fbFilmsAuth.getUserDisplayName());
+  }
+  event.currentTarget.reset();
+}

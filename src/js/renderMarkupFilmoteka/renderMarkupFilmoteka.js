@@ -7,7 +7,7 @@ import { spinnerOff } from "../spiner/spiner";
 import { SStorage } from "../storage/sessionStorage";
 import { searchErrorShow } from "../errors/showAndHideErrors";
 import { searchErrorHiden } from "../errors/showAndHideErrors";
-import { watchTrailer } from "../trailer/trailer";
+
 
 
 const refs = getRefs();
@@ -108,6 +108,7 @@ export function onSearch(e) {
         getFilmsServis.reset();
         sStorage.clear();
         refs.message.classList.remove('visually-hidden');
+        refs.tuiContainer.classList.add('visually-hidden');
         searchErrorShow();
     };
 
@@ -119,6 +120,7 @@ export function onSearch(e) {
                 sStorage.clear();
                 spinnerOff();
                 refs.message.classList.remove('visually-hidden');
+                refs.tuiContainer.classList.add('visually-hidden');
                 searchErrorShow();
             };
 

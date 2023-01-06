@@ -15,6 +15,5 @@ import { loginModal } from './js/firebaseFilm/loginModal';
 import { changeMode } from './js/changeMode/changeMode';
 import { testFbDataBase } from './js/firebaseFilm/test';
 testFbDataBase();
-console.log('change13');
 
-import { watchTrailer } from './js/trailer/trailer';
+
