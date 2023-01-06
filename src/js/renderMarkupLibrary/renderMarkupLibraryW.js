@@ -7,22 +7,53 @@ import { markupCreating } from "../renderMarkupFilmoteka/renderMarkup";
 import { renderMarkupList } from "../renderMarkupFilmoteka/renderMarkup";
 import { emptyLibraryHide } from "../errors/showAndHideErrors";
 import { emptyLibraryShow } from "../errors/showAndHideErrors";
+import { renderLogin } from "../renderLogin/renderLogin";
+import { authMy } from "../firebaseFilm/fbInit";
 
 const refs = getRefs();
 
-refs.libraryBtnQ.addEventListener('click', renderMarkupLibraryQ);
-
-
-// загрузка по кнопке очередь
-export function renderMarkupLibraryQ() {
+// первая загрузка библиотеки
+export function libraryFirstOpen() {
+    if (fbFilmsAuth.isLogin) {
+        spinnerOn();
+        emptyLibraryHide();
+        refs.library.innerHTML = '';
+        getFilmFromW().then(({ films }) => {
+            const filmsProperties = films.map(({ id, posters, title, genres, year, vote }) => (
+                {
+                    id,
+                    posters,
+                    title,
+                    genres,
+                    year,
+                    vote,
+                }
+            ));
+            return filmsProperties;
+        }).then((filmsProperties) => {
+            makeNewArrProp(filmsProperties);
+            spinnerOff();
+            renderMarkupList(refs.library, filmsProperties, markupCreating);
+        })
+    }
     
-  refs.libraryBtnW.classList.remove('current-btn');
-  refs.libraryBtnQ.classList.add('current-btn');
+};
+
+
+// загрузка по кнопке смотреть
+libraryFirstOpen();
+
+refs.libraryBtnW.addEventListener('click', renderMarkupLibraryW);
+
+export function renderMarkupLibraryW() {
+    
+  refs.libraryBtnW.classList.add('current-btn');
+  refs.libraryBtnQ.classList.remove('current-btn');
   if (fbFilmsAuth.isLogin) {
     spinnerOn();
     emptyLibraryHide();
     refs.library.innerHTML = '';
-    getFilmFromQU().then(({ films }) => {
+    getFilmFromW().then(({ films }) => {
       const filmsProperties = films.map(({ id, posters, title, genres, year, vote }) => (
         {
           id,
@@ -43,12 +74,12 @@ export function renderMarkupLibraryQ() {
 };
 
 
-async function getFilmFromQU() {
+async function getFilmFromW() {
   if (fbFilmsAuth.isLogin) {
       try {
-        const filmsQ = await fbFilmsData.getFilms(PLACE_Q);
-      if (filmsQ) {
-        return filmsQ;
+        const filmsW = await fbFilmsData.getFilms(PLACE_W);
+      if (filmsW) {
+        return filmsW;
       }
       } catch (err) {
         console.log(err);
@@ -72,3 +103,6 @@ export function makeNewArrProp(arr) {
     };
     }); 
 };
+
+authMy.onAuthStateChanged((user) => 
+console.log(user.displayName))
