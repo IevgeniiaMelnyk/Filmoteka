@@ -5,8 +5,8 @@ const trailerApiService = new TrailerApiService();
 let youTubeBtn;
 
 // при открытии модального окна
-youTubeBtn = document.querySelector('.testplayer');
-youTubeBtn.addEventListener('click', onYouTubeBtnClick);
+// youTubeBtn = document.querySelector('.testplayer');
+// youTubeBtn.addEventListener('click', onYouTubeBtnClick);
 
 // при закрытии модального окна
 // youTubeBtn.removeEventListener('click', onYouTubeBtnClick);

@@ -6,6 +6,9 @@ import renderErrorModalMarkup from '../renderMarkupFilmoteka/renderErrorModalMar
 import { addMod, removeMod } from './modal-film-btn';
 import { fbFilmsData, PLACE_Q, PLACE_W } from '../firebaseFilm/fbFilms';
 import { fbFilmsAuth } from '../firebaseFilm/testAuth';
+import TrailerApiService from './modal-trailer';
+
+const trailerApiService = new TrailerApiService();
 
 const refs = getRefs();
 const filmsData = new FilmsData();
@@ -45,11 +48,20 @@ export default function toggleModalFilm() {
         const addToWatched =
           refs.modalFilmWrapper.querySelector('.add-to-watched');
         const addToQueue = refs.modalFilmWrapper.querySelector('.add-to-queue');
+        const trailerBtn =
+          refs.modalFilmWrapper.querySelector('.trailer-play-btn');
 
+        trailerBtn.addEventListener('click', onYouTubeBtnClick);
         addToWatched.addEventListener('click', onClickBtnWatched);
         addToQueue.addEventListener('click', onClickBtnQueue);
       })
       .catch(renderErrorModalMarkup);
+  }
+
+  function onYouTubeBtnClick(event) {
+    trailerApiService.filmID = filmId;
+    trailerApiService.showTrailer();
+    closeModal();
   }
 
   async function onClickBtnWatched(event) {

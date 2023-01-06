@@ -49,6 +49,12 @@ export function markupModalCreating({
             loading="lazy"
           />
         </picture>
+        <div class="trailer-overlay">
+        <button type="button" class="trailer-play-btn">
+        &#9655;
+            </button>
+        
+        </div>
       </div>
 
       <div>
