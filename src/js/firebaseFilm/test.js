@@ -110,7 +110,7 @@ export function testFbDataBase() {
   const email = 'some17email@mail.com';
   const password = 'anypassword';
   document.querySelector('.header').addEventListener('click', () => {
-    exampleLogin();
+    // exampleLogin();
 
     // exampleGetFilmFromQU();
     // exampleWriteToLibrary();
@@ -118,5 +118,5 @@ export function testFbDataBase() {
 }
 
 document.querySelector('.footer').addEventListener('click', () => {
-  exampleLogOut();
+  // exampleLogOut();
 });
