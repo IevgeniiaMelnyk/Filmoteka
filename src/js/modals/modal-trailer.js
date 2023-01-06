@@ -1,9 +1,11 @@
 import { getRefs } from '../refs';
-import { MOVIES_API_KEY } from '../moviesAPI/filmsData';
 
 import axios from 'axios';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
+
+import { MOVIES_API_KEY } from '../moviesAPI/filmsData';
+const APIKEY_TRAILER = 'c1b8c874be54ebc5c34c225dbd6a36f5';
 
 const refs = getRefs();
 
@@ -49,22 +51,8 @@ export default class TrailerApiService {
   }
 
   async fetchTrailer() {
-    const URL = `https://api.themoviedb.org/3/movie/${this.filmID}/videos?api_key=${MOVIES_API_KEY}&language=en-US`;
+    const URL = `https://api.themoviedb.org/3/movie/${this.filmID}/videos?api_key=${APIKEY_TRAILER}&language=en-US`;
     const response = await axios.get(URL);
-
     return response.data.results;
   }
 }
-
-const trailerApiService = new TrailerApiService();
-
-function onYouTubeBtnClick(e) {
-  trailerApiService.filmID = Number(e.currentTarget.dataset.id);
-  trailerApiService.showTrailer();
-}
-
-let youTubeBtn;
-
-youTubeBtn = document.querySelector('.add-to-watched-btn');
-youTubeBtn.addEventListener('click', onYouTubeBtnClick);
-// youTubeBtn.removeEventListener('click', onYouTubeBtnClick);
