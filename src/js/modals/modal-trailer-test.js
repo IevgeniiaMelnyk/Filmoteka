@@ -13,6 +13,6 @@ youTubeBtn.addEventListener('click', onYouTubeBtnClick);
 
 export function onYouTubeBtnClick(e) {
   //   trailerApiService.filmID = Number(e.currentTarget.dataset.id);
-  trailerApiService.filmID = 315162; // временно
+  trailerApiService.filmID = 593643; // временно
   trailerApiService.showTrailer();
 }

@@ -9,11 +9,13 @@ import { emptyLibraryHide } from "../errors/showAndHideErrors";
 import { emptyLibraryShow } from "../errors/showAndHideErrors";
 import { renderLogin } from "../renderLogin/renderLogin";
 import { authMy } from "../firebaseFilm/fbInit";
+import { renderLogin } from "../renderLogin/renderLogin";
 
 const refs = getRefs();
 
 // первая загрузка библиотеки
 export function libraryFirstOpen() {
+    
     if (fbFilmsAuth.isLogin) {
         spinnerOn();
         emptyLibraryHide();
@@ -104,5 +106,5 @@ export function makeNewArrProp(arr) {
     }); 
 };
 
-authMy.onAuthStateChanged((user) => 
-console.log(user.displayName))
+// authMy.onAuthStateChanged((user) =>
+//     console.log(user.displayName))

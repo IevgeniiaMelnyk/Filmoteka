@@ -6,3 +6,5 @@ import { buttonUp } from './js/scroll/button-up';
 import { renderMarkupLibraryQ } from "./js/renderMarkupLibrary/renderMarkupLibraryQ";
 import { renderMarkupLibraryW } from "./js/renderMarkupLibrary/renderMarkupLibraryW";
 import { libraryFirstOpen } from "./js/renderMarkupLibrary/renderMarkupLibraryW";
+import { renderLogin } from './js/renderLogin/renderLogin';
+import './js/modals/modal-trailer-test';
