@@ -9,28 +9,71 @@ const refs = {
   regModal: document.querySelector('.reg-data-modal'),
 };
 
-refs.openLoginModalBtn.addEventListener('click', toggleLogModal);
-refs.closeLoginModalBtn.addEventListener('click', toggleLogModal);
-
-function toggleLogModal() {
-  refs.loginModal.classList.toggle('is_hidden');
+function toggleClassLogModal() {
   document.body.classList.toggle('modal-open');
+  refs.loginModal.classList.toggle('is_hidden');
 }
 
-refs.openRegModalBtn.addEventListener('click', toggleRegModal);
-refs.closeRegModalBtn.addEventListener('click', toggleRegModal);
+function toggleLogModal() {
+  refs.openLoginModalBtn.addEventListener('click', openLogModal);
+  refs.closeLoginModalBtn.addEventListener('click', closeLogModal);
 
-function toggleRegModal() {
+  function openLogModal(event) {
+    document.addEventListener('keydown', closeLogModalonEscape);
+    refs.loginModal.addEventListener('click', closeLogModalonBackdrop);
+    toggleClassLogModal();
+  }
+
+  function closeLogModal(event) {
+    toggleClassLogModal();
+  }
+
+  function closeLogModalonEscape(event) {
+    if (event.key !== 'Escape') return;
+    toggleClassLogModal();
+    document.removeEventListener('keydown', closeLogModalonEscape);
+  }
+
+  function closeLogModalonBackdrop(event) {
+    if (event.target !== event.currentTarget) return;
+    toggleClassLogModal();
+    refs.loginModal.removeEventListener('click', closeLogModalonBackdrop);
+  }
+}
+toggleLogModal();
+
+function toggleClassRegModal() {
   refs.regModal.classList.toggle('is_hidden');
   document.body.classList.toggle('modal-open');
 }
 
-function onEscKeyPress(event) {
-  if (event.code === 'Escape') {
-    toggleLogModal();
-    toggleRegModal();
+function toggleRegModal() {
+  refs.openRegModalBtn.addEventListener('click', openRegModal);
+  refs.closeRegModalBtn.addEventListener('click', closeRegModal);
+
+  function openRegModal(event) {
+    document.addEventListener('keydown', closeRegModalonEscape);
+    refs.regModal.addEventListener('click', closeRegModalonBackdrop);
+    toggleClassRegModal();
+  }
+
+  function closeRegModal(event) {
+    toggleClassRegModal();
+  }
+
+  function closeRegModalonEscape(event) {
+    if (event.key !== 'Escape') return;
+    toggleClassRegModal();
+    document.removeEventListener('keydown', closeRegModalonEscape);
+  }
+
+  function closeRegModalonBackdrop(event) {
+    if (event.target !== event.currentTarget) return;
+    toggleClassRegModal();
+    refs.regModal.removeEventListener('click', closeRegModalonBackdrop);
   }
 }
+toggleRegModal();
 
 const formLog = document.querySelector('.login-form');
 const formReg = document.querySelector('.reg-form');
@@ -42,7 +85,6 @@ const regPassw = document.querySelector('.reg-password');
 
 formLog.addEventListener('submit', logSubmit);
 formReg.addEventListener('submit', regSubmit);
-
 
 async function exampleLogin(userMail, userPassword) {
   const email = userMail;
@@ -68,7 +110,7 @@ function logSubmit(event) {
   exampleLogin(userMail, userPassword);
 
   event.currentTarget.reset();
-  toggleLogModal();
+  toggleClassLogModal();
 }
 
 function regSubmit(event) {
@@ -79,5 +121,5 @@ function regSubmit(event) {
   exampleRegistration(userRegName, userRegMail, userRegPassw);
 
   event.currentTarget.reset();
-  toggleRegModal();
+  toggleClassRegModal();
 }
