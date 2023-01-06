@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { fbFilmsAuth } from './testAuth';
 
 const refs = {
@@ -8,6 +9,14 @@ const refs = {
   closeRegModalBtn: document.querySelector('.reg-modal-close'),
   regModal: document.querySelector('.reg-data-modal'),
 };
+=======
+(() => {
+  const refs = {
+    openModalBtn: document.querySelector('#signin'),
+    closeModalBtn: document.querySelector('.modal-close-btn'),
+    modal: document.querySelector('[login-data-modal]'),
+  };
+>>>>>>> Stashed changes
 
 refs.openLoginModalBtn.addEventListener('click', toggleLogModal);
 refs.closeLoginModalBtn.addEventListener('click', toggleLogModal);
@@ -42,6 +51,7 @@ const regPassw = document.querySelector('.reg-password');
 
 formLog.addEventListener('submit', logSubmit);
 formReg.addEventListener('submit', regSubmit);
+<<<<<<< Updated upstream
 
 async function exampleLogin(userMail, userPassword) {
   const email = userMail;
@@ -80,3 +90,5 @@ function regSubmit(event) {
   event.currentTarget.reset();
   toggleRegModal();
 }
+=======
+>>>>>>> Stashed changes
