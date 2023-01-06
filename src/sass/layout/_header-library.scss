@@ -135,3 +135,18 @@
     margin-top: 0px;
   }
 }
+
+.youtube-modal {
+  min-width: 280px;
+  min-height: 166px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+    min-width: 760px;
+    min-height: 450px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    min-width: 1000px;
+    min-height: 595px;
+  }
+}
