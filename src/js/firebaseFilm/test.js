@@ -117,6 +117,6 @@ export function testFbDataBase() {
   });
 }
 
-// document.querySelector('.footer').addEventListener('click', () => {
-//   exampleLogOut();
-// });
+document.querySelector('.footer').addEventListener('click', () => {
+  exampleLogOut();
+});
