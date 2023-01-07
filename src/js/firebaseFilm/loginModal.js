@@ -1,4 +1,4 @@
-import { fbFilmsAuth } from "./testAuth";
+import { fbFilmsAuth } from './testAuth';
 
 (() => {
   const refs = {
@@ -59,10 +59,9 @@ function regSubmit(event) {
   const {
     elements: { name, email, password },
   } = event.currentTarget;
-  
 
   async function exampleRegistration() {
-    console.log(name)
+    console.log(name);
     const email = email.value;
     const password = password.value;
     const user = name.value;
