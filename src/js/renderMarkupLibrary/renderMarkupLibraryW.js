@@ -7,24 +7,62 @@ import { markupCreating } from "../renderMarkupFilmoteka/renderMarkup";
 import { renderMarkupList } from "../renderMarkupFilmoteka/renderMarkup";
 import { emptyLibraryHide } from "../errors/showAndHideErrors";
 import { emptyLibraryShow } from "../errors/showAndHideErrors";
+import { renderLogin } from "../renderLogin/renderLogin";
+import { authMy } from "../firebaseFilm/fbInit";
+import { renderLogin } from "../renderLogin/renderLogin";
 
 const refs = getRefs();
 
-refs.libraryBtnQ.addEventListener('click', renderMarkupLibraryQ);
 
 
-// загрузка по кнопке очередь
-export function renderMarkupLibraryQ() {
+// первая загрузка библиотеки
+export function libraryFirstOpen() {
     
-  refs.libraryBtnW.classList.remove('current-btn');
-  refs.libraryBtnQ.classList.add('current-btn');
+    if (fbFilmsAuth.isLogin) {
+        spinnerOn();
+        emptyLibraryHide();
+        refs.library.innerHTML = '';
+      getFilmFromW().then(({ films }) => {
+        const filmsProperties = films.map(({ id, posters, title, genres, year, vote }) => (
+          {
+            id,
+            posters,
+            title,
+            genres,
+            year,
+            vote,
+          }
+        ));
+        return filmsProperties;
+      }).then((filmsProperties) => {
+        if (filmsProperties.length !== 0) {
+          makeNewArrProp(filmsProperties);
+          spinnerOff();
+          renderMarkupList(refs.library, filmsProperties, markupCreating);
+        };
+        if (filmsProperties.length === 0) {
+          spinnerOff();
+          emptyLibraryShow();
+        };
+      });
+  };
+};
+
+
+// загрузка по кнопке смотреть
+
+refs.libraryBtnW.addEventListener('click', renderMarkupLibraryW);
+
+export function renderMarkupLibraryW() {
+    
+  refs.libraryBtnW.classList.add('current-btn');
+  refs.libraryBtnQ.classList.remove('current-btn');
   if (fbFilmsAuth.isLogin) {
     refs.library.classList.add('min-height');
     spinnerOn();
     emptyLibraryHide();
     refs.library.innerHTML = '';
-    getFilmFromQU().then(({ films }) => {
-      
+    getFilmFromW().then(({ films }) => {
       const filmsProperties = films.map(({ id, posters, title, genres, year, vote }) => (
         {
           id,
@@ -52,12 +90,12 @@ export function renderMarkupLibraryQ() {
 };
 
 
-async function getFilmFromQU() {
+async function getFilmFromW() {
   if (fbFilmsAuth.isLogin) {
       try {
-        const filmsQ = await fbFilmsData.getFilms(PLACE_Q);
-      if (filmsQ) {
-        return filmsQ;
+        const filmsW = await fbFilmsData.getFilms(PLACE_W);
+      if (filmsW) {
+        return filmsW;
         };
       } catch (err) {
         console.log(err);
@@ -80,3 +118,4 @@ export function makeNewArrProp(arr) {
     };
     }); 
 };
+
