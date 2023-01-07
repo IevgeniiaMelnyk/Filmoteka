@@ -88,7 +88,7 @@ export function tuiPagination(totalItems) {
         left: 0,
         behavior: 'smooth',
       });
-}, 200);
+}, 0);
         
     };
     
