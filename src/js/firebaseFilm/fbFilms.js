@@ -1,4 +1,4 @@
-import { ref, set, get, child } from 'firebase/database';
+import { ref, set, get, child, remove } from 'firebase/database';
 
 import { fbFilmsAuth } from './testAuth';
 import { filmsDatabase } from './fbInit';
@@ -51,6 +51,26 @@ class FbFilmsData {
     }
 
     return null;
+  }
+
+  /**
+   * @private
+   * prepare before Actions
+   * @returns {Promise<String>} message if message == "" then is ok
+   */
+  async prepareBeforeActions() {
+    this.setUid();
+    if (!this.refs) {
+      return returnMessage('auth/login', this.language);
+    }
+    try {
+      if (!this.isReadFilm) {
+        await this.#readFilmToUser();
+      }
+      return '';
+    } catch (e) {
+      return returnMessage(e.code, this.language);
+    }
   }
 
   /**
@@ -158,6 +178,38 @@ class FbFilmsData {
       films: this.filmList.filter(el => el.place === place),
       message: '',
     };
+  }
+  /**
+   *
+   * @param {String} filmId
+   * @param {String} place QU WA
+   * @returns {Promise<String>} error message
+   */
+  async removeFilm(filmId, place = 'QU') {
+    const beforeMessage = await this.prepareBeforeActions();
+    if (beforeMessage.length > 0) return beforeMessage;
+    const filmIndex = this.filmList.findIndex(e => e.id == filmId);
+    if (filmIndex >= 0) {
+      this.filmList.splice(filmIndex, 1);
+      await remove(ref(this.db, 'users/' + this.uid + '/' + filmId));
+    } else {
+      return returnMessage('films/film-not-fount', this.language);
+    }
+    return '';
+  }
+
+  /**
+   *
+   * @param {int} filmId
+   * @returns {Promise<FilmFromList>} or string error message if film not found return null
+   */
+  async getFilmById(filmId) {
+    const beforeMessage = await this.prepareBeforeActions();
+    if (beforeMessage.length > 0) return beforeMessage;
+    const film = this.filmList.find(el => el.id == filmId);
+
+    if (film) return film;
+    return null;
   }
 }
 

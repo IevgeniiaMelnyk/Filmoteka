@@ -4,9 +4,23 @@ import { needRegisterHide } from '../errors/needRegister';
 import { needRegisterShow } from '../errors/needRegister';
 import { emptyLibraryShow } from '../errors/showAndHideErrors';
 const refs = getRefs();
+hideButtons();
+
+function hideButtons() {
+  const els = [
+    document.querySelector('.header__nav-item #signup'),
+    document.querySelector('.header__nav-item #signin'),
+    document.querySelector('.header__nav-autoriz#singout'),
+  ];
+  els.forEach(el => {
+    if (el) {
+      el.classList.add('visually-hidden');
+    }
+  });
+}
 
 export function login(isLogin) {
-    if (isLogin) {
+  if (isLogin) {
     refs.signOut.classList.remove('visually-hidden');
     refs.userIcon.classList.remove('visually-hidden');
     refs.signUp.classList.add('visually-hidden');
@@ -17,8 +31,8 @@ export function login(isLogin) {
     refs.userIcon.classList.add('visually-hidden');
     refs.signUp.classList.remove('visually-hidden');
     refs.signIn.classList.remove('visually-hidden');
-  };
-};
+  }
+}
 
 async function logAut() {
   const result = await fbFilmsAuth.logOut();
@@ -28,8 +42,7 @@ export function showMessage(isLogin) {
   if (isLogin) {
     needRegisterHide();
     emptyLibraryShow();
-  };
-  if (!isLogin) {
-    
   }
-};
+  if (!isLogin) {
+  }
+}
