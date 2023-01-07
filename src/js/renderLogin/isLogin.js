@@ -7,13 +7,16 @@ const refs = getRefs();
 hideButtons();
 
 function hideButtons() {
-  const el = [(refs.signOut, refs.userIcon, refs.signUp, refs.signIn)].forEach(
-    el => {
-      if (el) {
-        el.classList.add('visually-hidden');
-      }
+  const els = [
+    document.querySelector('.header__nav-item #signup'),
+    document.querySelector('.header__nav-item #signin'),
+    document.querySelector('.header__nav-autoriz#singout'),
+  ];
+  els.forEach(el => {
+    if (el) {
+      el.classList.add('visually-hidden');
     }
-  );
+  });
 }
 
 export function login(isLogin) {
