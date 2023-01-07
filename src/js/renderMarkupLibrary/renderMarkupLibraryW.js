@@ -108,5 +108,3 @@ export function makeNewArrProp(arr) {
     }); 
 };
 
-// authMy.onAuthStateChanged((user) =>
-//     console.log(user.displayName))
