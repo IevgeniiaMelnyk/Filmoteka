@@ -6,6 +6,8 @@ import renderErrorModalMarkup from '../renderMarkupFilmoteka/renderErrorModalMar
 import { addMod, removeMod } from './modal-film-btn';
 import { fbFilmsData, PLACE_Q, PLACE_W } from '../firebaseFilm/fbFilms';
 import TrailerApiService from './modal-trailer';
+import { renderMarkupLibraryW } from '../renderMarkupLibrary/renderMarkupLibraryW';
+import { renderMarkupLibraryQ } from '../renderMarkupLibrary/renderMarkupLibraryQ';
 
 const trailerApiService = new TrailerApiService();
 
@@ -67,13 +69,15 @@ export default function toggleModalLibrary() {
 
   async function onClickBtnWatched(event) {
     if (event.target.classList.contains('remove-from-watched')) {
-      const film1 = await filmsData.getById(filmId);
-      console.log('film1 =', film1);
-      const result = await fbFilmsData.writeTo(film1, 'WA');
+      // const film1 = await filmsData.getById(filmId);
+      // console.log('film1 =', film1);
+      event.target.nextSibling.setAttribute('disabled', '');
+      const result = await fbFilmsData.removeFilm(filmId, 'WA');
       console.log('result = ', result);
 
       event.target.textContent = `film removed from watched`;
       event.target.setAttribute('disabled', '');
+      renderMarkupLibraryW();
       //   removeMod(event.target, 'watched');
     }
     // else if (event.target.classList.contains('remove-from-watched')) {
@@ -83,13 +87,15 @@ export default function toggleModalLibrary() {
 
   async function onClickBtnQueue(event) {
     if (event.target.classList.contains('remove-from-queue')) {
-      const film1 = await filmsData.getById(filmId);
-      console.log('film1 =', film1);
-      const result = await fbFilmsData.writeTo(film1, 'QU');
+      // const film1 = await filmsData.getById(filmId);
+      // console.log('film1 =', film1);
+      event.target.previousSibling.setAttribute('disabled', '');
+      const result = await fbFilmsData.removeFilm(filmId, 'QU');
       console.log('result = ', result);
 
       event.target.textContent = `film removed from queue`;
       event.target.setAttribute('disabled', '');
+      renderMarkupLibraryQ();
       //   removeMod(event.target, 'queue');
     }
     // else if (event.target.classList.contains('remove-from-queue')) {
