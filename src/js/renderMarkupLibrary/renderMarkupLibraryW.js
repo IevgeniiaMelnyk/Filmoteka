@@ -14,7 +14,6 @@ import { renderLogin } from "../renderLogin/renderLogin";
 const refs = getRefs();
 
 
-// setTimeout(libraryFirstOpen, 1000);
 
 // первая загрузка библиотеки
 export function libraryFirstOpen() {
@@ -23,25 +22,30 @@ export function libraryFirstOpen() {
         spinnerOn();
         emptyLibraryHide();
         refs.library.innerHTML = '';
-        getFilmFromW().then(({ films }) => {
-            const filmsProperties = films.map(({ id, posters, title, genres, year, vote }) => (
-                {
-                    id,
-                    posters,
-                    title,
-                    genres,
-                    year,
-                    vote,
-                }
-            ));
-            return filmsProperties;
-        }).then((filmsProperties) => {
-            makeNewArrProp(filmsProperties);
-            spinnerOff();
-            renderMarkupList(refs.library, filmsProperties, markupCreating);
-        })
-    }
-    
+      getFilmFromW().then(({ films }) => {
+        const filmsProperties = films.map(({ id, posters, title, genres, year, vote }) => (
+          {
+            id,
+            posters,
+            title,
+            genres,
+            year,
+            vote,
+          }
+        ));
+        return filmsProperties;
+      }).then((filmsProperties) => {
+        if (filmsProperties.length !== 0) {
+          makeNewArrProp(filmsProperties);
+          spinnerOff();
+          renderMarkupList(refs.library, filmsProperties, markupCreating);
+        };
+        if (filmsProperties.length === 0) {
+          spinnerOff();
+          emptyLibraryShow();
+        };
+      });
+  };
 };
 
 
@@ -70,11 +74,17 @@ export function renderMarkupLibraryW() {
       ));
       return filmsProperties;
     }).then((filmsProperties) => {
-      makeNewArrProp(filmsProperties);
-      spinnerOff();
-      renderMarkupList(refs.library, filmsProperties, markupCreating);
-    })
-  }
+      if (filmsProperties.length !== 0) {
+        makeNewArrProp(filmsProperties);
+        spinnerOff();
+        renderMarkupList(refs.library, filmsProperties, markupCreating);
+      };
+      if (filmsProperties.length === 0) {
+        spinnerOff();
+        emptyLibraryShow();
+      };
+    });
+  };
 };
 
 
@@ -84,12 +94,11 @@ async function getFilmFromW() {
         const filmsW = await fbFilmsData.getFilms(PLACE_W);
       if (filmsW) {
         return filmsW;
-      }
+        };
       } catch (err) {
         console.log(err);
-      }
-      
-  }
+    };
+  };
 };
 
 

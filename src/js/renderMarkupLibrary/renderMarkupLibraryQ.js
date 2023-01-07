@@ -23,6 +23,7 @@ export function renderMarkupLibraryQ() {
     emptyLibraryHide();
     refs.library.innerHTML = '';
     getFilmFromQU().then(({ films }) => {
+      
       const filmsProperties = films.map(({ id, posters, title, genres, year, vote }) => (
         {
           id,
@@ -35,11 +36,17 @@ export function renderMarkupLibraryQ() {
       ));
       return filmsProperties;
     }).then((filmsProperties) => {
-      makeNewArrProp(filmsProperties);
-      spinnerOff();
-      renderMarkupList(refs.library, filmsProperties, markupCreating);
-    })
-  }
+      if (filmsProperties.length !== 0) {
+        makeNewArrProp(filmsProperties);
+        spinnerOff();
+        renderMarkupList(refs.library, filmsProperties, markupCreating);
+      };
+      if (filmsProperties.length === 0) {
+        spinnerOff();
+        emptyLibraryShow();
+      };
+    });
+  };
 };
 
 
@@ -49,12 +56,11 @@ async function getFilmFromQU() {
         const filmsQ = await fbFilmsData.getFilms(PLACE_Q);
       if (filmsQ) {
         return filmsQ;
-      }
+        };
       } catch (err) {
         console.log(err);
-      }
-      
-  }
+    };
+  };
 };
 
 

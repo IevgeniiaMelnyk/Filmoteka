@@ -3,7 +3,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--card-gap);
-  min-height: 100vh;
 
   @media screen and (min-width: $tablet) {
     column-gap: 32px;
@@ -11,6 +10,10 @@
   @media screen and (min-width: $desktop) {
     column-gap: var(--card-gap);
   }
+}
+
+.gallery {
+  min-height: 80vh;
 }
 
 .gallery-poster {
