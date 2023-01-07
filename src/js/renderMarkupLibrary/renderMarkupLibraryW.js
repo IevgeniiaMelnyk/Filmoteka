@@ -58,6 +58,7 @@ export function renderMarkupLibraryW() {
   refs.libraryBtnW.classList.add('current-btn');
   refs.libraryBtnQ.classList.remove('current-btn');
   if (fbFilmsAuth.isLogin) {
+    refs.library.classList.add('min-height');
     spinnerOn();
     emptyLibraryHide();
     refs.library.innerHTML = '';
@@ -80,6 +81,7 @@ export function renderMarkupLibraryW() {
         renderMarkupList(refs.library, filmsProperties, markupCreating);
       };
       if (filmsProperties.length === 0) {
+        refs.library.classList.remove('min-height');
         spinnerOff();
         emptyLibraryShow();
       };
