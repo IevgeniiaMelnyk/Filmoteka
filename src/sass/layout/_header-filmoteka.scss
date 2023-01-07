@@ -1,5 +1,9 @@
-// ==================================
+.container-header {
+  width: 100%;
+}
+
 .header {
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -8,7 +12,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #303030;
-  opacity: 0.9;
+  opacity: 0.99;
   box-shadow: -5px 10px 15px -6px var(--button-activ-color);
 
   @media screen and (max-width: #{$tablet - 1}) {
@@ -76,21 +80,10 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  width: 280px;
 
   @media screen and (min-width: $tablet) {
     width: 100%;
     align-items: center;
-  }
-}
-
-.header__logo-svg {
-  stroke: var(--primary-white-color);
-  fill: transparent;
-  @media screen and (max-width: 767px) {
-    margin-top: 12px;
-    width: 40px;
-    height: 40px;
   }
 }
 
@@ -140,6 +133,16 @@
   }
 }
 
+.header__logo-svg {
+  stroke: var(--primary-white-color);
+  fill: transparent;
+  @media screen and (max-width: 767px) {
+    margin-top: 12px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
 .header__logo-text {
   display: none;
   margin-left: 12px;
@@ -153,10 +156,7 @@
 .header_nav-button-wrapper {
   position: relative;
   display: flex;
-  width: 100%;
   justify-content: flex-end;
-  @media screen and (min-width: $tablet) {
-  }
 }
 
 .header__nav-list {
@@ -185,7 +185,7 @@
   font-size: 12px;
   line-height: 14px;
   margin-left: 39px;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   text-transform: uppercase;
   transition: transform, color;
   transition-duration: 500ms;
@@ -205,14 +205,17 @@
   @media screen and (min-width: $tablet) {
     margin-left: 1px;
     position: absolute;
-    right: 30px;
-    top: 16px;
+    right: 5px;
+    top: 10px;
   }
 }
 
 .user_icon {
-  fill: var(--button-activ-color);
+  fill: none;
+  stroke: var(--button-activ-color);
   margin-top: 14px;
+  width: 25px;
+  height: 25px;
   @media screen and (min-width: $tablet) {
     margin-top: 0px;
     margin-left: 20px;
@@ -241,11 +244,12 @@
   background-color: transparent;
   text-transform: uppercase;
 }
+
 // =============
 .header__form {
-  margin-top: 10px;
+  margin-top: 0px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   color: var(--primary-white-color);
   transition-property: transform, color;
@@ -258,8 +262,13 @@
     transform: scale(1.1);
   }
   @media screen and (min-width: $tablet) {
-    margin-top: 15px;
+    margin-top: 25px;
+    justify-content: center;
   }
+}
+
+.header__content {
+  position: relative;
 }
 
 .header__input {
@@ -283,10 +292,9 @@
 }
 
 .header__form-btn {
-  position: relative;
-  left: -18px;
-  bottom: -3px;
-  padding: 15px 0;
+  position: absolute;
+  right: 0px;
+  top: -1px;
   border: none;
   background-color: transparent;
   color: transparent;
@@ -307,31 +315,18 @@ input::placeholder {
   }
 }
 
-.btnResetFilter {
-  margin: 0 auto;
-  width: 45px;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid var(--just-white);
-  color: var(--just-white);
-  background-color: inherit;
-  cursor: pointer;
-  text-align: center;
-}
-
 .switch {
   position: relative;
 }
 
-.toggle-theme-btn,
-.toggle-theme-btn-for-library {
+.toggle-theme-btn {
   position: absolute;
   right: 0px;
-  top: -25px;
+  top: -5px;
   fill: var(--button-activ-color);
   background-color: transparent;
   border: none;
-  opacity: 98%;
+  opacity: 100%;
 
   &:hover,
   &:focus {
@@ -360,3 +355,15 @@ input::placeholder {
     right: 0px;
   }
 }
+
+// .btnResetFilter {
+//   margin: 0 auto;
+//   width: 45px;
+//   outline: none;
+//   border: none;
+//   border-bottom: 1px solid var(--just-white);
+//   color: var(--just-white);
+//   background-color: inherit;
+//   cursor: pointer;
+//   text-align: center;
+// }

@@ -92,7 +92,7 @@ async function exampleGetFilmFromQU() {
   if (fbFilmsAuth.isLogin) {
     const films = await fbFilmsData.getFilms(PLACE_Q);
     console.log('filmsQU', films);
-    
+
     const films2 = await fbFilmsData.getFilms(PLACE_W);
     console.log('films WA= ', films2);
   }
@@ -106,17 +106,17 @@ async function exampleWriteToLibrary() {
   console.log('result = ', result);
 }
 
-export function testFbDataBase() {
-  const email = 'some17email@mail.com';
-  const password = 'anypassword';
-  document.querySelector('.header').addEventListener('click', () => {
-    exampleLogin();
+// export function testFbDataBase() {
+//   const email = 'some17email@mail.com';
+//   const password = 'anypassword';
+//   document.querySelector('.header').addEventListener('click', () => {
+    // exampleLogin();
 
-    exampleGetFilmFromQU();
+    // exampleGetFilmFromQU();
     // exampleWriteToLibrary();
-  });
-}
+//   });
+// }
 
-document.querySelector('.footer').addEventListener('click', () => {
-  exampleLogOut();
-});
+// document.querySelector('.footer').addEventListener('click', () => {
+//   exampleLogOut();
+// });
