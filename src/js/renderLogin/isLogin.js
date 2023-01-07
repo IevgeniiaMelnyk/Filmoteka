@@ -42,11 +42,5 @@ export function showMessage(isLogin) {
   if (isLogin) {
     needRegisterHide();
     emptyLibraryShow();
-    refs.libraryBtnQ.classList.remove('not-active')
-    refs.libraryBtnW.classList.remove('not-active')
-  }
-  if (!isLogin) {
-    refs.libraryBtnQ.classList.add('not-active');
-    refs.libraryBtnW.classList.add('not-active');
-  }
-}
+  };
+};
