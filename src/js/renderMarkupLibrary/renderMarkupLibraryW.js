@@ -14,7 +14,7 @@ import { renderLogin } from "../renderLogin/renderLogin";
 const refs = getRefs();
 
 
-setTimeout(libraryFirstOpen, 1000);
+// setTimeout(libraryFirstOpen, 1000);
 
 // первая загрузка библиотеки
 export function libraryFirstOpen() {
