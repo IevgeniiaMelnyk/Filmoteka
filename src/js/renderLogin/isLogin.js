@@ -1,5 +1,8 @@
 import { fbFilmsAuth } from '../firebaseFilm/testAuth';
 import { getRefs } from '../refs';
+import { needRegisterHide } from '../errors/needRegister';
+import { needRegisterShow } from '../errors/needRegister';
+import { emptyLibraryShow } from '../errors/showAndHideErrors';
 const refs = getRefs();
 
 export function login(isLogin) {
@@ -20,3 +23,13 @@ export function login(isLogin) {
 async function logAut() {
   const result = await fbFilmsAuth.logOut();
 }
+
+export function showMessage(isLogin) {
+  if (isLogin) {
+    needRegisterHide();
+    emptyLibraryShow();
+  };
+  if (!isLogin) {
+    
+  }
+};

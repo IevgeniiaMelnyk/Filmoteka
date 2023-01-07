@@ -14,4 +14,4 @@ function onInputClear() {
   refs.input.value = '';
 }
 
-refs.autofocusBtn.addEventListener('click', retrySearch);
+// refs.autofocusBtn.addEventListener('click', retrySearch);
