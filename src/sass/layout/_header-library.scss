@@ -22,8 +22,8 @@
   @media screen and (max-width: #{$tablet - 1}) {
     background-image: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3)
       ),
       url('/src/images/background/Rectangle-1x-mobile.jpg');
 
@@ -32,8 +32,8 @@
       screen and (min-resolution: 2dppx) and (max-width: #{$tablet - 1}) {
       background-image: linear-gradient(
           to right,
-          rgba(0, 0, 0, 0.56),
-          rgba(0, 0, 0, 0.56)
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0.3)
         ),
         url('/src/images/background/Rectangle-2x-mobile.jpg');
     }
@@ -42,8 +42,8 @@
   @media screen and (min-width: $tablet) {
     background-image: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3)
       ),
       url('/src/images/background/Rectangle-1x-tablet.jpg');
 
@@ -52,8 +52,8 @@
       screen and (min-resolution: 2dppx) and (min-width: $tablet) {
       background-image: linear-gradient(
           to right,
-          rgba(0, 0, 0, 0.56),
-          rgba(0, 0, 0, 0.56)
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0.3)
         ),
         url('/src/images/background/Rectangle-2x-tablet.jpg');
     }
@@ -61,8 +61,8 @@
   @media screen and (min-width: $desktop) {
     background-image: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.56),
-        rgba(0, 0, 0, 0.56)
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3)
       ),
       url('/src/images/background/Rectangle-1x-desktop.jpg');
 
@@ -71,8 +71,8 @@
       screen and (min-resolution: 2dppx) and (min-width: $desktop) {
       background-image: linear-gradient(
           to right,
-          rgba(0, 0, 0, 0.56),
-          rgba(0, 0, 0, 0.56)
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0.3)
         ),
         url('/src/images/background/Rectangle-2x-desktop.jpg');
     }
