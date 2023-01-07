@@ -11,10 +11,3 @@ export function removeMod(btn, mod) {
   btn.classList.add(`remove-from-${mod}`);
   btn.classList.add('button-active');
 }
-
-export function toggleTextBtn(btn, mod, action) {
-  btn.textContent = `film ${action} to ${mod}`;
-  // btn.classList.add('active');
-  btn.setAttribute('disabled', '');
-  // btn.setAttribute('title', 'hooray, the movie is already in the library!');
-}

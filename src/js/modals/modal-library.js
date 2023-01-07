@@ -3,7 +3,7 @@ import FilmsData from '../moviesAPI/filmsData';
 import { renderModalLibraryMarkup } from '../renderMarkupLibrary/renderModalLibraryMarkup';
 import { markupModalLibraryCreating } from '../renderMarkupLibrary/renderModalLibraryMarkup';
 import renderErrorModalMarkup from '../renderMarkupFilmoteka/renderErrorModalMarkup';
-import { addMod, removeMod, toggleTextBtn } from './modal-film-btn';
+import { addMod, removeMod } from './modal-film-btn';
 import { fbFilmsData, PLACE_Q, PLACE_W } from '../firebaseFilm/fbFilms';
 import TrailerApiService from './modal-trailer';
 
