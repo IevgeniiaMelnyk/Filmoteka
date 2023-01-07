@@ -14,6 +14,7 @@ import { onPagination } from './js/pagination/pagination';
 import { loginModal } from './js/firebaseFilm/loginModal';
 import { changeMode } from './js/changeMode/changeMode';
 import { testFbDataBase } from './js/firebaseFilm/test';
+// testFbDataBase();
 import { isLogin } from './js/renderLogin/isLogin';
 // testFbDataBase();
 
