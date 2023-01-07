@@ -306,12 +306,13 @@ input::placeholder {
 }
 
 .failure-message {
-  width: fit-content;
-  margin: 0px auto;
+  width: max-content;
+  margin: 5px 1px;
   color: #ff001b;
-  font-size: 10px;
+  font-size: 9px;
   @media screen and (min-width: $tablet) {
     font-size: 13px;
+    margin: 5px auto;
   }
 }
 
