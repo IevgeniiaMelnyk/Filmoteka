@@ -37,6 +37,18 @@ export const fireBaseErrors = [
     message_ua: 'Не правильно вказана папка ',
     message_en: 'Invalid  folder',
   },
+  {
+    code: 'auth/wrong-password',
+    message_ru: 'Не правильный пароль',
+    message_ua: 'Не правильно вказано пароль ',
+    message_en: 'Invalid  password.',
+  },
+  {
+    code: 'films/film-not-fount',
+    message_ru: 'Фильм не найден',
+    message_ua: 'Фильм не найден',
+    message_en: 'Film not found',
+  },
 ];
 
 const defaultMessage = {
@@ -47,7 +59,7 @@ const defaultMessage = {
 };
 
 export function returnMessage(inCode, language = 'en') {
-  const mes = fireBaseErrors.find(({ code }) => code === inCode);
+  const mes = fireBaseErrors.find(({ code }) => code == inCode);
   if (mes) return mes['message_' + language];
 
   return defaultMessage['message_' + language];
