@@ -139,3 +139,13 @@
 //   @include columns-media($tablet, 2);
 //   @include columns-media($desktop, 3);
 // }
+
+.gallery-poster {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  @media screen and (min-width: $desktop) {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
