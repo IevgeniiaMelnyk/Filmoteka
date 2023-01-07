@@ -19,5 +19,4 @@ export function login(isLogin) {
 
 async function logAut() {
   const result = await fbFilmsAuth.logOut();
-  console.log(result);
 }
