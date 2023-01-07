@@ -4,9 +4,13 @@ const refs = getRefs();
 hideButtons();
 
 function hideButtons() {
-  [refs.signOut, refs.userIcon, refs.signUp, refs.signIn].forEach(el => {
-    el.classList.add('visually-hidden');
-  });
+  const el = [(refs.signOut, refs.userIcon, refs.signUp, refs.signIn)].forEach(
+    el => {
+      if (el) {
+        el.classList.add('visually-hidden');
+      }
+    }
+  );
 }
 
 export function login(isLogin) {
