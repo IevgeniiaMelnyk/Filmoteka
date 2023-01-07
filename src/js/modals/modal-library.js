@@ -1,11 +1,10 @@
 import { getRefs } from '../refs';
 import FilmsData from '../moviesAPI/filmsData';
-import { renderModalMarkup } from '../renderMarkupFilmoteka/renderModalFilmMarkup';
-import { markupModalCreating } from '../renderMarkupFilmoteka/renderModalFilmMarkup';
+import { renderModalLibraryMarkup } from '../renderMarkupLibrary/renderModalLibraryMarkup';
+import { markupModalLibraryCreating } from '../renderMarkupLibrary/renderModalLibraryMarkup';
 import renderErrorModalMarkup from '../renderMarkupFilmoteka/renderErrorModalMarkup';
-import { addMod, removeMod } from './modal-film-btn';
+import { addMod, removeMod, toggleTextBtn } from './modal-film-btn';
 import { fbFilmsData, PLACE_Q, PLACE_W } from '../firebaseFilm/fbFilms';
-import { fbFilmsAuth } from '../firebaseFilm/testAuth';
 import TrailerApiService from './modal-trailer';
 
 const trailerApiService = new TrailerApiService();
@@ -15,8 +14,8 @@ const filmsData = new FilmsData();
 let filmObj = null;
 let filmId = null;
 
-export default function toggleModalFilm() {
-  refs.gallery.addEventListener('click', openModalFilm);
+export default function toggleModalLibrary() {
+  refs.library.addEventListener('click', openModalFilm);
   refs.closeModalBtn.addEventListener('click', closeModal);
 
   function toggleClasses() {
@@ -40,14 +39,16 @@ export default function toggleModalFilm() {
       .getById(filmId)
       .then(filmProperties => {
         filmObj = filmProperties;
-        renderModalMarkup(
+        renderModalLibraryMarkup(
           refs.modalFilmWrapper,
-          markupModalCreating(filmProperties)
+          markupModalLibraryCreating(filmProperties)
         );
 
-        const addToWatched =
-          refs.modalFilmWrapper.querySelector('.add-to-watched');
-        const addToQueue = refs.modalFilmWrapper.querySelector('.add-to-queue');
+        const addToWatched = refs.modalFilmWrapper.querySelector(
+          '.remove-from-watched'
+        );
+        const addToQueue =
+          refs.modalFilmWrapper.querySelector('.remove-from-queue');
         const trailerBtn =
           refs.modalFilmWrapper.querySelector('.trailer-play-btn');
 
@@ -65,34 +66,35 @@ export default function toggleModalFilm() {
   }
 
   async function onClickBtnWatched(event) {
-    if (event.target.classList.contains('add-to-watched')) {
+    if (event.target.classList.contains('remove-from-watched')) {
       const film1 = await filmsData.getById(filmId);
       console.log('film1 =', film1);
       const result = await fbFilmsData.writeTo(film1, 'WA');
       console.log('result = ', result);
 
-      event.target.textContent = `film added to watched`;
+      event.target.textContent = `film removed from watched`;
       event.target.setAttribute('disabled', '');
-      // removeMod(event.target, 'watched');
-      // } else if (event.target.classList.contains('remove-from-watched')) {
-      //   addMod(event.target, 'watched');
+      //   removeMod(event.target, 'watched');
     }
+    // else if (event.target.classList.contains('remove-from-watched')) {
+    //   addMod(event.target, 'watched');
+    // }
   }
 
   async function onClickBtnQueue(event) {
-    if (event.target.classList.contains('add-to-queue')) {
+    if (event.target.classList.contains('remove-from-queue')) {
       const film1 = await filmsData.getById(filmId);
       console.log('film1 =', film1);
       const result = await fbFilmsData.writeTo(film1, 'QU');
       console.log('result = ', result);
 
-      event.target.textContent = `film added to queue`;
+      event.target.textContent = `film removed from queue`;
       event.target.setAttribute('disabled', '');
-      // removeMod(event.target, 'queue');
-      // } else if (event.target.classList.contains('remove-from-queue')) {
-      //   addMod(event.target, 'queue');
-      // }
+      //   removeMod(event.target, 'queue');
     }
+    // else if (event.target.classList.contains('remove-from-queue')) {
+    //   addMod(event.target, 'queue');
+    // }
   }
 
   function closeModal(event) {
@@ -114,4 +116,4 @@ export default function toggleModalFilm() {
   }
 }
 
-toggleModalFilm();
+toggleModalLibrary();
