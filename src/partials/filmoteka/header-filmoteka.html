@@ -32,38 +32,39 @@
           </li>
           <!-- -->
           <li class="header__nav-item button-up">
-            <button class="header__nav-autoriz" type="button" id="signup">
+            <button
+              class="header__nav-autoriz visually-hidden"
+              type="button"
+              id="signup"
+            >
               Sign up
             </button>
           </li>
           <li class="header__nav-item button-in">
-            <button class="header__nav-autoriz" type="button" id="signin">
+            <button
+              class="header__nav-autoriz visually-hidden"
+              type="button"
+              id="signin"
+            >
               Sign in
             </button>
           </li>
         </ul>
         <div class="header__nav-button-out">
-          <button
-            class="header__nav-autoriz visually-hidden"
-            type="button"
-            id="signout"
-          >
-            Sign out
+          <button class="header__nav-autoriz" type="button" id="signout">
+            <svg
+              class="header__logo-svg user_icon"
+              width="24"
+              height="24"
+              id="usericon"
+            >
+              <use href="./images/svg/symbol-defs.svg#icon-user-check"></use>
+            </svg>
           </button>
         </div>
-        <a href="" class="header__logo link">
-          <svg
-            class="header__logo-svg user_icon visually-hidden"
-            width="24"
-            height="24"
-            id="usericon"
-          >
-            <use href="./images/svg/symbol-defs.svg#icon-user-check"></use>
-          </svg>
-        </a>
       </div>
     </nav>
-
+    <!--  -->
     <form class="header__form" id="search-form">
       <div class="header__content">
         <input
