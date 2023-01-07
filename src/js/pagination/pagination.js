@@ -82,6 +82,14 @@ export function tuiPagination(totalItems) {
             
             });
         };
+         setTimeout(() => {
+  window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+}, 200);
+        
     };
     
     refs.search.addEventListener('submit', restartPag);
@@ -100,6 +108,7 @@ export function tuiPagination(totalItems) {
         userSettings.request = userSettings.request;
         sStorage.save('userSettings', userSettings);
     };
+   
 
 };
 
