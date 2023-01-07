@@ -185,7 +185,7 @@ class FbFilmsData {
    * @param {String} place QU WA
    * @returns {Promise<String>} error message
    */
-  async removeFilm(filmId, place = 'QU') {
+  async removeFilm(filmId, place) {
     const beforeMessage = await this.prepareBeforeActions();
     if (beforeMessage.length > 0) return beforeMessage;
     const filmIndex = this.filmList.findIndex(e => e.id == filmId);
