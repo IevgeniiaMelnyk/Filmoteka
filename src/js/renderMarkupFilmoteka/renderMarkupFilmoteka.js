@@ -133,6 +133,7 @@ export function onSearch(e) {
                 userSettings.request = getFilmsServis.userRequest;
                 userSettings.newSerch = true;
                 sStorage.save('userSettings', userSettings);
+                refs.message.classList.add('visually-hidden');
                 searchErrorHiden(); 
             }
         });
