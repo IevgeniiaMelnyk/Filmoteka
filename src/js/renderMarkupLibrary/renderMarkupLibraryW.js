@@ -14,41 +14,6 @@ import { renderLogin } from "../renderLogin/renderLogin";
 const refs = getRefs();
 
 
-
-// первая загрузка библиотеки
-export function libraryFirstOpen() {
-    
-    if (fbFilmsAuth.isLogin) {
-        spinnerOn();
-        emptyLibraryHide();
-        refs.library.innerHTML = '';
-      getFilmFromW().then(({ films }) => {
-        const filmsProperties = films.map(({ id, posters, title, genres, year, vote }) => (
-          {
-            id,
-            posters,
-            title,
-            genres,
-            year,
-            vote,
-          }
-        ));
-        return filmsProperties;
-      }).then((filmsProperties) => {
-        if (filmsProperties.length !== 0) {
-          makeNewArrProp(filmsProperties);
-          spinnerOff();
-          renderMarkupList(refs.library, filmsProperties, markupCreating);
-        };
-        if (filmsProperties.length === 0) {
-          spinnerOff();
-          emptyLibraryShow();
-        };
-      });
-  };
-};
-
-
 // загрузка по кнопке смотреть
 
 refs.libraryBtnW.addEventListener('click', renderMarkupLibraryW);
