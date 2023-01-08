@@ -125,6 +125,11 @@ table tr {
   @include font();
 }
 
+.need-register {
+  margin-bottom: 20px;
+  color: var(--line-color);
+  @include font();
+}
 .buttons-wrapper {
   display: flex;
 }
