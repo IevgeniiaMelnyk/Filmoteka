@@ -40,7 +40,9 @@ async function logAut() {
 
 export function showMessage(isLogin) {
   if (isLogin) {
-    needRegisterHide();
     emptyLibraryShow();
   };
+  if (!isLogin) {
+    needRegisterShow();
+  }
 };

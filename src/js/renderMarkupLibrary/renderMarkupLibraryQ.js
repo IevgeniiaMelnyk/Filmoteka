@@ -8,6 +8,8 @@ import { renderMarkupList } from "../renderMarkupFilmoteka/renderMarkup";
 import { emptyLibraryHide } from "../errors/showAndHideErrors";
 import { emptyLibraryShow } from "../errors/showAndHideErrors";
 
+
+
 const refs = getRefs();
 
 refs.libraryBtnQ.addEventListener('click', renderMarkupLibraryQ);
