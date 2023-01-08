@@ -9,7 +9,6 @@ import { searchErrorShow } from "../errors/showAndHideErrors";
 import { searchErrorHiden } from "../errors/showAndHideErrors";
 
 
-
 const refs = getRefs();
 
 export const getFilmsServis = new GetFilmsServis();
@@ -100,7 +99,7 @@ function nextLouding() {
 export function onSearch(e) {
   e.preventDefault();
     getFilmsServis.reset();
-
+    
         
     getFilmsServis.userRequest = e.target[0].value.toLowerCase().trim();
         
@@ -110,6 +109,8 @@ export function onSearch(e) {
         refs.message.classList.remove('visually-hidden');
         refs.tuiContainer.classList.add('visually-hidden');
         searchErrorShow();
+        refs.input.value = '';
+        refs.input.blur();
     };
 
     if (getFilmsServis.userRequest) {
@@ -122,6 +123,8 @@ export function onSearch(e) {
                 refs.message.classList.remove('visually-hidden');
                 refs.tuiContainer.classList.add('visually-hidden');
                 searchErrorShow();
+                refs.input.value = '';
+                refs.input.blur();
             };
 
             if (posterProperties.length > 0) {
@@ -136,6 +139,9 @@ export function onSearch(e) {
                 refs.message.classList.add('visually-hidden');
                 refs.tuiContainer.classList.remove('visually-hidden');
                 searchErrorHiden(); 
+                refs.input.value = '';
+                refs.input.blur();
+                
             }
         });
     }
