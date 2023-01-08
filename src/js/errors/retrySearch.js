@@ -2,7 +2,7 @@ import { getRefs } from '../refs';
 
 const refs = getRefs();
 
-export default function retrySearch() {
+export function retrySearch() {
   onInputFocus();
   onInputClear();
 }

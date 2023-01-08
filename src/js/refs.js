@@ -13,7 +13,7 @@ export function getRefs() {
     message: document.querySelector('.failure-message'),
     searchError: document.querySelector('.search-error'),
     emptyLibraryError: document.querySelector('.empty-library-error'),
-    autofocusBtn: document.querySelector('.input-autofocus-btn'),
+    autofocusBtn: document.querySelector('.error-btn'),
     home: document.getElementById('home'),
     // library: document.getElementById('library'),
     input: document.querySelector('.header__input'),
