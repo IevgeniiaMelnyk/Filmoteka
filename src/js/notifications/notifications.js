@@ -7,6 +7,10 @@ class Notification {
     Notify.success('Registration completed successfully!');
   }
 
+  errorReg() {
+    Notify.failure('Registration error!');
+  }
+
   // signIN notification
   loginSuccess() {
     Notify.success('You have successfully logged into your account:)');

@@ -91,6 +91,11 @@ async function exampleLogin(userMail, userPassword) {
   const email = userMail;
   const password = userPassword;
   const result = await fbFilmsAuth.login(email, password);
+  if (result !== '') {
+    notification.loginError();
+  } else {
+    notification.loginSuccess();
+  }
   console.log(result);
   console.log(fbFilmsAuth.getUserDisplayName());
 }
@@ -100,6 +105,12 @@ async function exampleRegistration(regName, regMail, regPassword) {
   const password = regPassword;
   const user = regName;
   const result = await fbFilmsAuth.singUp(email, password, user);
+  if (result !== '') {
+    notification.errorReg();
+  } else {
+    notification.successReg();
+  }
+
   console.log(result);
   console.log(fbFilmsAuth.getUserDisplayName());
 }
@@ -111,7 +122,7 @@ function logSubmit(event) {
   exampleLogin(userMail, userPassword);
 
   event.currentTarget.reset();
-  notification.loginSuccess();
+
   toggleClassLogModal();
 }
 
@@ -122,6 +133,5 @@ function regSubmit(event) {
   const userRegPassw = regPassw.value;
   exampleRegistration(userRegName, userRegMail, userRegPassw);
   event.currentTarget.reset();
-  notification.successReg();
   toggleClassRegModal();
 }
