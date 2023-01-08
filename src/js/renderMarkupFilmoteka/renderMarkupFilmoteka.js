@@ -134,6 +134,7 @@ export function onSearch(e) {
                 userSettings.newSerch = true;
                 sStorage.save('userSettings', userSettings);
                 refs.message.classList.add('visually-hidden');
+                refs.tuiContainer.classList.remove('visually-hidden');
                 searchErrorHiden(); 
             }
         });
