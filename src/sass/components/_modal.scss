@@ -88,6 +88,7 @@ table tr {
 .td {
   min-width: 108px;
 }
+
 .characteristic {
   color: var(--secondary-text-color);
   @include font($lh: 16px);
@@ -163,7 +164,6 @@ table tr {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  // opacity: 0;
 }
 
 .trailer-play-btn {

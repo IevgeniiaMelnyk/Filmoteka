@@ -4,6 +4,7 @@ import { renderModalLibraryMarkup } from '../renderMarkupLibrary/renderModalLibr
 import { markupModalLibraryCreating } from '../renderMarkupLibrary/renderModalLibraryMarkup';
 import renderErrorModalMarkup from '../renderMarkupFilmoteka/renderErrorModalMarkup';
 import { addMod, removeMod } from './modal-film-btn';
+import { fbFilmsAuth } from '../firebaseFilm/testAuth';
 import { fbFilmsData, PLACE_Q, PLACE_W } from '../firebaseFilm/fbFilms';
 import TrailerApiService from './modal-trailer';
 import { renderMarkupLibraryW } from '../renderMarkupLibrary/renderMarkupLibraryW';
@@ -19,11 +20,6 @@ let filmId = null;
 export default function toggleModalLibrary() {
   refs.library.addEventListener('click', openModalFilm);
   refs.closeModalBtn.addEventListener('click', closeModal);
-
-  function toggleClasses() {
-    document.body.classList.toggle('modal-open');
-    refs.modal.classList.toggle('is_hidden');
-  }
 
   function openModalFilm(event) {
     const hasId = event.target.hasAttribute('data-id');
@@ -46,61 +42,62 @@ export default function toggleModalLibrary() {
           markupModalLibraryCreating(filmProperties)
         );
 
-        const addToWatched = refs.modalFilmWrapper.querySelector(
-          '.remove-from-watched'
-        );
-        const addToQueue =
-          refs.modalFilmWrapper.querySelector('.remove-from-queue');
+        const addToWatched =
+          refs.modalFilmWrapper.querySelector('.add-to-watched');
+        const addToQueue = refs.modalFilmWrapper.querySelector('.add-to-queue');
         const trailerBtn =
           refs.modalFilmWrapper.querySelector('.trailer-play-btn');
 
         trailerBtn.addEventListener('click', onYouTubeBtnClick);
         addToWatched.addEventListener('click', onClickBtnWatched);
         addToQueue.addEventListener('click', onClickBtnQueue);
+        return fbFilmsData.getFilmById(filmId);
+      })
+      .then(filmFromData => {
+        const innerAddToWatched =
+          refs.modalFilmWrapper.querySelector('.add-to-watched');
+        const innerAddToQueue =
+          refs.modalFilmWrapper.querySelector('.add-to-queue');
+        if (filmFromData && filmFromData?.place) {
+          if (filmFromData.place == PLACE_W) {
+            removeMod(innerAddToWatched, 'watched');
+          }
+          if (filmFromData.place == PLACE_Q) {
+            removeMod(innerAddToQueue, 'queue');
+          }
+        }
       })
       .catch(renderErrorModalMarkup);
   }
 
-  function onYouTubeBtnClick(event) {
-    trailerApiService.filmID = filmId;
-    trailerApiService.showTrailer();
-    closeModal();
-  }
-
   async function onClickBtnWatched(event) {
     if (event.target.classList.contains('remove-from-watched')) {
-      // const film1 = await filmsData.getById(filmId);
-      // console.log('film1 =', film1);
-      event.target.nextSibling.setAttribute('disabled', '');
       const result = await fbFilmsData.removeFilm(filmId, 'WA');
-      console.log('result = ', result);
 
-      event.target.textContent = `film removed from watched`;
-      event.target.setAttribute('disabled', '');
+      addMod(event.target, 'watched');
       renderMarkupLibraryW();
-      //   removeMod(event.target, 'watched');
+    } else if (event.target.classList.contains('add-to-watched')) {
+      const film1 = await filmsData.getById(filmId);
+      const result = await fbFilmsData.writeTo(film1, 'WA');
+
+      removeMod(event.target, 'watched');
+      renderMarkupLibraryW();
     }
-    // else if (event.target.classList.contains('remove-from-watched')) {
-    //   addMod(event.target, 'watched');
-    // }
   }
 
   async function onClickBtnQueue(event) {
     if (event.target.classList.contains('remove-from-queue')) {
-      // const film1 = await filmsData.getById(filmId);
-      // console.log('film1 =', film1);
-      event.target.previousSibling.setAttribute('disabled', '');
       const result = await fbFilmsData.removeFilm(filmId, 'QU');
-      console.log('result = ', result);
 
-      event.target.textContent = `film removed from queue`;
-      event.target.setAttribute('disabled', '');
+      addMod(event.target, 'queue');
       renderMarkupLibraryQ();
-      //   removeMod(event.target, 'queue');
+    } else if (event.target.classList.contains('add-to-queue')) {
+      const film1 = await filmsData.getById(filmId);
+      const result = await fbFilmsData.writeTo(film1, 'QU');
+
+      removeMod(event.target, 'queue');
+      renderMarkupLibraryW();
     }
-    // else if (event.target.classList.contains('remove-from-queue')) {
-    //   addMod(event.target, 'queue');
-    // }
   }
 
   function closeModal(event) {
@@ -119,6 +116,17 @@ export default function toggleModalLibrary() {
 
     toggleClasses();
     refs.modal.removeEventListener('click', closeModalOnBackdrop);
+  }
+
+  function toggleClasses() {
+    document.body.classList.toggle('modal-open');
+    refs.modal.classList.toggle('is_hidden');
+  }
+
+  function onYouTubeBtnClick(event) {
+    trailerApiService.filmID = filmId;
+    trailerApiService.showTrailer();
+    closeModal();
   }
 }
 

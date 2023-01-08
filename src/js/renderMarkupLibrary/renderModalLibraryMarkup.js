@@ -99,16 +99,16 @@ export function markupModalLibraryCreating({
           <div class="buttons-wrapper">
             <button
               type="button"
-              class="button-modal remove-from-watched"
+              class="button-modal add-to-watched"
               data-action="add-to-watched"
             >
-            remove from Watched</button
+            add to watched</button
             ><button
               type="button"
-              class="button-modal remove-from-queue"
+              class="button-modal add-to-queue"
               data-action="add-to-queue"
             >
-            remove from queue
+            add to queue
             </button>
           </div>
         </div>

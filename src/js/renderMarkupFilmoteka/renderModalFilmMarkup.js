@@ -99,13 +99,13 @@ export function markupModalCreating({
         <div class="buttons-wrapper">
           <button
             type="button"
-            class="button-modal add-to-watched"
+            class="button-modal add-to-watched visually-hidden"
             data-action="add-to-watched"
           >
             add to Watched</button
           ><button
             type="button"
-            class="button-modal add-to-queue"
+            class="button-modal add-to-queue visually-hidden"
             data-action="add-to-queue"
           >
             add to queue
