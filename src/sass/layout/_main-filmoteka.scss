@@ -18,9 +18,9 @@
 
 .gallery-poster {
   position: relative;
-  //   @include columns-media($mobile, 1);
-  width: 280px;
-  height: 402px;
+
+  min-width: 280px;
+  min-height: 402px;
   @media screen and (min-width: $tablet) {
     //     @include columns-media($tablet, 2);
     width: 336px;
@@ -35,7 +35,8 @@
 
 .gallery-poster-box {
   cursor: pointer;
-  transition: scale 250ms var(--time-function);
+  transition: scale 250ms var(--time-function),
+    filter 250ms var(--time-function);
 
   &:hover {
     scale: 1.05;
@@ -53,7 +54,7 @@
 
 .gallery-poster-title {
   display: block;
-  width: 280px;
+  min-width: 280px;
   margin-top: 12px;
   text-transform: uppercase;
   color: var(--primary-text-color);

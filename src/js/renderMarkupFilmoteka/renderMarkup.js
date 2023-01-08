@@ -37,7 +37,7 @@ export function markupCreating({ id, posters, title, genres, year, vote }) {
           />
           <source
             srcset="
-              ${posters[3].path} 1x,
+              ${posters[4].path} 1x,
               ${posters[4].path} 2x
             "
             media="(max-width: 767px)"
