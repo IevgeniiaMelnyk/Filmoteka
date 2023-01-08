@@ -1,4 +1,5 @@
 import { fbFilmsAuth } from './testAuth';
+import { notification } from '../notifications/notifications';
 
 const refs = {
   openLoginModalBtn: document.querySelector('#signin'),
@@ -110,6 +111,7 @@ function logSubmit(event) {
   exampleLogin(userMail, userPassword);
 
   event.currentTarget.reset();
+  notification.loginSuccess();
   toggleClassLogModal();
 }
 
@@ -119,7 +121,7 @@ function regSubmit(event) {
   const userRegMail = regEmail.value;
   const userRegPassw = regPassw.value;
   exampleRegistration(userRegName, userRegMail, userRegPassw);
-
   event.currentTarget.reset();
+  notification.successReg();
   toggleClassRegModal();
 }
