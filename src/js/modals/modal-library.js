@@ -82,6 +82,9 @@ export default function toggleModalLibrary() {
 
       removeMod(event.target, 'watched');
       renderMarkupLibraryW();
+      if (event.target.nextSibling.classList.contains('remove-from-queue')) {
+        addMod(event.target.nextSibling, 'queue');
+      }
     }
   }
 
@@ -97,6 +100,11 @@ export default function toggleModalLibrary() {
 
       removeMod(event.target, 'queue');
       renderMarkupLibraryW();
+      if (
+        event.target.previousSibling.classList.contains('remove-from-watched')
+      ) {
+        addMod(event.target.previousSibling, 'watched');
+      }
     }
   }
 
