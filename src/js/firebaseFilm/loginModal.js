@@ -96,8 +96,8 @@ async function exampleLogin(userMail, userPassword) {
   } else {
     notification.loginSuccess();
   }
-  console.log(result);
-  console.log(fbFilmsAuth.getUserDisplayName());
+  // console.log(result);
+  // console.log(fbFilmsAuth.getUserDisplayName());
 }
 
 async function exampleRegistration(regName, regMail, regPassword) {
@@ -111,8 +111,8 @@ async function exampleRegistration(regName, regMail, regPassword) {
     notification.successReg();
   }
 
-  console.log(result);
-  console.log(fbFilmsAuth.getUserDisplayName());
+  // console.log(result);
+  // console.log(fbFilmsAuth.getUserDisplayName());
 }
 
 function logSubmit(event) {

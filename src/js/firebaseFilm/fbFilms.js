@@ -82,7 +82,6 @@ class FbFilmsData {
    */
   async writeTo(film, place) {
     this.setUid();
-    console.log(this.uid);
     if (place != PLACE_Q && place != PLACE_W) {
       return returnMessage('films/place', this.language);
     }
@@ -92,7 +91,6 @@ class FbFilmsData {
 
     try {
       let filmW = await this.checkFilmInList(film.id, place);
-      console.log('filmW:', filmW);
       if (!filmW) {
         const { id, title, genres, release_date, poster_path, vote, language } =
           film;
