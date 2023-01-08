@@ -17,5 +17,3 @@ import { testFbDataBase } from './js/firebaseFilm/test';
 // testFbDataBase();
 import { isLogin } from './js/renderLogin/isLogin';
 // testFbDataBase();
-
-
