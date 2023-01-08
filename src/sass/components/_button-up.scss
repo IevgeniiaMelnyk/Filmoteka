@@ -58,9 +58,10 @@
 }
 @media screen and (max-width:375px) {
     .up-button {
-        width: 15px;
-        height: 30px;
-        bottom: 142px;
+        width: 17px;
+        height: 31px;
+        bottom: 140px;
+        border-radius: 22%;
     }
 
     .up-button__icon {
