@@ -53,6 +53,10 @@ export default function toggleModalFilm() {
           addToWatched.addEventListener('click', onClickBtnWatched);
           addToQueue.addEventListener('click', onClickBtnQueue);
           return fbFilmsData.getFilmById(filmId);
+        } else {
+          document
+            .querySelector('.need-register')
+            .classList.remove('visually-hidden');
         }
       })
       .then(filmFromData => {
@@ -60,11 +64,18 @@ export default function toggleModalFilm() {
           refs.modalFilmWrapper.querySelector('.add-to-watched');
         const innerAddToQueue =
           refs.modalFilmWrapper.querySelector('.add-to-queue');
-        if (filmFromData && filmFromData?.place) {
-          if (filmFromData.place == PLACE_W) {
+
+        if (filmFromData) {
+          if (
+            filmFromData?.place == PLACE_W ||
+            filmFromData?.place2 == PLACE_W
+          ) {
             removeMod(innerAddToWatched, 'watched');
           }
-          if (filmFromData.place == PLACE_Q) {
+          if (
+            filmFromData?.place == PLACE_Q ||
+            filmFromData?.place2 == PLACE_Q
+          ) {
             removeMod(innerAddToQueue, 'queue');
           }
         }
@@ -77,13 +88,16 @@ export default function toggleModalFilm() {
       const film1 = await filmsData.getById(filmId);
       const result = await fbFilmsData.writeTo(film1, 'WA');
 
-      removeMod(event.target, 'watched');
-
-      if (event.target.nextSibling.classList.contains('remove-from-queue')) {
-        addMod(event.target.nextSibling, 'queue');
+      if (result?.place === 'WA' || result?.place2 === 'WA') {
+        removeMod(event.target, 'watched');
       }
+
+      // if (event.target.nextSibling.classList.contains('remove-from-queue')) {
+      //   addMod(event.target.nextSibling, 'queue');
+      // }
     } else if (event.target.classList.contains('remove-from-watched')) {
       const result = await fbFilmsData.removeFilm(filmId, 'WA');
+
       addMod(event.target, 'watched');
     }
   }
@@ -92,13 +106,13 @@ export default function toggleModalFilm() {
     if (event.target.classList.contains('add-to-queue')) {
       const film1 = await filmsData.getById(filmId);
       const result = await fbFilmsData.writeTo(film1, 'QU');
-
+      if (result?.place === 'QU' || result?.place2 === 'QU');
       removeMod(event.target, 'queue');
-      if (
-        event.target.previousSibling.classList.contains('remove-from-watched')
-      ) {
-        addMod(event.target.previousSibling, 'watched');
-      }
+      // if (
+      //   event.target.previousSibling.classList.contains('remove-from-watched')
+      // ) {
+      //   addMod(event.target.previousSibling, 'watched');
+      // }
     } else if (event.target.classList.contains('remove-from-queue')) {
       const result = await fbFilmsData.removeFilm(filmId, 'QU');
       addMod(event.target, 'queue');

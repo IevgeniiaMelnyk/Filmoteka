@@ -58,11 +58,17 @@ export default function toggleModalLibrary() {
           refs.modalFilmWrapper.querySelector('.add-to-watched');
         const innerAddToQueue =
           refs.modalFilmWrapper.querySelector('.add-to-queue');
-        if (filmFromData && filmFromData?.place) {
-          if (filmFromData.place == PLACE_W) {
+        if (filmFromData && filmFromData?.id) {
+          if (
+            filmFromData?.place == PLACE_W ||
+            filmFromData?.place2 == PLACE_W
+          ) {
             removeMod(innerAddToWatched, 'watched');
           }
-          if (filmFromData.place == PLACE_Q) {
+          if (
+            filmFromData?.place == PLACE_Q ||
+            filmFromData?.place2 == PLACE_Q
+          ) {
             removeMod(innerAddToQueue, 'queue');
           }
         }
@@ -79,12 +85,14 @@ export default function toggleModalLibrary() {
     } else if (event.target.classList.contains('add-to-watched')) {
       const film1 = await filmsData.getById(filmId);
       const result = await fbFilmsData.writeTo(film1, 'WA');
-
-      removeMod(event.target, 'watched');
-      renderMarkupLibraryW();
-      if (event.target.nextSibling.classList.contains('remove-from-queue')) {
-        addMod(event.target.nextSibling, 'queue');
+      if (result?.place === 'WA' || result?.place2 === 'WA') {
+        removeMod(event.target, 'watched');
       }
+
+      renderMarkupLibraryW();
+      // if (event.target.nextSibling.classList.contains('remove-from-queue')) {
+      //   addMod(event.target.nextSibling, 'queue');
+      // }
     }
   }
 
@@ -97,14 +105,15 @@ export default function toggleModalLibrary() {
     } else if (event.target.classList.contains('add-to-queue')) {
       const film1 = await filmsData.getById(filmId);
       const result = await fbFilmsData.writeTo(film1, 'QU');
-
+      if (result?.place === 'QU' || result?.place2 === 'QU');
       removeMod(event.target, 'queue');
+
       renderMarkupLibraryQ();
-      if (
-        event.target.previousSibling.classList.contains('remove-from-watched')
-      ) {
-        addMod(event.target.previousSibling, 'watched');
-      }
+      // if (
+      //   event.target.previousSibling.classList.contains('remove-from-watched')
+      // ) {
+      //   addMod(event.target.previousSibling, 'watched');
+      // }
     }
   }
 

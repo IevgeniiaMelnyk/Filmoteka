@@ -96,6 +96,10 @@ export function markupModalCreating({
         <p class="about-descr">
           ${about}
         </p>
+
+        <p class="about-descr need-register visually-hidden">
+          Only registered users can use library 
+        </p>
         <div class="buttons-wrapper">
           <button
             type="button"

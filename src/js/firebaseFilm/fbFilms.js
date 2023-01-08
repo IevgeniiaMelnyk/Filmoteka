@@ -45,7 +45,16 @@ class FbFilmsData {
 
     for (let i = 0; i < this.filmList.length; i += 1) {
       if (this.filmList[i].id === id) {
-        this.filmList[i].place = place;
+        if (this.filmList[i].place && this.filmList[i].place != place) {
+          this.filmList[i].place2 = place;
+        } else {
+          if (this.filmList[i].place2 && this.filmList[i].place2 != place) {
+            this.filmList[i].place = place;
+          }
+        }
+
+        // this.filmList[i].place = place;
+
         return this.filmList[i];
       }
     }
@@ -82,6 +91,7 @@ class FbFilmsData {
    */
   async writeTo(film, place) {
     this.setUid();
+
     if (place != PLACE_Q && place != PLACE_W) {
       return returnMessage('films/place', this.language);
     }
@@ -91,6 +101,8 @@ class FbFilmsData {
 
     try {
       let filmW = await this.checkFilmInList(film.id, place);
+      debugger;
+
       if (!filmW) {
         const { id, title, genres, release_date, poster_path, vote, language } =
           film;
@@ -106,11 +118,10 @@ class FbFilmsData {
         });
         filmW.place = place;
         this.filmList.push(filmW);
-        console.log('writeTo this.filmList=', this.filmList);
       }
 
       await set(ref(this.db, 'users/' + this.uid + '/' + filmW.id), filmW);
-      return '';
+      return filmW;
     } catch (e) {
       return returnMessage(e.code, this.language);
     }
@@ -131,7 +142,7 @@ class FbFilmsData {
       if (snapshot.exists()) {
         const filmObjects = snapshot.val();
         this.filmList = Object.values(filmObjects).map(
-          ({ id, title, genres, year, poster_path, vote, place }) => {
+          ({ id, title, genres, year, poster_path, vote, place, place2 }) => {
             const film = new FilmFromList({
               id,
               title,
@@ -142,6 +153,7 @@ class FbFilmsData {
             });
 
             film.place = place;
+            film.place2 = place2;
             return film;
           }
         );
@@ -173,7 +185,9 @@ class FbFilmsData {
       return returnMessage(e.code, this.language);
     }
     return {
-      films: this.filmList.filter(el => el.place === place),
+      films: this.filmList.filter(
+        el => el.place === place || el.place2 === place
+      ),
       message: '',
     };
   }
@@ -188,8 +202,19 @@ class FbFilmsData {
     if (beforeMessage.length > 0) return beforeMessage;
     const filmIndex = this.filmList.findIndex(e => e.id == filmId);
     if (filmIndex >= 0) {
-      this.filmList.splice(filmIndex, 1);
-      await remove(ref(this.db, 'users/' + this.uid + '/' + filmId));
+      let film = this.filmList[filmIndex];
+      const filmW = this.checkPlace(film, place);
+      debugger;
+
+      if (filmW.place == null && filmW.place2 == null) {
+        this.filmList.splice(filmIndex, 1);
+        await remove(ref(this.db, 'users/' + this.uid + '/' + filmId));
+        return null;
+      } else {
+        this.filmList[filmIndex] = filmW;
+        await set(ref(this.db, 'users/' + this.uid + '/' + filmW.id), filmW);
+        return filmW;
+      }
     } else {
       return returnMessage('films/film-not-fount', this.language);
     }
@@ -208,6 +233,16 @@ class FbFilmsData {
 
     if (film) return film;
     return null;
+  }
+
+  checkPlace(film, place) {
+    if (film.place === place) {
+      film.place = null;
+    }
+    if (film.place2 === place) {
+      film.place2 = null;
+    }
+    return film;
   }
 }
 
