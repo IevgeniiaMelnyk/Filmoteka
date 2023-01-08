@@ -7,7 +7,7 @@ import { showMessage } from './isLogin';
  * @param {boolean} isLogin
  */
 export function renderLogin(isLogin, user) {
-  console.log('RenderLoginMainPage =', isLogin, 'user=', user);
+  // console.log('RenderLoginMainPage =', isLogin, 'user=', user);
 
   if (document.querySelector('.header__nav-button-out')) {
     login(isLogin);
