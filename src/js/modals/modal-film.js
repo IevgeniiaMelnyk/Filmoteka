@@ -78,6 +78,10 @@ export default function toggleModalFilm() {
       const result = await fbFilmsData.writeTo(film1, 'WA');
 
       removeMod(event.target, 'watched');
+
+      if (event.target.nextSibling.classList.contains('remove-from-queue')) {
+        addMod(event.target.nextSibling, 'queue');
+      }
     } else if (event.target.classList.contains('remove-from-watched')) {
       const result = await fbFilmsData.removeFilm(filmId, 'WA');
       addMod(event.target, 'watched');
@@ -90,6 +94,11 @@ export default function toggleModalFilm() {
       const result = await fbFilmsData.writeTo(film1, 'QU');
 
       removeMod(event.target, 'queue');
+      if (
+        event.target.previousSibling.classList.contains('remove-from-watched')
+      ) {
+        addMod(event.target.previousSibling, 'watched');
+      }
     } else if (event.target.classList.contains('remove-from-queue')) {
       const result = await fbFilmsData.removeFilm(filmId, 'QU');
       addMod(event.target, 'queue');
