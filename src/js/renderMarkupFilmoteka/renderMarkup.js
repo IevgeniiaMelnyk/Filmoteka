@@ -44,7 +44,7 @@ export function markupCreating({ id, posters, title, genres, year, vote }) {
           />
           <img
             class="gallery-poster-img"
-            src="${posters[3].path}"
+            src="${posters[4].path}"
             alt="${title}"
             data-id=${id}
             loading="lazy"
