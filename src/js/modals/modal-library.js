@@ -99,7 +99,7 @@ export default function toggleModalLibrary() {
       const result = await fbFilmsData.writeTo(film1, 'QU');
 
       removeMod(event.target, 'queue');
-      renderMarkupLibraryW();
+      renderMarkupLibraryQ();
       if (
         event.target.previousSibling.classList.contains('remove-from-watched')
       ) {
