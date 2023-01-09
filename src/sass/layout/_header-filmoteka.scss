@@ -249,7 +249,7 @@
 .header__form {
   margin-top: 0px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   color: var(--primary-white-color);
   transition-property: transform, color;
@@ -263,7 +263,6 @@
   }
   @media screen and (min-width: $tablet) {
     margin-top: 25px;
-    justify-content: center;
   }
 }
 
@@ -280,8 +279,11 @@
   color: inherit;
   background-color: transparent;
   border: none;
-  border-bottom: 0.7px solid currentColor;
+  border-bottom: 1.2px solid currentColor;
   outline: unset;
+  @media screen and (min-width: 375px) {
+    min-width: 230px;
+  }
   @media screen and (min-width: $tablet) {
     min-width: 336px;
     height: 20px;
@@ -301,7 +303,7 @@
 }
 
 input::placeholder {
-  @include font(400px, 12px, 400px);
+  @include font(800px, 12px, 400px);
   color: inherit;
 }
 
