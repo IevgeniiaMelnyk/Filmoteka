@@ -75,4 +75,6 @@
 
 <!-- ![How it works](./assets/how-it-works.png) -->
 
-
+<div align="center">
+  <img src="https://media.giphy.com/media/PE79pnjBtEOVLBEMM1/giphy.gif" width="200"/>
+</div>
