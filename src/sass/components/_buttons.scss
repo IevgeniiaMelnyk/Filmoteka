@@ -126,25 +126,29 @@
 .language-btn-en,
 .language-btn-ru {
   position: absolute;
-  width: 50px;
+  width: 30px;
   height: 50px;
-  top: -120px;
+  padding: 0;
+  top: -135px;
   background-color: transparent;
   border: none;
   color: var(--primary-white-color);
   text-transform: uppercase;
   font-size: 12px;
+  @media screen and (min-width: $tablet) {
+    width: 40px;
+  }
 }
 
 .language-btn-en {
-  left: 10px;
+  left: 15px;
   @media screen and (min-width: $tablet) {
-    left: 20px;
+    left: 25px;
   }
 }
 
 .language-btn-ru {
-  left: 40px;
+  left: 45px;
   @media screen and (min-width: $tablet) {
     left: 60px;
   }

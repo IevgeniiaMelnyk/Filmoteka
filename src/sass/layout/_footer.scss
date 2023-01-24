@@ -37,16 +37,6 @@ body.data-modal-open {
 }
 
 // MODAL WINDOW================================>
-// .team {
-
-// background-image: linear-gradient(
-//     to right,
-//     rgba(0, 0, 0, 0.61),
-//     rgba(0, 0, 0, 0.61)
-//   ),
-//   //   url('/src/images/developers/desctop/bc.jpg');
-
-// }
 
 .footer-backdrop {
   position: fixed;
@@ -61,33 +51,30 @@ body.data-modal-open {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  
-  transition: opacity .25s cubic-bezier(.4, 0, .2, 1);
+
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   // transition: transform .125s cubic-bezier(.4, 0, .2, 1), opacity .125s cubic-bezier(.4, 0, .2, 1);
-   
 }
 .footer-backdrop.is-hidden .footer-modal {
- 
   transform: translate(-50%, -0%);
-transition: transform 2500ms cubic-bezier(0.4, 0, 0.2, 1),
+  transition: transform 2500ms cubic-bezier(0.4, 0, 0.2, 1),
     250ms cubic-bezier(0.4, 0, 0.2, 1);
-
 }
-
 
 .footer-modal {
   background-color: #505050;
+  border-radius: 5px;
   box-shadow: 1px 1px 3px 3px var(--button-activ-color);
   overflow-y: scroll;
   height: 95%;
-  // width: 90%;
+  width: 280px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 1;
   transition: transform 2500ms cubic-bezier(0.4, 0, 0.2, 1),
-     250ms cubic-bezier(0.4, 0, 0.2, 1);
+    250ms cubic-bezier(0.4, 0, 0.2, 1);
   // transform: translate(-50%, -50%);
   // width: 54%;
   //   max-height: 90%;
@@ -108,8 +95,6 @@ transition: transform 2500ms cubic-bezier(0.4, 0, 0.2, 1),
   padding: 0;
   width: 30px;
   height: 30px;
-  // border: 1px solid;
-  // border-radius: 50%;
 }
 .footer-modal-close-btn:hover .footer-modal-close-btn-icon,
 .footer-modal-close-btn:focus .footer-modal-close-btn-icon {
@@ -123,7 +108,10 @@ transition: transform 2500ms cubic-bezier(0.4, 0, 0.2, 1),
 // @media screen and (max-width: 767px) {
 
 .team {
-  padding-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .team-list {
@@ -131,16 +119,13 @@ transition: transform 2500ms cubic-bezier(0.4, 0, 0.2, 1),
   flex-wrap: wrap;
   margin: 0px;
   padding: 0px;
-  padding-bottom: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
   gap: 30px;
   justify-content: center;
 }
 
 .section-tittle {
   padding-top: 20px;
-  margin-bottom: 30px;
+  padding-bottom: 30px;
   font-weight: 400;
   font-size: 30px;
   line-height: 35.16px;
@@ -193,11 +178,9 @@ transition: transform 2500ms cubic-bezier(0.4, 0, 0.2, 1),
   transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-// }
-
 .team-info {
   position: relative;
-  margin-top: 8px;
+  padding-top: 8px;
   padding-bottom: 40px;
 }
 
@@ -248,56 +231,21 @@ transition: transform 2500ms cubic-bezier(0.4, 0, 0.2, 1),
 }
 
 .team-tittle {
+  display: block;
   color: var(--button-activ-color);
 }
-//  @media screen and (min-width: 768px) {
-//    .footer-modal {
-//      width: 80%;
-//    }
-//  }
-
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: $tablet) {
   .footer-modal {
-  
-    width: 50%;
+    width: 700px;
+    height: 90%;
   }
-}
-
-@media screen and (min-width: 1200px) {
-  .footer-modal {
-    width: 50%;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .footer-modal {
-    width: 50%;
-  }
-}
-
-@media screen and (min-width: 1600px) {
-  .footer-modal {
-    width: 70%;
-  }
-}
-@media screen and (min-width: 1900px) {
-  .footer-modal {
-    height: 80%;
-    width: 70%;
-  }
-}
-@media screen and (min-width: 2500px) {
-  .footer-modal {
-    height: 55%;
-    width: 50%;
+  .section-tittle {
+    padding-top: 10px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .section-tittle {
     font-size: 22px;
-    padding: 5px;
   }
 }
-// }
-
-// Developers
