@@ -7,6 +7,9 @@ import { addMod, removeMod } from './modal-film-btn';
 import { fbFilmsData, PLACE_Q, PLACE_W } from '../firebaseFilm/fbFilms';
 import { fbFilmsAuth } from '../firebaseFilm/testAuth';
 import TrailerApiService from './modal-trailer';
+import { lStorage } from '../renderMarkupFilmoteka/getFilmsServis';
+
+const language = lStorage.get('language');
 
 const trailerApiService = new TrailerApiService();
 
@@ -32,7 +35,7 @@ export default function toggleModalFilm() {
     toggleClasses();
 
     filmsData
-      .getById(filmId)
+      .getById(filmId, language)
       .then(filmProperties => {
         filmObj = filmProperties;
         renderModalMarkup(

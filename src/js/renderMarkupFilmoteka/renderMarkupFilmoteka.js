@@ -137,7 +137,7 @@ export function onSearch(e) {
 export function makeNewArrProp(arr) {
   return arr.forEach(element => {
     if (element.genres.length > 2) {
-      element.genres = [element.genres[0], element.genres[1], 'Other'];
+      element.genres = [element.genres[0], element.genres[1], '...'];
     }
   });
 }

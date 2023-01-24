@@ -5,7 +5,7 @@ import { LStorage } from '../storage/localStorage';
 
 const refs = getRefs();
 const filmsData = new FilmsData();
-const lStorage = new LStorage();
+export const lStorage = new LStorage();
 
 const language = lStorage.get('language');
 
