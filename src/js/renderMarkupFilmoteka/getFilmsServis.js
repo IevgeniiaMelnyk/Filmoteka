@@ -19,21 +19,10 @@ export class GetFilmsServis {
 
   async getFilmsPopular() {
     try {
-      const postersArrFirst = await filmsData.getDayPopular(this.nextPage);
-      this.totalResults = postersArrFirst.total_results;
+      const postersArr = await filmsData.getDayPopular(this.nextPage);
+      this.totalResults = postersArr.total_results;
       tuiPagination(this.totalResults);
-
-      const posterPropertiesFirst = postersArrFirst.films.map(
-        ({ id, posters, title, genres, year, vote }) => ({
-          id,
-          posters,
-          title,
-          genres,
-          year,
-          vote,
-        })
-      );
-      return posterPropertiesFirst;
+      return this.getPosterProp(postersArr.films);
     } catch (err) {
       console.log(err);
     }
@@ -41,22 +30,11 @@ export class GetFilmsServis {
 
   async getFilmsPopularPag() {
     try {
-      const postersArrPag = await filmsData.getDayPopular(
+      const postersArr = await filmsData.getDayPopular(
         this.currentPage,
         language
       );
-
-      const posterPropertiesPag = postersArrPag.films.map(
-        ({ id, posters, title, genres, year, vote }) => ({
-          id,
-          posters,
-          title,
-          genres,
-          year,
-          vote,
-        })
-      );
-      return posterPropertiesPag;
+      return this.getPosterProp(postersArr.films);
     } catch (err) {
       console.log(err);
     }
@@ -71,18 +49,7 @@ export class GetFilmsServis {
       );
       this.totalResults = postersArr.total_results;
       tuiPagination(this.totalResults);
-
-      const posterProperties = postersArr.films.map(
-        ({ id, posters, title, genres, year, vote }) => ({
-          id,
-          posters,
-          title,
-          genres,
-          year,
-          vote,
-        })
-      );
-      return posterProperties;
+      return this.getPosterProp(postersArr.films);
     } catch (err) {
       console.log(err);
     }
@@ -90,23 +57,12 @@ export class GetFilmsServis {
 
   async getFilmsPag(request) {
     try {
-      const postersArrRecPag = await filmsData.getSearchQuery(
+      const postersArr = await filmsData.getSearchQuery(
         request,
         this.currentPage,
         language
       );
-
-      const posterPropertiesRecPag = postersArrRecPag.films.map(
-        ({ id, posters, title, genres, year, vote }) => ({
-          id,
-          posters,
-          title,
-          genres,
-          year,
-          vote,
-        })
-      );
-      return posterPropertiesRecPag;
+      return this.getPosterProp(postersArr.films);
     } catch (err) {
       console.log(err);
     }
@@ -114,21 +70,10 @@ export class GetFilmsServis {
 
   async getFilmsPopularRestart(page) {
     try {
-      const postersArrFirst = await filmsData.getDayPopular(page, language);
-      this.totalResults = postersArrFirst.total_results;
+      const postersArr = await filmsData.getDayPopular(page, language);
+      this.totalResults = postersArr.total_results;
       tuiPagination(this.totalResults);
-
-      const posterPropertiesFirst = postersArrFirst.films.map(
-        ({ id, posters, title, genres, year, vote }) => ({
-          id,
-          posters,
-          title,
-          genres,
-          year,
-          vote,
-        })
-      );
-      return posterPropertiesFirst;
+      return this.getPosterProp(postersArr.films);
     } catch (err) {
       console.log(err);
     }
@@ -143,21 +88,24 @@ export class GetFilmsServis {
       );
       this.totalResults = postersArr.total_results;
       tuiPagination(this.totalResults);
-
-      const posterProperties = postersArr.films.map(
-        ({ id, posters, title, genres, year, vote }) => ({
-          id,
-          posters,
-          title,
-          genres,
-          year,
-          vote,
-        })
-      );
-      return posterProperties;
+      return this.getPosterProp(postersArr.films);
     } catch (err) {
       console.log(err);
     }
+  }
+
+  getPosterProp(arr) {
+    const posterProperties = arr.map(
+      ({ id, posters, title, genres, year, vote }) => ({
+        id,
+        posters,
+        title,
+        genres,
+        year,
+        vote,
+      })
+    );
+    return posterProperties;
   }
 
   reset() {

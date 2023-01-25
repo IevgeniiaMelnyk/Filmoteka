@@ -1,14 +1,20 @@
 import { PLACE_Q } from '../firebaseFilm/fbFilms';
 import { fbFilmsAuth } from '../firebaseFilm/testAuth';
 import { getRefs } from '../refs';
-import { spinnerOn } from '../spiner/spiner';
-import { spinnerOff } from '../spiner/spiner';
-import { markupCreating } from '../renderMarkupFilmoteka/renderMarkup';
-import { renderMarkupList } from '../renderMarkupFilmoteka/renderMarkup';
-import { emptyLibraryHide } from '../errors/showAndHideErrors';
-import { emptyLibraryShow } from '../errors/showAndHideErrors';
-import { makeNewArrProp } from './renderMarkupLibraryW';
-import { getFilmFromData } from './renderMarkupLibraryW';
+import { spinnerOn, spinnerOff } from '../spiner/spiner';
+import {
+  markupCreating,
+  renderMarkupList,
+} from '../renderMarkupFilmoteka/renderMarkup';
+import {
+  emptyLibraryHide,
+  emptyLibraryShow,
+} from '../errors/showAndHideErrors';
+import {
+  makeNewArrProp,
+  makeFilmsProperties,
+  getFilmFromData,
+} from './renderMarkupLibraryW';
 
 const refs = getRefs();
 
@@ -25,17 +31,7 @@ export function renderMarkupLibraryQ() {
     refs.library.innerHTML = '';
     getFilmFromData(PLACE_Q)
       .then(({ films }) => {
-        const filmsProperties = films.map(
-          ({ id, posters, title, genres, year, vote }) => ({
-            id,
-            posters,
-            title,
-            genres,
-            year,
-            vote,
-          })
-        );
-        return filmsProperties;
+        return makeFilmsProperties(films);
       })
       .then(filmsProperties => {
         if (filmsProperties.length !== 0) {

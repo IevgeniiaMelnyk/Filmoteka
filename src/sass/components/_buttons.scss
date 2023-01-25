@@ -125,35 +125,21 @@
 
 .language-btn-en,
 .language-btn-ru {
-  position: absolute;
-  width: 30px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   padding: 0;
-  top: -135px;
-  background-color: transparent;
+  background-color: var(--button-activ-color);
+  border-radius: 50%;
   border: none;
   color: var(--primary-white-color);
   text-transform: uppercase;
   font-size: 12px;
-  @media screen and (min-width: $tablet) {
-    width: 40px;
-  }
-}
+  cursor: pointer;
+  transition: scale 250ms var(--time-function),
+    filter 250ms var(--time-function);
 
-.language-btn-en {
-  left: 15px;
-  @media screen and (min-width: $tablet) {
-    left: 25px;
+  &:hover {
+    scale: 1.05;
+    filter: drop-shadow(0 8px 13px #ff6b0199);
   }
-}
-
-.language-btn-ru {
-  left: 45px;
-  @media screen and (min-width: $tablet) {
-    left: 60px;
-  }
-}
-
-.language-btn-active {
-  text-decoration: underline 2px solid #ff001b;
 }

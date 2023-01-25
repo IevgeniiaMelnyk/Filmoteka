@@ -1,12 +1,15 @@
 import { fbFilmsData, PLACE_W } from '../firebaseFilm/fbFilms';
 import { fbFilmsAuth } from '../firebaseFilm/testAuth';
 import { getRefs } from '../refs';
-import { spinnerOn } from '../spiner/spiner';
-import { spinnerOff } from '../spiner/spiner';
-import { markupCreating } from '../renderMarkupFilmoteka/renderMarkup';
-import { renderMarkupList } from '../renderMarkupFilmoteka/renderMarkup';
-import { emptyLibraryHide } from '../errors/showAndHideErrors';
-import { emptyLibraryShow } from '../errors/showAndHideErrors';
+import { spinnerOn, spinnerOff } from '../spiner/spiner';
+import {
+  markupCreating,
+  renderMarkupList,
+} from '../renderMarkupFilmoteka/renderMarkup';
+import {
+  emptyLibraryHide,
+  emptyLibraryShow,
+} from '../errors/showAndHideErrors';
 
 const refs = getRefs();
 
@@ -23,17 +26,7 @@ export function renderMarkupLibraryW() {
     refs.library.innerHTML = '';
     getFilmFromData(PLACE_W)
       .then(({ films }) => {
-        const filmsProperties = films.map(
-          ({ id, posters, title, genres, year, vote }) => ({
-            id,
-            posters,
-            title,
-            genres,
-            year,
-            vote,
-          })
-        );
-        return filmsProperties;
+        return makeFilmsProperties(films);
       })
       .then(filmsProperties => {
         if (filmsProperties.length !== 0) {
@@ -61,6 +54,20 @@ export async function getFilmFromData(place) {
       console.log(err);
     }
   }
+}
+
+export function makeFilmsProperties(arr) {
+  const filmsProperties = arr.map(
+    ({ id, posters, title, genres, year, vote }) => ({
+      id,
+      posters,
+      title,
+      genres,
+      year,
+      vote,
+    })
+  );
+  return filmsProperties;
 }
 
 // вспомогательные функции

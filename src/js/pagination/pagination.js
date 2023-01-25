@@ -1,12 +1,12 @@
 import Pagination from 'tui-pagination';
-// import '/node_modules/tui-pagination/dist/tui-pagination.css';
 import { getRefs } from '../refs';
 import { GetFilmsServis } from '../renderMarkupFilmoteka/getFilmsServis';
-import { spinnerOn } from '../spiner/spiner';
-import { spinnerOff } from '../spiner/spiner';
+import { spinnerOn, spinnerOff } from '../spiner/spiner';
 import { sStorage } from '../renderMarkupFilmoteka/renderMarkupFilmoteka';
-import { markupCreating } from '../renderMarkupFilmoteka/renderMarkup';
-import { renderMarkupList } from '../renderMarkupFilmoteka/renderMarkup';
+import {
+  markupCreating,
+  renderMarkupList,
+} from '../renderMarkupFilmoteka/renderMarkup';
 import { makeNewArrProp } from '../renderMarkupFilmoteka/renderMarkupFilmoteka';
 
 const refs = getRefs();
@@ -55,10 +55,10 @@ export function tuiPagination(totalItems) {
     if (userSettings.request === '') {
       refs.gallery.innerHTML = '';
       spinnerOn();
-      getFilmsServis.getFilmsPopularPag().then(posterPropertiesPag => {
-        makeNewArrProp(posterPropertiesPag);
+      getFilmsServis.getFilmsPopularPag().then(posterProperties => {
+        makeNewArrProp(posterProperties);
         spinnerOff();
-        renderMarkupList(refs.gallery, posterPropertiesPag, markupCreating);
+        renderMarkupList(refs.gallery, posterProperties, markupCreating);
         userSettings.page = getFilmsServis.currentPage;
         userSettings.request = getFilmsServis.userRequest;
         sStorage.save('userSettings', userSettings);
@@ -70,14 +70,10 @@ export function tuiPagination(totalItems) {
       spinnerOn();
       getFilmsServis
         .getFilmsPag(userSettings.request)
-        .then(posterPropertiesRecPag => {
-          makeNewArrProp(posterPropertiesRecPag);
+        .then(posterProperties => {
+          makeNewArrProp(posterProperties);
           spinnerOff();
-          renderMarkupList(
-            refs.gallery,
-            posterPropertiesRecPag,
-            markupCreating
-          );
+          renderMarkupList(refs.gallery, posterProperties, markupCreating);
           userSettings.page = getFilmsServis.currentPage;
           userSettings.request = userSettings.request;
           sStorage.save('userSettings', userSettings);
