@@ -13,6 +13,7 @@ const MOVIES_API_ID = 'https://api.themoviedb.org/3/movie/';
 
 const MOVIES_API_BASE_IMAGE = 'https://image.tmdb.org/t/p';
 
+const MOVIES_API_GENRES = 'https://api.themoviedb.org/3/discover/movie/';
 /* CLASS FilmsData
    async getDayPopular(page, language = 'en')  
    Список фильмов для главной страницы
@@ -63,6 +64,7 @@ class FilmsData {
   #searchParamsDay;
   #searchParamsQuery;
   #searchParamsID;
+  #searchGenres;
   /**
    * @param {string} language one of 'en' 'ru' 'uk'
    */
@@ -84,6 +86,13 @@ class FilmsData {
       query: '',
       include_adult: false,
       'vote_average.gte': 6,
+      sort_by: 'popularity.desc',
+    });
+
+    this.#searchGenres = new URLSearchParams({
+      api_key: MOVIES_API_KEY,
+      page: 1,
+      language: language,
       sort_by: 'popularity.desc',
     });
     this.#searchParamsID = new URLSearchParams({
@@ -301,6 +310,27 @@ class FilmsData {
       throw e;
     }
   }
+
+  /**
+   *
+   * @param {Array <int>} genres_id  массив id жанров
+   * @param {*} page
+   * @param {*} language
+   * @returns
+   */
+  async getByGenres(genres_id, page, language) {
+    const strGenres = genres_id.join(',');
+    try {
+      this.language = language;
+
+      this.#searchGenres.set('with_genres', strGenres);
+      this.#searchGenres.set('page', page);
+      this.#searchGenres.set('language', language);
+      return this.#getListFromParams(this.#searchGenres, MOVIES_API_GENRES);
+    } catch (e) {
+      throw e;
+    }
+  }
 }
 
 async function TestFilms() {
@@ -313,15 +343,21 @@ async function TestFilms() {
     const films2 = await getFilms.getById(9471, 'ua');
     console.log('======================');
     console.log(films2);
+
+    const films3 = await getFilms.getByGenres([28, 18], 1, 'ua');
+    console.log('=genres=====================');
+    console.log(films3);
   } catch (e) {
     console.log('Error', e);
   }
 }
 
+//TestFilms();
+
 export default FilmsData;
 export class FilmFromList {
   constructor({ id, title, genres, year, poster_path, vote, language = 'en' }) {
-    // console.log('constructor ', id, title, genres, year, poster_path, vote);
+    console.log('constructor ', id, title, genres, year, poster_path, vote);
     this.id = id;
     this.title = title;
     this.poster_path = poster_path;
