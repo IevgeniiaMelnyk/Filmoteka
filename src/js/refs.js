@@ -36,5 +36,6 @@ export function getRefs() {
     languageBtnEn: document.querySelector('.language-btn-en'),
     languageBtnRu: document.querySelector('.language-btn-ru'),
     genreForm: document.querySelector('.genre-form'),
+    popularBtn: document.querySelector('.options-btn-popular'),
   };
 }

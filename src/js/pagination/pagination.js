@@ -52,7 +52,7 @@ export function tuiPagination(totalItems) {
     getFilmsServis.nextPage = currentPage + 1;
     userSettings = sStorage.get('userSettings');
 
-    if (userSettings.request === '') {
+    if (userSettings.request === '' && !userSettings.genre.length) {
       refs.gallery.innerHTML = '';
       spinnerOn();
       getFilmsServis.getFilmsPopularPag().then(posterProperties => {
@@ -76,6 +76,20 @@ export function tuiPagination(totalItems) {
           renderMarkupList(refs.gallery, posterProperties, markupCreating);
           userSettings.page = getFilmsServis.currentPage;
           userSettings.request = userSettings.request;
+          sStorage.save('userSettings', userSettings);
+        });
+    }
+
+    if (userSettings.genre.length) {
+      refs.gallery.innerHTML = '';
+      spinnerOn();
+      getFilmsServis
+        .getFilmsGenrePag(userSettings.genre)
+        .then(posterProperties => {
+          makeNewArrProp(posterProperties);
+          spinnerOff();
+          renderMarkupList(refs.gallery, posterProperties, markupCreating);
+          userSettings.page = getFilmsServis.currentPage;
           sStorage.save('userSettings', userSettings);
         });
     }

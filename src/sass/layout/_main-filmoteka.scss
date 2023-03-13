@@ -18,18 +18,32 @@
   padding-top: 0;
 }
 
+.language-btn-box {
+  @media screen and (min-width: $tablet) {
+      display: flex;
+      gap: 10px;
+    }
+}
+
 .options-section {
   padding-top: 20px;
   padding-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 17px;
+  flex-wrap: wrap;
+  @media screen and (min-width: $tablet) {
+      gap: 40px;
+    }
 }
 
 .genre-select {
   height: 40px;
   border: 2px solid var(--button-activ-color);
   border-radius: 5px;
+  @media screen and (min-width: $tablet) {
+      margin-right: 10px;
+    }
 }
 
 .min-height {

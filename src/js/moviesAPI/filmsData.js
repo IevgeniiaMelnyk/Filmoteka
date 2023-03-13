@@ -319,11 +319,11 @@ class FilmsData {
    * @returns
    */
   async getByGenres(genres_id, page, language) {
-    const strGenres = genres_id.join(',');
+    // const strGenres = genres_id.join(',');
     try {
       this.language = language;
 
-      this.#searchGenres.set('with_genres', strGenres);
+      this.#searchGenres.set('with_genres', genres_id);
       this.#searchGenres.set('page', page);
       this.#searchGenres.set('language', language);
       return this.#getListFromParams(this.#searchGenres, MOVIES_API_GENRES);
@@ -352,12 +352,12 @@ async function TestFilms() {
   }
 }
 
-//TestFilms();
+// TestFilms();
 
 export default FilmsData;
 export class FilmFromList {
   constructor({ id, title, genres, year, poster_path, vote, language = 'en' }) {
-    console.log('constructor ', id, title, genres, year, poster_path, vote);
+    // console.log('constructor ', id, title, genres, year, poster_path, vote);
     this.id = id;
     this.title = title;
     this.poster_path = poster_path;

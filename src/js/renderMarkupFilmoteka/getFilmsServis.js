@@ -12,6 +12,7 @@ const language = lStorage.get('language');
 export class GetFilmsServis {
   constructor() {
     this.userRequest = '';
+    this.genre = [];
     this.nextPage = 1;
     this.currentPage = 0;
     this.totalResults = 0;
@@ -67,22 +68,35 @@ export class GetFilmsServis {
       console.log(err);
     }
   }
+  
+  async getFilmsGenre() {
+    try {
+      const postersArr = await filmsData.getByGenres(
+        this.genre,
+        this.nextPage,
+        language
+      );
+      this.totalResults = postersArr.total_results;
+      tuiPagination(this.totalResults);
+      return this.getPosterProp(postersArr.films);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  // async getFilmsGenre() {
-  //   try {
-  //     const postersArr = await filmsData.getSearchQuery(
-  //       this.userRequest,
-  //       this.nextPage,
-  //       language
-  //     );
-  //     this.totalResults = postersArr.total_results;
-  //     tuiPagination(this.totalResults);
-  //     return this.getPosterProp(postersArr.films);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
+  async getFilmsGenrePag(genre) {
+    try {
+      const postersArr = await filmsData.getByGenres(
+        genre,
+        this.currentPage,
+        language
+      );
+      return this.getPosterProp(postersArr.films);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
   async getFilmsPopularRestart(page) {
     try {
       const postersArr = await filmsData.getDayPopular(page, language);
@@ -101,6 +115,17 @@ export class GetFilmsServis {
         page,
         language
       );
+      this.totalResults = postersArr.total_results;
+      tuiPagination(this.totalResults);
+      return this.getPosterProp(postersArr.films);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async getFilmsGenreRestart(genre, page) {
+    try {
+      const postersArr = await filmsData.getByGenres(genre, page, language);
       this.totalResults = postersArr.total_results;
       tuiPagination(this.totalResults);
       return this.getPosterProp(postersArr.films);

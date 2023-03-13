@@ -13,11 +13,13 @@ export const sStorage = new SStorage();
 document.addEventListener('DOMContentLoaded', onCurrentPage);
 refs.search.addEventListener('submit', onSearch);
 refs.filmotekaLogo.addEventListener('click', onClickLogoFilmoteka);
-refs.genreForm.addEventListener('submit', getFilmsGenre);
+refs.genreForm.addEventListener('submit', getFilmsByGenre);
+refs.popularBtn.addEventListener('click', onClickPopularBtn);
 
 export let userSettings = {
   page: getFilmsServis.currentPage,
   request: getFilmsServis.userRequest,
+  genre: getFilmsServis.genre,
   firstOupen: false,
   newSerch: false,
 };
@@ -37,6 +39,12 @@ ifItFirstOupen();
 export function onClickLogoFilmoteka() {
   getFilmsServis.reset();
   sStorage.clear();
+}
+
+export function onClickPopularBtn() {
+  getFilmsServis.reset();
+  sStorage.clear();
+  ifItFirstOupen();
 }
 
 // популярные фильмы рендер
@@ -93,6 +101,7 @@ export function onSearch(e) {
         getFilmsServis.incrementPage();
         userSettings.page = getFilmsServis.currentPage;
         userSettings.request = getFilmsServis.userRequest;
+        userSettings.genre = [];
         userSettings.newSerch = true;
         sStorage.save('userSettings', userSettings);
         refs.message.classList.add('visually-hidden');
@@ -103,6 +112,29 @@ export function onSearch(e) {
       }
     });
   }
+}
+
+// загрузка по жанру
+export function getFilmsByGenre(e) {
+  e.preventDefault();
+  getFilmsServis.reset();
+  refs.gallery.innerHTML = '';
+  const genre = e.target.elements[0].value;
+  getFilmsServis.genre.push(Number(genre));
+  spinnerOn();
+  getFilmsServis.getFilmsGenre().then(posterProperties => {
+    makeNewArrProp(posterProperties);
+    spinnerOff();
+    renderMarkupList(refs.gallery, posterProperties, markupCreating);
+  });
+
+  getFilmsServis.incrementPage();
+  userSettings.page = getFilmsServis.currentPage;
+  userSettings.request = '';
+  userSettings.newSerch = true;
+  userSettings.genre = getFilmsServis.genre;
+  sStorage.save('userSettings', userSettings);
+  getFilmsServis.genre = [];
 }
 
 // вспомогательные функции
@@ -119,9 +151,11 @@ export function onCurrentPage(e) {
   userSettings = sStorage.get('userSettings');
   getFilmsServis.currentPage = userSettings.page;
   getFilmsServis.request = userSettings.request;
+  getFilmsServis.genre = userSettings.genre;
 
   if (
     userSettings.request === '' &&
+    !userSettings.genre.length &&
     userSettings.page === 1 &&
     !userSettings.firstOupen
   ) {
@@ -137,6 +171,7 @@ export function onCurrentPage(e) {
   }
   if (
     userSettings.request === '' &&
+    !userSettings.genre.length &&
     userSettings.page > 0 &&
     !userSettings.firstOupen
   ) {
@@ -158,14 +193,22 @@ export function onCurrentPage(e) {
     getFilmsServis.getFilmsRestart(userSettings.request, userSettings.page);
   }
 
+  if (userSettings.genre.length > 0 && userSettings.page === 1) {
+    refs.gallery.innerHTML = '';
+    spinnerOn();
+    getFilmsServis
+      .getFilmsGenreRestart(userSettings.genre, userSettings.page)
+      .then(posterProperties => {
+        makeNewArrProp(posterProperties);
+        spinnerOff();
+        renderMarkupList(refs.gallery, posterProperties, markupCreating);
+      });
+  }
+
+  if (userSettings.genre.length && userSettings.page > 0) {
+    getFilmsServis.getFilmsGenreRestart(userSettings.genre, userSettings.page);
+  }
+
   userSettings.firstOupen = false;
   sStorage.save('userSettings', userSettings);
-}
-
-// загрузка по жанру
-
-export function getFilmsGenre(e) {
-  e.preventDefault();
-  const genre = e.target.elements[0].value;
-  console.log(genre);
 }
