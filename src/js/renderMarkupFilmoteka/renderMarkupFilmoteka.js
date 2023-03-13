@@ -13,6 +13,7 @@ export const sStorage = new SStorage();
 document.addEventListener('DOMContentLoaded', onCurrentPage);
 refs.search.addEventListener('submit', onSearch);
 refs.filmotekaLogo.addEventListener('click', onClickLogoFilmoteka);
+refs.genreForm.addEventListener('submit', getFilmsGenre);
 
 export let userSettings = {
   page: getFilmsServis.currentPage,
@@ -161,8 +162,10 @@ export function onCurrentPage(e) {
   sStorage.save('userSettings', userSettings);
 }
 
-refs.genreForm.addEventListener('submit', getFilmsGenre);
+// загрузка по жанру
 
 export function getFilmsGenre(e) {
   e.preventDefault();
+  const genre = e.target.elements[0].value;
+  console.log(genre);
 }

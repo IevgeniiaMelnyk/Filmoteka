@@ -68,6 +68,21 @@ export class GetFilmsServis {
     }
   }
 
+  // async getFilmsGenre() {
+  //   try {
+  //     const postersArr = await filmsData.getSearchQuery(
+  //       this.userRequest,
+  //       this.nextPage,
+  //       language
+  //     );
+  //     this.totalResults = postersArr.total_results;
+  //     tuiPagination(this.totalResults);
+  //     return this.getPosterProp(postersArr.films);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
   async getFilmsPopularRestart(page) {
     try {
       const postersArr = await filmsData.getDayPopular(page, language);
