@@ -68,7 +68,7 @@ export class GetFilmsServis {
       console.log(err);
     }
   }
-  
+
   async getFilmsGenre() {
     try {
       const postersArr = await filmsData.getByGenres(
@@ -76,6 +76,7 @@ export class GetFilmsServis {
         this.nextPage,
         language
       );
+      console.log(postersArr);
       this.totalResults = postersArr.total_results;
       tuiPagination(this.totalResults);
       return this.getPosterProp(postersArr.films);
@@ -96,7 +97,7 @@ export class GetFilmsServis {
       console.log(err);
     }
   }
-  
+
   async getFilmsPopularRestart(page) {
     try {
       const postersArr = await filmsData.getDayPopular(page, language);
