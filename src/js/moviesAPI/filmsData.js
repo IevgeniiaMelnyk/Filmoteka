@@ -13,7 +13,7 @@ const MOVIES_API_ID = 'https://api.themoviedb.org/3/movie/';
 
 const MOVIES_API_BASE_IMAGE = 'https://image.tmdb.org/t/p';
 
-const MOVIES_API_GENRES = 'https://api.themoviedb.org/3/discover/movie/';
+const MOVIES_API_GENRES = 'https://api.themoviedb.org/3/discover/movie?';
 /* CLASS FilmsData
    async getDayPopular(page, language = 'en')  
    Список фильмов для главной страницы
@@ -95,6 +95,7 @@ class FilmsData {
       language: language,
       sort_by: 'popularity.desc',
     });
+
     this.#searchParamsID = new URLSearchParams({
       api_key: MOVIES_API_KEY,
     });
@@ -167,6 +168,8 @@ class FilmsData {
       const response = await axios.get(url, {
         params: searchParams,
       });
+
+      console.log(response);
 
       const total_pages = response.data.total_pages;
       const total_results = response.data.total_results;

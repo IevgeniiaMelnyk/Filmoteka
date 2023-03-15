@@ -76,7 +76,6 @@ export class GetFilmsServis {
         this.nextPage,
         language
       );
-      console.log(postersArr);
       this.totalResults = postersArr.total_results;
       tuiPagination(this.totalResults);
       return this.getPosterProp(postersArr.films);
