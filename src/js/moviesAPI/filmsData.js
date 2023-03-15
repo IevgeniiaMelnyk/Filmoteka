@@ -169,8 +169,6 @@ class FilmsData {
         params: searchParams,
       });
 
-      console.log(response);
-
       const total_pages = response.data.total_pages;
       const total_results = response.data.total_results;
       const results = response.data.results;
