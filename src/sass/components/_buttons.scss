@@ -143,3 +143,14 @@
     filter: drop-shadow(0 8px 13px #ff6b0199);
   }
 }
+
+.options-btn-popular {
+  transition: scale 250ms var(--time-function),
+    filter 250ms var(--time-function);
+
+  &:hover,
+  &:focus {
+    scale: 1.05;
+      filter: drop-shadow(0 8px 13px #ff6b0199);
+  }
+}
